@@ -1,0 +1,105 @@
+// Idea: The user moves a square around the box to avoid touching the circle that is bouncing aruond.
+// Every 10 seconds the box shrinks. There is a timer and the user tries to get a high score.
+int window_width = 500;
+int window_height = 500;
+
+rectangle left_wall(x = 10, y = 10, w = 10, h = 480);
+rectangle top_wall(x = 10, y = 480, w = 480, h = 10);
+rectangle right_wall(x = 480, y = 10, w = 10, h = 480);
+rectangle bottom_wall(x = 10, y = 10, w = 480, h = 10);
+
+rectangle user_life[life];
+rectangle player(x = 220, y = 220, w = 20, h = 20, blue=300);
+
+int ball_x_increment = 8;
+int ball_y_increment = 3;
+int animation_speed = 80; // 1 is slowest, 100 is fastest
+int life = 10;
+
+textbox winorlose (x = window_width-300, y = window_height/2 - 100, text = "", red = 1);
+textbox life_text (x = 10, y = window_height/2 + 12, text = "USER's REMAINING LIFE:");
+textbox instruction (x = 10, y = window_height/2 - 15, text = "Survive as long as you can avoiding the ball!");
+
+initialization {
+    // Initializing user tank's life
+    for (i = 0; i < life; i += 1)
+    {
+        user_life[i].h = 10;
+        user_life[i].w = window_width/20;
+        user_life[i].x = i*(user_life[i].w)+i; 
+        user_life[i].y = window_height/2;
+        user_life[i].red = 0;
+        user_life[i].green = 1;
+    }
+}
+
+
+
+// declare the animation handler function
+forward animation ball_animate(circle cur_ball);
+
+// create a ball to bounce around the screen
+circle ball(x = 100, y = 200, radius = 20, animation_block = ball_animate);
+
+// animation handler for the ball 
+// this block is called at regular intervals for the ball object
+animation ball_animate(circle cur_ball)
+{
+    // if ball has reached either the left or right, reverse its direction
+    if (cur_ball.x < 30 || cur_ball.x > 440)
+        ball_x_increment = -ball_x_increment;
+
+    // if ball has reached either the top or bottom, reverse its direction
+    if (cur_ball.y < 30 || cur_ball.y > 440)
+        ball_y_increment = -ball_y_increment;
+
+    // If ball touches player, they lose health
+    if (curr_ball touches player)
+    {
+        user_life[l].visible = false;
+        l -= 1;
+        if (l == -1) 
+        {
+            play = 0;
+            winorlose.text = "YOU LOSE!";
+        }
+    }
+        
+
+    // on each step of the animation, move the ball
+    cur_ball.x += ball_x_increment;
+    cur_ball.y += ball_y_increment;
+}
+
+on leftarrow
+{
+    if (player.x > 20)
+    {
+        player.x -= 10;
+    }
+}
+
+on rightarrow
+{
+    if (player.x < 460)
+    {
+        player.x += 10;
+    }
+}
+
+on uparrow
+{
+    if (player.y < 460)
+    {
+        player.y += 10;
+    }
+}
+
+on downarrow
+{
+    if (player.y > 20)
+    {
+        player.y -= 10;
+    }
+}
+

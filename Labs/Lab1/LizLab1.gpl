@@ -24,7 +24,7 @@ circle ball(radius = ball_size, animation_block = ball_animate);
 animation ball_animate(circle cur_ball)
 {
     // if ball has reached either the left or right, reverse its direction
-    if (cur_ball.x < 10 || cur_ball.x > window_width - ball_size)
+    if (cur_ball.x < 50 || cur_ball.x > window_width - ball_size)
         ball_x_increment = -ball_x_increment;
 
     // if ball has reached either the top or bottom, reverse its direction
