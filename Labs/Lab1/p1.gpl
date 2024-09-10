@@ -1,3 +1,5 @@
+// This is my completed game
+
 int window_width = 500;
 int window_height = 500;
 
