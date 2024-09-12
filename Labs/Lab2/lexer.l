@@ -63,7 +63,7 @@ KEYWORDS    "int"|"float"|"char"|"string"|"if"|"else"|"while"|"return"|"printf"
 DIGIT       [0-9]
 LETTER      [A-Za-z_]
 ID          [{LETTER}({LETTER}{DIGIT})*]
-NUMBER      [({DIGITS}+.?{DIGITS}+) | ({DIGITS}(E | e)10)]
+NUMBER      [({DIGITS}+.?{DIGITS}+) | ({DIGITS}(E | e){DIGITS})]
 
 /* Rules */
 %%
@@ -72,9 +72,11 @@ NUMBER      [({DIGITS}+.?{DIGITS}+) | ({DIGITS}(E | e)10)]
 {ID} getToken(T_IDENTIFIER);
 (+|-|*|/|=|<|>|(>=)|(<=)|(!=)|(==)|&) getToken(T_OPERATOR);
 (;|(|)|{|}|[|]|,) getToken(T_DELIMITER);
-'{LETTER?}' getToken(T_CHAR_LIT);
-"{LETTER*}" getToken(T_STRING_LIT);
+{LETTER} getToken(T_CHAR_LIT);
+{ID} getToken(T_STRING_LIT);
 // getToken(UNKNOWN);
+"/*" {};
+"//" {};
 %%
 
 int main(int argc, char **argv) {
