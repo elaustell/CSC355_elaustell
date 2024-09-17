@@ -70,13 +70,13 @@ NUMBER      [({DIGITS}+.?{DIGITS}+) | ({DIGITS}(E | e){DIGITS})]
 {KEYWORDS} getToken(T_KEYWORD);
 {NUMBER} getToken(T_NUMBER);
 {ID} getToken(T_IDENTIFIER);
-(+|-|*|/|=|<|>|(>=)|(<=)|(!=)|(==)|&) getToken(T_OPERATOR);
-(;|(|)|{|}|[|]|,) getToken(T_DELIMITER);
+(+-*/=<>(>=)(<=)(!=)(==)&) getToken(T_OPERATOR);
+(;(){}[],) getToken(T_DELIMITER);
 {LETTER} getToken(T_CHAR_LIT);
 {ID} getToken(T_STRING_LIT);
-// getToken(UNKNOWN);
-"/*" {};
-"//" {};
+. error(); //getToken(UNKNOWN);
+^[/*] {};
+^[//] {};
 %%
 
 int main(int argc, char **argv) {
