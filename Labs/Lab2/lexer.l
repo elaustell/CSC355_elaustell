@@ -72,8 +72,8 @@ NUMBER      [({DIGITS}+.?{DIGITS}+) | ({DIGITS}(E | e){DIGITS})]
 {ID} getToken(T_IDENTIFIER);
 [+*/="-"<>(>=)(<=)(!=)(==)&] getToken(T_OPERATOR);
 (;,"("")""{""}""[""]") getToken(T_DELIMITER);
-("/*") {};
-("//") {};
+("/*".*) {};
+("//".*) {};
 . error();
 %%
 
