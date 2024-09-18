@@ -111,7 +111,7 @@ The right-hand-side (RHS) specifies an action (code to execute) when
 [1-9]+[0-9]*\.0*[1-9]+  return T_DOUBLE_CONSTANT;
 [1-9]+[0-9]*\. return T_DOUBLE_CONSTANT;
 \.0*[1-9]+ {get_double_value(); return T_DOUBLE_CONSTANT;}
-[(JAN)(FEB)(MAR)(APR)(MAY)(JUN)(JUL)(AUG)(SEP)(OCT)(NOV)(DEC)] return T_MONTH;
+(JAN)|(FEB)|(MAR)|(APR)|(MAY)|(JUN)|(JUL)|(AUG)|(SEP)|(OCT)|(NOV)|(DEC) return T_MONTH;
 
 
 \"[^"]*\" {get_quoted_string_value(); return T_STRING_CONSTANT;}
