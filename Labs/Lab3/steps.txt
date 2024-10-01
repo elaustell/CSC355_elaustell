@@ -1,0 +1,27 @@
+Steps:
+1. e-closure(1) = {2}
+    A = {1,2}
+2. e-closure(Move(A,a))
+    2a. Move(A,a) = {3,4,5}
+    2b. e-closure({3,4,5}) = {3,4,5}
+    B = {3,4,5}
+3. e-closure(Move(A,b))
+    3a. Move(A,b) = {}
+4. e-closure(Move(B,a))
+    4a. Move(B,a) = {5}
+    4b. e-closure({5}) = {5}
+    C = {5}
+5. e-closure(Move(B,b))
+    5a. Move(B,b) = {4,5}
+    5b. e-closure({4,5}) = {4,5}
+    D = {4,5}
+6. e-closure(Move(C,a))
+    6a. Move(C,a) = {}
+7. e-closure(Move(C,b))
+    7a. Move(C,b) = {}
+8. e-closure(Move(D,a))
+    8a. Move(D,a) = {5}
+    8b. e-closure({5}) = {5} // == C
+9. e-closure(Move(D,b))
+    9a. Move(D,b) = {5}
+    9b. e-closure({5}) = {5} // == C
