@@ -159,6 +159,7 @@ declaration_list:
 declaration:
     variable_declaration T_SEMIC
     | object_declaration T_SEMIC
+    | forward_declaration T_SEMIC
     ;
 
 //---------------------------------------------------------------------
@@ -171,6 +172,7 @@ variable_declaration:
 simple_type:
     T_INT
     | T_DOUBLE
+    | T_STRING
     ;
 
 //---------------------------------------------------------------------
@@ -213,6 +215,7 @@ parameter:
 
 //---------------------------------------------------------------------
 forward_declaration:
+    T_FORWARD T_ANIMATION T_ID T_LPAREN object_type T_ID T_RPAREN
     ;
 
 //---------------------------------------------------------------------
@@ -261,6 +264,30 @@ on_block:
 
 //---------------------------------------------------------------------
 keystroke:
+    T_SPACE
+    | T_LEFTARROW
+    | T_RIGHTARROW
+    | T_UPARROW
+    | T_DOWNARROW
+    | T_LEFTMOUSE_DOWN
+    | T_MIDDLEMOUSE_DOWN
+    | T_RIGHTMOUSE_DOWN
+    | T_LEFTMOUSE_UP
+    | T_MIDDLEMOUSE_UP
+    | T_RIGHTMOUSE_UP
+    | T_MOUSE_MOVE
+    | T_MOUSE_DRAG
+    | T_F1
+    | T_AKEY
+    | T_SKEY
+    | T_DKEY
+    | T_FKEY
+    | T_HKEY
+    | T_JKEY
+    | T_KKEY
+    | T_LKEY
+    | T_WKEY
+    | T_ZKEY
     ;
 
 //---------------------------------------------------------------------
