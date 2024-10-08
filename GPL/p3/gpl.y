@@ -321,6 +321,9 @@ statement_list:
 statement:
     | assign_statement T_SEMIC
     | if_statement
+    | print_statement T_SEMIC
+    | exit_statement T_SEMIC
+    | for_statement
     ;
 
 //---------------------------------------------------------------------
@@ -403,6 +406,16 @@ primary_expression:
 
 //---------------------------------------------------------------------
 math_operator:
+    T_SIN
+    | T_COS
+    | T_TAN
+    | T_ASIN
+    | T_ACOS
+    | T_ATAN
+    | T_SQRT
+    | T_ABS
+    | T_FLOOR
+    | T_RANDOM
     ;
 
 //---------------------------------------------------------------------
