@@ -26,6 +26,9 @@ Symbol_table::~Symbol_table()
 bool Symbol_table::insert(Symbol *symbol)
 {
     // COMPLETE ME
+
+    //match every symbol?
+    m_symbols.insert(std::make_pair("int", symbol));
 }
 
 Symbol *Symbol_table::lookup(string name) const
@@ -48,4 +51,14 @@ void Symbol_table::print(ostream &os) const
   // (1) add all symbols in the table into a vector.
   // (2) sort the vector.
   // (3) print the elements (symbols) in the vector.
+
+  vector<string> v;
+  for (const pair<const string, Symbol*>& keyValue : m_symbols) {
+      // v.push_back(keyValue.first);
+      os << keyValue.first << " " << keyValue.second;
+  }
+  
+
+
+
 }

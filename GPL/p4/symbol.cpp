@@ -14,18 +14,30 @@ Symbol::Symbol(string name, int initial_value)
 
 Symbol::Symbol(string name, double initial_value)
 {
-    // COMPLETE ME
+  m_name = name;
+  m_type = DOUBLE;
+  m_data_void_ptr = (void *) new double(initial_value);
+  m_size = UNDEFINED_SIZE;
+  validate();
 }
 
 Symbol::Symbol(string name, string initial_value)
 {
-    // COMPLETE ME
+  m_name = name;
+  m_type = STRING;
+  m_data_void_ptr = (void *) new string(initial_value);
+  m_size = UNDEFINED_SIZE;
+  validate();
 }
 
 
 Symbol::Symbol(string name, Gpl_type type, int size)
 {
-    // COMPLETE ME 
+  m_name = name;
+  m_type = type;
+  m_data_void_ptr = (void *) new int(size);
+  m_size = size;
+  validate();
 }
 
 Symbol::~Symbol()
@@ -78,17 +90,25 @@ int Symbol::get_int_value(int index /* = UNDEFINED_INDEX */) const
 
 double Symbol::get_double_value(int index /* = UNDEFINED_INDEX */) const
 {
-    // COMPLETE ME
+  validate_type_and_index(DOUBLE, index);
+  if (is_array())
+    return ((double *) m_data_void_ptr)[index];
+  else
+    return *((double *) m_data_void_ptr);
 }
 
 string Symbol::get_string_value(int index /* = UNDEFINED_INDEX */) const
 {
-    // COMPLETE ME
+  validate_type_and_index(STRING, index);
+  if (is_array())
+    return ((string *) m_data_void_ptr)[index];
+  else
+    return *((string *) m_data_void_ptr);
 }
 
 void Symbol::print(ostream &os) const
 {
-    // COMPLETE ME
+  os << m_type << " " << m_name;
 }
 
 void Symbol::validate() const
