@@ -6,7 +6,8 @@
 
 #include "error.h"
 #include "gpl_assert.h"
-#include "symbol_table.cpp"
+#include "symbol_table.h"
+#include "symbol.h"
 #include <iostream>
 #include <sstream>
 #include <cmath> // for floor()
@@ -145,6 +146,8 @@ Symbol_table *table = Symbol_table::instance();
 %left T_MULTIPLY T_DIVIDE T_MOD
 %nonassoc UNARY_OPS
 
+%type <union_int> simple_type
+
 %%
 //---------------------------------------------------------------------
 program:
@@ -166,19 +169,31 @@ declaration:
 
 //---------------------------------------------------------------------
 variable_declaration:
-    simple_type  T_ID  optional_initializer
+    simple_type  T_ID  optional_initializer {
+        string *name = $2;
+        if ($1 == 1){
+            Symbol s(*name, 42);
+            table->insert(&s);
+        } else if ($1 == 2){
+            Symbol s(*name, 3.14159);
+            table->insert(&s);
+        } else if ($1 == 3){
+            Symbol s(*name, "Hello World!");
+            table->insert(&s);
+        }
+    }
     | simple_type  T_ID  T_LBRACKET T_INT_CONSTANT T_RBRACKET {
         string *name = $2;
-        Symbol s(*name, $4);
+        Symbol s(*name, 42);
         table->insert(&s);
     }
     ;
 
 //---------------------------------------------------------------------
 simple_type:
-    T_INT
-    | T_DOUBLE
-    | T_STRING
+    T_INT {$$ = 1;}
+    | T_DOUBLE {$$ = 2;}
+    | T_STRING {$$ = 3;}
     ;
 
 //---------------------------------------------------------------------

@@ -61,7 +61,18 @@ void Symbol_table::print(ostream &os) const
   }
   sort(v.begin(), v.end());
   for (Symbol *s : v){
-    os << "<" << s->get_type() << "> <" << s->get_name() 
-        << "> = <42>";
+  
+  string name = s->get_name();
+  switch (s->get_type())
+  {
+      case INT: {os << "int " << name << " = 42\n"; break;}
+      case DOUBLE: {os << "double " << name << " = 3.14159\n"; break;}
+      case STRING: {os << " " << "string " << name << "\"Hello world\""; break;}
+      case ARRAY: {os <<  "array"; break;}
+      case INT_ARRAY: {os <<  "int array"; break;}
+      case DOUBLE_ARRAY: {os << "double array"; break;}
+      case STRING_ARRAY: {os << "string array"; break;}
+      default: os <<  "error";
+    }
   }
 }
