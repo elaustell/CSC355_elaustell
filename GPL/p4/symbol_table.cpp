@@ -28,18 +28,20 @@ bool Symbol_table::insert(Symbol *symbol)
     // COMPLETE ME
 
     //match every symbol?
-    m_symbols.insert(std::make_pair("int", symbol));
+    m_symbols.insert({"int", symbol});
+    return true;
 }
 
 Symbol *Symbol_table::lookup(string name) const
 {
-    // COMPLETE ME
+    // if (m_symbols.find(name) == m_symbols.end()){
+    return m_symbols.find(name)->second;
 }
 
 // comparison function for the STL sort algorithm
 bool compare_symbols(Symbol *a, Symbol *b) 
 {
-    // COMPLETE ME
+    return a->get_name() < b->get_name();
 }
 
 
@@ -52,13 +54,14 @@ void Symbol_table::print(ostream &os) const
   // (2) sort the vector.
   // (3) print the elements (symbols) in the vector.
 
-  vector<string> v;
+  vector<Symbol *> v;
+
   for (const pair<const string, Symbol*>& keyValue : m_symbols) {
-      // v.push_back(keyValue.first);
-      os << keyValue.first << " " << keyValue.second;
+      v.push_back(keyValue.second);
   }
-  
-
-
-
+  sort(v.begin(), v.end());
+  for (Symbol *s : v){
+    os << "<" << s->get_type() << "> <" << s->get_name() 
+        << "> = <42>";
+  }
 }

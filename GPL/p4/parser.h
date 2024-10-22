@@ -30,6 +30,7 @@
 
 
 // put new included ABOVE this line
+#include "gpl_type.h"
 #include "y.tab.h"
 
 #endif // #ifndef PARSER_H

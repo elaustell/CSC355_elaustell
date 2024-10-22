@@ -6,6 +6,7 @@
 
 #include "error.h"
 #include "gpl_assert.h"
+#include "symbol_table.cpp"
 #include <iostream>
 #include <sstream>
 #include <cmath> // for floor()
@@ -143,9 +144,9 @@ int undeclared = 0;
 %nonassoc UNARY_OPS
 
 %%
-
 //---------------------------------------------------------------------
 program:
+    {Symbol_table *table = Symbol_table::instance();}
     declaration_list block_list
     ;
 
@@ -165,7 +166,10 @@ declaration:
 //---------------------------------------------------------------------
 variable_declaration:
     simple_type  T_ID  optional_initializer
-    | simple_type  T_ID  T_LBRACKET expression T_RBRACKET
+    | simple_type  T_ID  T_LBRACKET T_INT_CONSTANT T_RBRACKET {
+        Symbol s = Symbol::Symbol($2, $4);
+        table->insert(s);
+    }
     ;
 
 //---------------------------------------------------------------------
@@ -423,4 +427,3 @@ empty:
     // empty goes to nothing so that you can use empty in productions
     // when you want a production to go to nothing
     ;
-
