@@ -18,6 +18,8 @@ extern int yyerror(const char *);
 extern int line_count;  // from gpl.l, used for statement blocks
 
 int undeclared = 0;
+Symbol_table *table = Symbol_table::instance();
+
 
 %}
 
@@ -146,7 +148,6 @@ int undeclared = 0;
 %%
 //---------------------------------------------------------------------
 program:
-    {Symbol_table *table = Symbol_table::instance();}
     declaration_list block_list
     ;
 
@@ -167,8 +168,9 @@ declaration:
 variable_declaration:
     simple_type  T_ID  optional_initializer
     | simple_type  T_ID  T_LBRACKET T_INT_CONSTANT T_RBRACKET {
-        Symbol s = Symbol::Symbol($2, $4);
-        table->insert(s);
+        string *name = $2;
+        Symbol s(*name, $4);
+        table->insert(&s);
     }
     ;
 
