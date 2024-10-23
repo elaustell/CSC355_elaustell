@@ -41,9 +41,36 @@ Symbol *Symbol_table::lookup(string name) const
 }
 
 // comparison function for the STL sort algorithm
+// returns true if a <= b
 bool compare_symbols(Symbol *a, Symbol *b) 
 {
-    return a->get_name() <= b->get_name();
+    // return a->get_name() <= b->get_name();
+    string a_name = a->get_name();
+    string b_name = b->get_name();
+    for (int i = 0; i < a_name.length(); i++){
+        if (isdigit(a_name[i])) {
+          if (isdigit(b_name[i])) {
+            int a_digit = atoi(&a_name[i]);
+            int b_digit = atoi(&b_name[i]);
+            if (a_digit < b_digit) {
+              return true;
+            }
+            if (a_digit > b_digit) {
+              return false;
+            }
+          } else {
+            return false;
+          }
+        } else {
+          if (a_name[i] < b_name[i]) {
+            return true;
+          } 
+          if (a_name[i] > b_name[i]){
+            return false;
+          }
+      }
+    }
+    return false;
 }
 
 
@@ -59,7 +86,7 @@ void Symbol_table::print(ostream &os) const
   vector<Symbol *> v;
 
   for (const pair<const string, Symbol*>& keyValue : m_symbols) {
-      Symbol *val = keyValue.second;
+      // Symbol *val = keyValue.second;
       // cout << "KEY: " << keyValue.first << " VALUE: " << val->get_name() << "\n";
       //  << (keyValue.second)->get_name();
       v.push_back(keyValue.second);
@@ -67,8 +94,8 @@ void Symbol_table::print(ostream &os) const
   // for (Symbol *s : v){
   //   cout << s->get_name() << "\n";
   // }
-  // cout << "sorting\n";
-  sort(v.begin(), v.end());
+  // cout << "sorting NOWWWWWWWW\n";
+  sort(v.begin(), v.end(), compare_symbols);
   // for (Symbol *s : v){
   //   cout << s->get_name() << "\n";
   // }

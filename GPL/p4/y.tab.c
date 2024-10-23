@@ -663,19 +663,19 @@ static const yytype_int16 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   154,   154,   159,   160,   165,   166,   167,   172,   186,
-     204,   205,   206,   211,   212,   217,   218,   223,   224,   225,
-     226,   227,   232,   233,   238,   239,   244,   249,   254,   255,
-     260,   261,   262,   263,   268,   273,   278,   288,   293,   298,
-     299,   300,   301,   302,   303,   304,   305,   306,   307,   308,
-     309,   310,   311,   312,   313,   314,   315,   316,   317,   318,
-     319,   320,   321,   326,   327,   332,   336,   341,   347,   348,
-     352,   353,   354,   355,   356,   357,   362,   363,   368,   373,
-     378,   383,   384,   389,   390,   391,   392,   393,   398,   399,
-     400,   401,   406,   407,   408,   409,   410,   411,   412,   413,
-     414,   415,   416,   417,   418,   419,   420,   421,   422,   423,
-     424,   429,   430,   431,   432,   433,   434,   435,   440,   441,
-     442,   443,   444,   445,   446,   447,   448,   449,   453
+       0,   154,   154,   159,   160,   165,   166,   167,   172,   185,
+     203,   204,   205,   210,   211,   216,   217,   222,   223,   224,
+     225,   226,   231,   232,   237,   238,   243,   248,   253,   254,
+     259,   260,   261,   262,   267,   272,   277,   287,   292,   297,
+     298,   299,   300,   301,   302,   303,   304,   305,   306,   307,
+     308,   309,   310,   311,   312,   313,   314,   315,   316,   317,
+     318,   319,   320,   325,   326,   331,   335,   340,   346,   347,
+     351,   352,   353,   354,   355,   356,   361,   362,   367,   372,
+     377,   382,   383,   388,   389,   390,   391,   392,   397,   398,
+     399,   400,   405,   406,   407,   408,   409,   410,   411,   412,
+     413,   414,   415,   416,   417,   418,   419,   420,   421,   422,
+     423,   428,   429,   430,   431,   432,   433,   434,   439,   440,
+     441,   442,   443,   444,   445,   446,   447,   448,   452
 };
 #endif
 
@@ -1806,55 +1806,54 @@ yyreduce:
     {
         string *name = (yyvsp[(2) - (3)].union_string);
         if ((yyvsp[(1) - (3)].union_int) == 1){
-            Symbol s(*name, 42);
-            table->insert(&s);
+            Symbol *s = new Symbol(*name, 42);
+            table->insert(s);
         } else if ((yyvsp[(1) - (3)].union_int) == 2){
-            Symbol s(*name, 3.14159);
-            table->insert(&s);
+            Symbol *s = new Symbol(*name, 3.14159);
+            table->insert(s);
         } else {
-            Symbol s(*name, "Hello world");
-            Symbol temp = s;
-            table->insert(&temp);
+            Symbol *s = new Symbol(*name, "Hello world");
+            table->insert(s);
         }
     }
     break;
 
   case 9:
-#line 186 "gpl.y"
+#line 185 "gpl.y"
     {
         string *name = (yyvsp[(2) - (5)].union_string);
         int size = (yyvsp[(4) - (5)].union_int);
         if ((yyvsp[(1) - (5)].union_int) == 1){
-            Symbol s(*name, INT_ARRAY, size);
-            table->insert(&s);
+            Symbol *s = new Symbol(*name, INT_ARRAY, size);
+            table->insert(s);
         } else if ((yyvsp[(1) - (5)].union_int) == 2){
-            Symbol s(*name, DOUBLE_ARRAY, size);
-            table->insert(&s);
+            Symbol *s = new Symbol(*name, DOUBLE_ARRAY, size);
+            table->insert(s);
         } else {
-            Symbol s(*name, STRING_ARRAY, size);
-            table->insert(&s);
+            Symbol *s = new Symbol(*name, STRING_ARRAY, size);
+            table->insert(s);
         }
     }
     break;
 
   case 10:
-#line 204 "gpl.y"
+#line 203 "gpl.y"
     {(yyval.union_int) = 1;}
     break;
 
   case 11:
-#line 205 "gpl.y"
+#line 204 "gpl.y"
     {(yyval.union_int) = 2;}
     break;
 
   case 12:
-#line 206 "gpl.y"
+#line 205 "gpl.y"
     {(yyval.union_int) = 3;}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1858 "y.tab.c"
+#line 1857 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
