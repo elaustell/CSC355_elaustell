@@ -177,7 +177,7 @@ variable_declaration:
         } else if ($1 == 2){
             Symbol s(*name, 3.14159);
             table->insert(&s);
-        } else if ($1 == 3){
+        } else {
             Symbol s(*name, "Hello world");
             table->insert(&s);
         }
@@ -191,7 +191,7 @@ variable_declaration:
         } else if ($1 == 2){
             Symbol s(*name, DOUBLE_ARRAY, size);
             table->insert(&s);
-        } else if ($1 == 3){
+        } else {
             Symbol s(*name, STRING_ARRAY, size);
             table->insert(&s);
         }

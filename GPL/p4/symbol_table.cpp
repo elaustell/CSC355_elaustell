@@ -29,6 +29,7 @@ bool Symbol_table::insert(Symbol *symbol)
 
     //match every symbol?
     m_symbols.insert({symbol->get_name(), symbol});
+    // cout << "inserting " << symbol->get_name() << "\n";
     return true;
 }
 
@@ -36,12 +37,13 @@ Symbol *Symbol_table::lookup(string name) const
 {
     // if (m_symbols.find(name) == m_symbols.end()){
     return m_symbols.find(name)->second;
+    // cout << "LOOKUP\n";
 }
 
 // comparison function for the STL sort algorithm
 bool compare_symbols(Symbol *a, Symbol *b) 
 {
-    return a->get_name() < b->get_name();
+    return a->get_name() <= b->get_name();
 }
 
 
@@ -57,9 +59,19 @@ void Symbol_table::print(ostream &os) const
   vector<Symbol *> v;
 
   for (const pair<const string, Symbol*>& keyValue : m_symbols) {
+      Symbol *val = keyValue.second;
+      // cout << "KEY: " << keyValue.first << " VALUE: " << val->get_name() << "\n";
+      //  << (keyValue.second)->get_name();
       v.push_back(keyValue.second);
   }
+  // for (Symbol *s : v){
+  //   cout << s->get_name() << "\n";
+  // }
+  // cout << "sorting\n";
   sort(v.begin(), v.end());
+  // for (Symbol *s : v){
+  //   cout << s->get_name() << "\n";
+  // }
   // cout << v.size();
   for (Symbol *s : v){
   
@@ -77,8 +89,21 @@ void Symbol_table::print(ostream &os) const
           }
           break;
         }
-        case DOUBLE_ARRAY: {os << "double array"; break;}
-        case STRING_ARRAY: {os << "string array"; break;}
+        case DOUBLE_ARRAY: {
+          for (int i = 0; i < s->size(); i++){
+            // double curr = s->get_double_value(i);
+            os << "double " << name << "[" << i << "] = 3.14159\n";
+          }
+          break;
+        }
+        case STRING_ARRAY: {
+          for (int i = 0; i < s->size(); i++){
+            // string curr = s->get_string_value(i);
+            string curr = "\"Hello world\"";
+            os << "string " << name << "[" << i << "] = " << curr << "\n";
+          }
+          break;
+        }
         default: os <<  "error";
       }
     }
