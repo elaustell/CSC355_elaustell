@@ -185,15 +185,19 @@ variable_declaration:
     | simple_type  T_ID  T_LBRACKET T_INT_CONSTANT T_RBRACKET {
         string *name = $2;
         int size = $4;
-        if ($1 == 1){
-            Symbol *s = new Symbol(*name, INT_ARRAY, size);
-            table->insert(s);
-        } else if ($1 == 2){
-            Symbol *s = new Symbol(*name, DOUBLE_ARRAY, size);
-            table->insert(s);
+        if (size <= 0){
+            Error::error(Error::INVALID_ARRAY_SIZE, *name, to_string(size));
         } else {
-            Symbol *s = new Symbol(*name, STRING_ARRAY, size);
-            table->insert(s);
+            if ($1 == 1){
+                Symbol *s = new Symbol(*name, INT_ARRAY, size);
+                table->insert(s);
+            } else if ($1 == 2){
+                Symbol *s = new Symbol(*name, DOUBLE_ARRAY, size);
+                table->insert(s);
+            } else {
+                Symbol *s = new Symbol(*name, STRING_ARRAY, size);
+                table->insert(s);
+            }
         }
     }
     ;
