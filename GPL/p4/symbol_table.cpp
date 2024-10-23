@@ -28,9 +28,12 @@ bool Symbol_table::insert(Symbol *symbol)
     // COMPLETE ME
 
     //match every symbol?
-    m_symbols.insert({symbol->get_name(), symbol});
-    // cout << "inserting " << symbol->get_name() << "\n";
-    return true;
+    if (m_symbols.find(symbol->get_name()) == m_symbols.end()){
+       m_symbols.insert({symbol->get_name(), symbol});
+      // cout << "inserting " << symbol->get_name() << "\n";
+      return true;
+    }
+      return false;
 }
 
 Symbol *Symbol_table::lookup(string name) const

@@ -173,13 +173,22 @@ variable_declaration:
         string *name = $2;
         if ($1 == 1){
             Symbol *s = new Symbol(*name, 42);
-            table->insert(s);
+            bool valid = table->insert(s);
+            if (!valid) {
+                Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
+            }
         } else if ($1 == 2){
             Symbol *s = new Symbol(*name, 3.14159);
-            table->insert(s);
+            bool valid = table->insert(s);
+            if (!valid) {
+                Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
+            }
         } else {
             Symbol *s = new Symbol(*name, "Hello world");
-            table->insert(s);
+            bool valid = table->insert(s);
+            if (!valid) {
+                Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
+            }
         }
     }
     | simple_type  T_ID  T_LBRACKET T_INT_CONSTANT T_RBRACKET {
@@ -190,13 +199,22 @@ variable_declaration:
         } else {
             if ($1 == 1){
                 Symbol *s = new Symbol(*name, INT_ARRAY, size);
-                table->insert(s);
+                bool valid = table->insert(s);
+                if (!valid) {
+                    Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
+                }
             } else if ($1 == 2){
                 Symbol *s = new Symbol(*name, DOUBLE_ARRAY, size);
-                table->insert(s);
+                bool valid = table->insert(s);
+                if (!valid) {
+                    Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
+                }
             } else {
                 Symbol *s = new Symbol(*name, STRING_ARRAY, size);
-                table->insert(s);
+                bool valid = table->insert(s);
+                if (!valid) {
+                    Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
+                }
             }
         }
     }
