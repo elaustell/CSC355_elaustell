@@ -1,6 +1,6 @@
 gpl.cpp::main()
-  input file(tests/t005.gpl)
-  random seed(42)
+  input file(tests/t004.gpl)
+  random seed(1729646163)
   read_keypresses_from_standard_input(false)
   dump_pixels(false)
   symbol_table(true)
@@ -15,14 +15,11 @@ No errors found (parser probably worked correctly).
 
 
 Printing the symbol table from main()
-string arraydouble arrayint nums[0] = 42
-int nums[1] = 42
-string s2 = "Hello world"
-string s2 = "Hello world"
-double y = 3.14159
-double y = 3.14159
-int b = 42
-int b = 42
+int nums [0] = 42
+int nums [1] = 42
+int nums [2] = 42
+int nums [3] = 42
+int nums [4] = 42
 Graphics is turned off by the Makefile.  Program exiting.
 
 gpl.cpp::main() done.

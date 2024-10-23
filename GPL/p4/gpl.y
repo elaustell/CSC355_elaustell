@@ -178,14 +178,23 @@ variable_declaration:
             Symbol s(*name, 3.14159);
             table->insert(&s);
         } else if ($1 == 3){
-            Symbol s(*name, "Hello World!");
+            Symbol s(*name, "Hello world");
             table->insert(&s);
         }
     }
     | simple_type  T_ID  T_LBRACKET T_INT_CONSTANT T_RBRACKET {
         string *name = $2;
-        Symbol s(*name, 42);
-        table->insert(&s);
+        int size = $4;
+        if ($1 == 1){
+            Symbol s(*name, INT_ARRAY, size);
+            table->insert(&s);
+        } else if ($1 == 2){
+            Symbol s(*name, DOUBLE_ARRAY, size);
+            table->insert(&s);
+        } else if ($1 == 3){
+            Symbol s(*name, STRING_ARRAY, size);
+            table->insert(&s);
+        }
     }
     ;
 

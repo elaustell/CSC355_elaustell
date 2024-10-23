@@ -15,7 +15,16 @@ No errors found (parser probably worked correctly).
 
 
 Printing the symbol table from main()
-int number = 42
+int number[0] = 42
+int number[1] = 42
+int number[2] = 42
+int number[3] = 42
+int number[4] = 42
+int number[5] = 42
+int number[6] = 42
+int number[7] = 42
+int number[8] = 42
+int number[9] = 42
 Graphics is turned off by the Makefile.  Program exiting.
 
 gpl.cpp::main() done.

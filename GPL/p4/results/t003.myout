@@ -15,6 +15,7 @@ No errors found (parser probably worked correctly).
 
 
 Printing the symbol table from main()
- string str"Hello world"Graphics is turned off by the Makefile.  Program exiting.
+string str = "Hello world"
+Graphics is turned off by the Makefile.  Program exiting.
 
 gpl.cpp::main() done.

@@ -28,7 +28,7 @@ bool Symbol_table::insert(Symbol *symbol)
     // COMPLETE ME
 
     //match every symbol?
-    m_symbols.insert({"int", symbol});
+    m_symbols.insert({symbol->get_name(), symbol});
     return true;
 }
 
@@ -60,19 +60,26 @@ void Symbol_table::print(ostream &os) const
       v.push_back(keyValue.second);
   }
   sort(v.begin(), v.end());
+  // cout << v.size();
   for (Symbol *s : v){
   
-  string name = s->get_name();
-  switch (s->get_type())
-  {
-      case INT: {os << "int " << name << " = 42\n"; break;}
-      case DOUBLE: {os << "double " << name << " = 3.14159\n"; break;}
-      case STRING: {os << " " << "string " << name << "\"Hello world\""; break;}
-      case ARRAY: {os <<  "array"; break;}
-      case INT_ARRAY: {os <<  "int array"; break;}
-      case DOUBLE_ARRAY: {os << "double array"; break;}
-      case STRING_ARRAY: {os << "string array"; break;}
-      default: os <<  "error";
+    string name = s->get_name();
+    switch (s->get_type())
+    {
+        case INT: {os << "int " << name << " = 42\n"; break;}
+        case DOUBLE: {os << "double " << name << " = 3.14159\n"; break;}
+        case STRING: {os << "string " << name << " = \"Hello world\"\n"; break;}
+        case ARRAY: {os <<  "array"; break;}
+        case INT_ARRAY: {
+          for (int i = 0; i < s->size(); i++){
+            // int curr = s->get_int_value(i);
+            os << "int " << name << "[" << i << "] = 42\n";
+          }
+          break;
+        }
+        case DOUBLE_ARRAY: {os << "double array"; break;}
+        case STRING_ARRAY: {os << "string array"; break;}
+        default: os <<  "error";
+      }
     }
-  }
 }
