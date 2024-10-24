@@ -47,33 +47,33 @@ Symbol *Symbol_table::lookup(string name) const
 // returns true if a <= b
 bool compare_symbols(Symbol *a, Symbol *b) 
 {
-    // return a->get_name() <= b->get_name();
-    string a_name = a->get_name();
-    string b_name = b->get_name();
-    for (int i = 0; i < a_name.length(); i++){
-        if (isdigit(a_name[i])) {
-          if (isdigit(b_name[i])) {
-            int a_digit = atoi(&a_name[i]);
-            int b_digit = atoi(&b_name[i]);
-            if (a_digit < b_digit) {
-              return true;
-            }
-            if (a_digit > b_digit) {
-              return false;
-            }
-          } else {
-            return false;
-          }
-        } else {
-          if (a_name[i] < b_name[i]) {
-            return true;
-          } 
-          if (a_name[i] > b_name[i]){
-            return false;
-          }
-      }
-    }
-    return false;
+    return a->get_name() <= b->get_name();
+    // string a_name = a->get_name();
+    // string b_name = b->get_name();
+    // for (int i = 0; i < a_name.length(); i++){
+    //     if (isdigit(a_name[i])) {
+    //       if (isdigit(b_name[i])) {
+    //         int a_digit = atoi(&a_name[i]);
+    //         int b_digit = atoi(&b_name[i]);
+    //         if (a_digit < b_digit) {
+    //           return true;
+    //         }
+    //         if (a_digit > b_digit) {
+    //           return false;
+    //         }
+    //       } else {
+    //         return false;
+    //       }
+    //     } else {
+    //       if (a_name[i] < b_name[i]) {
+    //         return true;
+    //       } 
+    //       if (a_name[i] > b_name[i]){
+    //         return false;
+    //       }
+    //   }
+    // }
+    // return true;
 }
 
 
