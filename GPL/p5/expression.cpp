@@ -10,21 +10,26 @@ using namespace std;
 
 Expression::Expression(int value)
 {
-    // COMPLETE ME
+    Gpl_type m_type = INT;
+    Constant *m_constant = new Constant(value);
+
 }
 Expression::Expression(double value)
 {
-    // COMPLETE ME
+    Gpl_type m_type = DOUBLE;
+    Constant *m_constant = new Constant(value);
 }
 
 Expression::Expression(string *value)
 {
-    // COMPLETE ME
+    Gpl_type m_type = STRING;
+    Constant *m_constant = new Constant(*value);
 }
 
 Expression::Expression(Variable *variable)
 {
-    // COMPLETE ME
+    Gpl_type m_type = variable->get_type();
+    Variable *m_variable = variable;
 }
 
 Expression::Expression(Operator_type op,
@@ -32,12 +37,55 @@ Expression::Expression(Operator_type op,
                        Expression *rhs
                        )
 {
-    // COMPLETE ME
+    Operator_type m_op = op;
+    Expression *m_rhs = rhs;
+    Expression *m_lhs = lhs;
+    // Check for boolean operations
+    if (op == NOT || op == AND || op == OR || op == EQUAL || 
+        op == NOT_EQUAL || op == LESS_THAN || op == LESS_EQUAL || 
+        op == GREATER_THAN || op == GREATER_EQUAL || op == NEAR || op == TOUCHES){
+            Gpl_type m_type = INT;
+    } 
+    // Plus goes to string if a string is present, then double, and lastly int
+    else if (op == PLUS){
+      if (m_lhs->get_type() == STRING || m_rhs->get_type() == STRING){
+          Gpl_type m_type = STRING;
+      } else if (m_lhs->get_type() == DOUBLE || m_rhs->get_type() == DOUBLE) {
+          Gpl_type m_type = DOUBLE;
+      } else if (m_lhs->get_type() == INT && m_rhs->get_type() == INT){
+          Gpl_type m_type = INT;
+      } else {
+        // we shouldn't use PLUS or MINUS for other types... 
+        // maybe return error?
+          Gpl_type m_type = NO_TYPE; 
+      }
+    }
+    // Valid over a mix of ints or doubles. Binary operations
+    else if (op == MULTIPLY || op == DIVIDE) {
+      // TODO
+    }
+    //TODO: determine type using lots of case analysis
+
+    //Unary operations. unary minus is negation (-10)
+    else if (op == SIN || op == COS || op == TAN || op == ASIN || 
+             op == ACOS || op == ATAN || op == SQRT || op == FLOOR || 
+             op == ABS || op == UNARY_MINUS){
+              // TODO
+          }
+    NO_OP,
+                    MULTIPLY, DIVIDE, MOD,
+                    UNARY_MINUS, 
+                    SIN, COS, TAN,
+                    ASIN, ACOS, ATAN,
+                    SQRT, FLOOR, ABS, RANDOM
+
 }
 
 Expression::Expression(Operator_type op, Expression *operand)
 {
-    // COMPLETE ME
+    Expression *m_lhs = operand;
+    Operator_type m_op = op;
+    //TODO: determine type using lots of case analysis
 }
 
 
