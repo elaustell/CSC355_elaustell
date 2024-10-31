@@ -9,12 +9,15 @@ using namespace std;
 
 Variable::Variable(Symbol *symbol)
 {
-    // COMPLETE ME
+    Symbol *m_symbol = symbol;
+    Gpl_type m_type = symbol->get_type();
 }
 
 Variable::Variable(Symbol *symbol, Expression *expression)
 {
-    // COMPLETE ME
+    Symbol *m_symbol = symbol;
+    Gpl_type m_type = symbol->get_type(); //maybe get type of expression instead?
+    Expression *m_expression = expression;
 }
 
 string Variable::get_name() const
@@ -30,32 +33,46 @@ string Variable::get_name() const
 
 int Variable::get_int_value() const
 {
-    // COMPLETE ME
+    if (m_expression == NULL){
+        return m_symbol->get_int_value();
+    } else {
+        return m_symbol->get_int_value(m_expression->eval_int());
+    }
 }
 
 double Variable::get_double_value() const
 {
-    // COMPLETE ME
+    if (m_expression == NULL){
+        return m_symbol->get_double_value();
+    } else {
+        return m_symbol->get_double_value(m_expression->eval_int());
+    }
 }
 
 string Variable::get_string_value() const
 {
-    // COMPLETE ME
+    if (m_expression == NULL){
+        return m_symbol->get_string_value();
+    } else {
+        return m_symbol->get_string_value(m_expression->eval_int());
+    }
 }
 
 void Variable::set(int value)
 {
-    // COMPLETE ME
+    Symbol *m_symbol = new Symbol(m_symbol->get_name(), value);
 }
 
 void Variable::set(double value)
 {
-    // COMPLETE ME
+    Symbol *m_symbol = new Symbol(m_symbol->get_name(), value);
+
 }
 
 void Variable::set(string value)
 {
-    // COMPLETE ME
+    Symbol *m_symbol = new Symbol(m_symbol->get_name(), value);
+
 }
 
 // Evaluate expression if there is one, return index if index is out of bounds, 

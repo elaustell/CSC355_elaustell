@@ -1,0 +1,29 @@
+gpl.cpp::main()
+  input file(tests/t072.gpl)
+  random seed(42)
+  read_keypresses_from_standard_input(false)
+  dump_pixels(false)
+  symbol_table(true)
+  graphics(false)
+
+gpl.cpp::main() Calling yyparse()
+
+
+gpl.cpp::main() after call to yyparse().
+
+No errors found (parser probably worked correctly).
+
+
+Printing the symbol table from main()
+string s1 = "Hello world"
+string s2 = "Hello world"
+string s3 = "Hello world"
+string s4 = "Hello world"
+string s5 = "Hello world"
+string s6 = "Hello world"
+string s7 = "Hello world"
+string s8 = "Hello world"
+string s9 = "Hello world"
+Graphics is turned off by the Makefile.  Program exiting.
+
+gpl.cpp::main() done.
