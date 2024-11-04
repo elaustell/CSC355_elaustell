@@ -73,7 +73,7 @@ Expression::Expression(Operator_type op,
 
     //Unary operations. that always yield floats 
     else if (op == SIN || op == COS || op == TAN || op == ASIN || 
-             op == ACOS || op == ATAN || op == SQRT ){
+             op == ACOS || op == ATAN || op == SQRT || op == ABS){
         if (m_lhs->get_type() == DOUBLE || m_lhs->get_type() == INT || 
             m_rhs->get_type() == DOUBLE || m_rhs->get_type() == INT){
                 m_type = DOUBLE;
@@ -81,7 +81,7 @@ Expression::Expression(Operator_type op,
           //TODO: error
         }      
     }
-    else if (op == ABS || op == UNARY_MINUS){
+    else if (op == UNARY_MINUS){
         if (m_lhs->get_type() == DOUBLE || m_lhs->get_type() == INT || 
             m_rhs->get_type() == DOUBLE || m_rhs->get_type() == INT){
                 m_type = m_lhs->get_type();

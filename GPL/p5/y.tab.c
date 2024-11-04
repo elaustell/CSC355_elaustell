@@ -1829,7 +1829,7 @@ yyreduce:
             double initial_value = 0.0;
             if ((yyvsp[(3) - (3)].union_expression) != NULL)
             {
-                if ((yyvsp[(3) - (3)].union_expression)->get_type() != DOUBLE) {
+                if (((yyvsp[(3) - (3)].union_expression)->get_type() != DOUBLE) && ((yyvsp[(3) - (3)].union_expression)->get_type() != INT)) {
                     Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE, *name);
                 }
                 else initial_value = (yyvsp[(3) - (3)].union_expression)->eval_double();

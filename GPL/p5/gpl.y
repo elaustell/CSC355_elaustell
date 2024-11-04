@@ -202,7 +202,7 @@ variable_declaration:
             double initial_value = 0.0;
             if ($3 != NULL)
             {
-                if ($3->get_type() != DOUBLE) {
+                if (($3->get_type() != DOUBLE) && ($3->get_type() != INT)) {
                     Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE, *name);
                 }
                 else initial_value = $3->eval_double();
