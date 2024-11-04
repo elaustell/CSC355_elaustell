@@ -1,18 +1,1 @@
-Semantic error on line 27: Incorrect type (var000) for initial value of variable '' of type ().
-Semantic error on line 28: Incorrect type (var001) for initial value of variable '' of type ().
-Semantic error on line 29: Incorrect type (var002) for initial value of variable '' of type ().
-Semantic error on line 30: Incorrect type (var003) for initial value of variable '' of type ().
-Semantic error on line 31: Incorrect type (var004) for initial value of variable '' of type ().
-Semantic error on line 32: Incorrect type (var005) for initial value of variable '' of type ().
-Semantic error on line 33: Incorrect type (var006) for initial value of variable '' of type ().
-Semantic error on line 34: Incorrect type (var007) for initial value of variable '' of type ().
-Semantic error on line 35: Incorrect type (var008) for initial value of variable '' of type ().
-Semantic error on line 36: Incorrect type (var009) for initial value of variable '' of type ().
-Semantic error on line 37: Incorrect type (var010) for initial value of variable '' of type ().
-Semantic error on line 38: Incorrect type (var011) for initial value of variable '' of type ().
-Semantic error on line 39: Incorrect type (var012) for initial value of variable '' of type ().
-Semantic error on line 40: Incorrect type (var013) for initial value of variable '' of type ().
-Semantic error on line 41: Incorrect type (var014) for initial value of variable '' of type ().
-Semantic error on line 42: Incorrect type (var015) for initial value of variable '' of type ().
-Semantic error on line 43: Incorrect type (var016) for initial value of variable '' of type ().
-assertion "m_type == INT" failed: file "expression.cpp", line 176.  Input line 44.
+assertion "m_type == INT" failed: file "expression.cpp", line 176.  Input line 27.

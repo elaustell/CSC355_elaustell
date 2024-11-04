@@ -203,7 +203,8 @@ variable_declaration:
             if ($3 != NULL)
             {
                 if (($3->get_type() != DOUBLE) && ($3->get_type() != INT)) {
-                    Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE, *name);
+                    cout << "PRINTINGGGGG" << $3->get_type();
+                    Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE, "string", *name, "double");
                 }
                 else initial_value = $3->eval_double();
             }

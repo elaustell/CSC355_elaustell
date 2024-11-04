@@ -60,7 +60,7 @@ Expression::Expression(Operator_type op,
       }
     }
     // Valid over a mix of ints or doubles. Binary operations
-    else if (op == MULTIPLY || op == DIVIDE) {
+    else if (op == MULTIPLY || op == DIVIDE || op == MINUS) {
         if (m_lhs->get_type() == DOUBLE || m_rhs->get_type() == DOUBLE) {
           m_type = DOUBLE;
         } else if (m_lhs->get_type() == INT, m_rhs->get_type() == INT){
