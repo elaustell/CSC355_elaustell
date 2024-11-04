@@ -13,6 +13,8 @@ Expression::Expression(int value)
     Gpl_type m_type = INT;
     Constant *m_constant = new Constant(value);
 
+    cout << "CREATING TYPE " << m_type;
+
 }
 Expression::Expression(double value)
 {

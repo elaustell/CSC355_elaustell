@@ -108,29 +108,25 @@ void Symbol_table::print(ostream &os) const
     string name = s->get_name();
     switch (s->get_type())
     {
-        case INT: {os << "int " << name << " = 42\n"; break;}
-        case DOUBLE: {os << "double " << name << " = 3.14159\n"; break;}
-        case STRING: {os << "string " << name << " = \"Hello world\"\n"; break;}
+        case INT: {os << "int " << name << " = " << s->get_int_value() << "\n"; break;}
+        case DOUBLE: {os << "double " << name << " = " << s->get_double_value() << "\n"; break;}
+        case STRING: {os << "string " << name << " = " << s->get_string_value() << "\n"; break;}
         case ARRAY: {os <<  "array"; break;}
         case INT_ARRAY: {
           for (int i = 0; i < s->size(); i++){
-            // int curr = s->get_int_value(i);
-            os << "int " << name << "[" << i << "] = 42\n";
+            os << "int " << name << "[" << i << "] = " << s->get_int_value(i) << "\n";
           }
           break;
         }
         case DOUBLE_ARRAY: {
           for (int i = 0; i < s->size(); i++){
-            // double curr = s->get_double_value(i);
-            os << "double " << name << "[" << i << "] = 3.14159\n";
+            os << "double " << name << "[" << i << "] = " << s->get_double_value(i) << "\n";
           }
           break;
         }
         case STRING_ARRAY: {
           for (int i = 0; i < s->size(); i++){
-            // string curr = s->get_string_value(i);
-            string curr = "\"Hello world\"";
-            os << "string " << name << "[" << i << "] = " << curr << "\n";
+            os << "string " << name << "[" << i << "] = " << s->get_string_value(i) << "\n";
           }
           break;
         }
