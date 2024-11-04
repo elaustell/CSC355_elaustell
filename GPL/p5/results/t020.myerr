@@ -1,1 +1,1 @@
-Parse error on line 1 reported by parser: syntax error, unexpected double constant, expecting ;.
+Semantic error on line 3: Incorrect type (c) for initial value of variable '' of type ().

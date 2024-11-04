@@ -178,10 +178,10 @@ int j;
 "||"                                  return emit(T_OR);
 
 
-[0-9]+                              return emit_int(T_INT_CONSTANT);
-[1-9]+[0-9]*\.[0*[1-9]+]*           return emit_double(T_DOUBLE_CONSTANT);
+[1-9]*[0-9]+\.[0*[1-9]+]*           return emit_double(T_DOUBLE_CONSTANT);
 \.0*[1-9]+                          return emit_double(T_DOUBLE_CONSTANT);
 \.0                                 return emit_double(T_DOUBLE_CONSTANT);
+[0-9]+                              return emit_int(T_INT_CONSTANT);
 \"[^("|\n)]*\"                      return emit_str_constant(T_STRING_CONSTANT);
 [A-Za-z_]+[0-9A-Za-z_]*             return emit_id(T_ID);
 
