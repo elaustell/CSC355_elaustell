@@ -8,6 +8,8 @@
 #include "gpl_assert.h"
 #include "symbol_table.h"
 #include "symbol.h"
+#include "expression.h"
+#include "variable.h"
 #include <iostream>
 #include <sstream>
 #include <cmath> // for floor()
@@ -28,6 +30,10 @@ Symbol_table *table = Symbol_table::instance();
   int              union_int;
   double           union_double;
   std::string      *union_string;  // MUST be a pointer to a string ARG!
+  Gpl_type         union_type;
+  Expression       *union_expression;
+  Variable         *union_variable;
+  Operator_type    union_op;
 }
 
 %error-verbose
@@ -146,7 +152,14 @@ Symbol_table *table = Symbol_table::instance();
 %left T_MULTIPLY T_DIVIDE T_MOD
 %nonassoc UNARY_OPS
 
-%type <union_int> simple_type
+%type <union_type> simple_type
+%type <union_expression> expression
+%type <union_expression> optional_initializer
+%type <union_expression> primary_expression
+%type <union_variable> variable
+%type <union_op> math_operator
+
+
 
 %%
 //---------------------------------------------------------------------
@@ -197,13 +210,13 @@ variable_declaration:
         if (size <= 0){
             Error::error(Error::INVALID_ARRAY_SIZE, *name, to_string(size));
         } else {
-            if ($1 == 1){
+            if ($1 == INT){
                 Symbol *s = new Symbol(*name, INT_ARRAY, size);
                 bool valid = table->insert(s);
                 if (!valid) {
                     Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
                 }
-            } else if ($1 == 2){
+            } else if ($1 == DOUBLE){
                 Symbol *s = new Symbol(*name, DOUBLE_ARRAY, size);
                 bool valid = table->insert(s);
                 if (!valid) {
@@ -222,15 +235,15 @@ variable_declaration:
 
 //---------------------------------------------------------------------
 simple_type:
-    T_INT {$$ = 1;}
-    | T_DOUBLE {$$ = 2;}
-    | T_STRING {$$ = 3;}
+    T_INT {$$ = INT;}
+    | T_DOUBLE {$$ = DOUBLE;}
+    | T_STRING {$$ = STRING;}
     ;
 
 //---------------------------------------------------------------------
 optional_initializer:
-    T_ASSIGN expression
-    | empty
+    T_ASSIGN expression {$$ = $2;}
+    | empty {$$ = NULL;}
     ;
 
 //---------------------------------------------------------------------
@@ -416,58 +429,58 @@ assign_statement:
 
 //---------------------------------------------------------------------
 variable:
-    T_ID
-    | T_ID T_LBRACKET expression T_RBRACKET
+    T_ID {string *id = $1; $$ = new Variable(table->lookup(*id));}
+    | T_ID T_LBRACKET expression T_RBRACKET {string *id = $1; $$ = new Variable(table->lookup(*id), $3);}
     | T_ID T_PERIOD T_ID
     | T_ID T_LBRACKET expression T_RBRACKET T_PERIOD T_ID
     ;
 
 //---------------------------------------------------------------------
 expression:
-    primary_expression
-    | expression T_OR expression
-    | expression T_AND expression
-    | expression T_LESS_EQUAL expression
-    | expression T_GREATER_EQUAL  expression
-    | expression T_LESS expression
-    | expression T_GREATER  expression
-    | expression T_EQUAL expression
-    | expression T_NOT_EQUAL expression
-    | expression T_PLUS expression
-    | expression T_MINUS expression
-    | expression T_MULTIPLY expression
-    | expression T_DIVIDE expression
-    | expression T_MOD expression
-    | T_MINUS  expression %prec UNARY_OPS
-    | T_NOT  expression %prec UNARY_OPS
-    | math_operator T_LPAREN expression T_RPAREN
+    primary_expression {$$ = $1;}
+    | expression T_OR expression {$$ = new Expression(OR, $1, $3);}
+    | expression T_AND expression {$$ = new Expression(AND, $1, $3);}
+    | expression T_LESS_EQUAL expression {$$ = new Expression(LESS_EQUAL, $1, $3);}
+    | expression T_GREATER_EQUAL  expression {$$ = new Expression(GREATER_EQUAL, $1, $3);}
+    | expression T_LESS expression {$$ = new Expression(LESS_THAN, $1, $3);}
+    | expression T_GREATER  expression {$$ = new Expression(GREATER_THAN, $1, $3);}
+    | expression T_EQUAL expression {$$ = new Expression(EQUAL, $1, $3);}
+    | expression T_NOT_EQUAL expression {$$ = new Expression(NOT_EQUAL, $1, $3);}
+    | expression T_PLUS expression {$$ = new Expression(PLUS, $1, $3);}
+    | expression T_MINUS expression {$$ = new Expression(MINUS, $1, $3);}
+    | expression T_MULTIPLY expression {$$ = new Expression(MULTIPLY, $1, $3);}
+    | expression T_DIVIDE expression {$$ = new Expression(DIVIDE, $1, $3);}
+    | expression T_MOD expression {$$ = new Expression(MOD, $1, $3);}
+    | T_MINUS  expression %prec UNARY_OPS {$$ = new Expression(UNARY_MINUS, $2, NULL);}
+    | T_NOT  expression %prec UNARY_OPS {$$ = new Expression(NOT, $2, NULL);}
+    | math_operator T_LPAREN expression T_RPAREN {$$ = new Expression($1, $3, NULL);}
     | expression T_NEAR expression
     | expression T_TOUCHES expression
     ;
 
 //---------------------------------------------------------------------
 primary_expression:
-    T_LPAREN  expression T_RPAREN
-    | variable
-    | T_INT_CONSTANT
-    | T_TRUE
-    | T_FALSE
-    | T_DOUBLE_CONSTANT
-    | T_STRING_CONSTANT
+    T_LPAREN  expression T_RPAREN {$$ = $2;}
+    | variable {$$ = new Expression($1);}
+    | T_INT_CONSTANT {$$ = new Expression($1);}
+    | T_TRUE {$$ = new Expression(1);}
+    | T_FALSE {$$ = new Expression(0);}
+    | T_DOUBLE_CONSTANT {$$ = new Expression($1);}
+    | T_STRING_CONSTANT {$$ = new Expression($1);}
     ;
 
 //---------------------------------------------------------------------
 math_operator:
-    T_SIN
-    | T_COS
-    | T_TAN
-    | T_ASIN
-    | T_ACOS
-    | T_ATAN
-    | T_SQRT
-    | T_ABS
-    | T_FLOOR
-    | T_RANDOM
+    T_SIN {$$ = SIN;}
+    | T_COS {$$ = COS;}
+    | T_TAN {$$ = TAN;}
+    | T_ASIN {$$ = ASIN;}
+    | T_ACOS {$$ = ACOS;}
+    | T_ATAN {$$ = ATAN;}
+    | T_SQRT {$$ = SQRT;}
+    | T_ABS {$$ = ABS;}
+    | T_FLOOR {$$ = FLOOR;}
+    | T_RANDOM {$$ = RANDOM;}
     ;
 
 //---------------------------------------------------------------------
