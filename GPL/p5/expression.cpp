@@ -96,7 +96,7 @@ Expression::Expression(Operator_type op,
           //TODO: error
         }
     } else if (op == RANDOM) {
-        m_type = DOUBLE;
+        m_type = INT;
     } else {
       // error?
     }
@@ -164,7 +164,7 @@ Expression::Expression(Operator_type op, Expression *operand)
           //TODO: error
         }
     } else if (op == RANDOM) {
-        m_type = DOUBLE;
+        m_type = INT;
     } else {
       // error?
     }

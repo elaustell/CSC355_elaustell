@@ -1817,7 +1817,7 @@ yyreduce:
             {
                 if ((yyvsp[(3) - (3)].union_expression)->get_type() != INT) {
                     Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE, *name);
-                }
+                } 
                 else initial_value = (yyvsp[(3) - (3)].union_expression)->eval_int();
             }
             Symbol *s = new Symbol(*name, initial_value);
@@ -1830,7 +1830,7 @@ yyreduce:
             if ((yyvsp[(3) - (3)].union_expression) != NULL)
             {
                 if (((yyvsp[(3) - (3)].union_expression)->get_type() != DOUBLE) && ((yyvsp[(3) - (3)].union_expression)->get_type() != INT)) {
-                    cout << "PRINTINGGGGG" << (yyvsp[(3) - (3)].union_expression)->get_type();
+                    cout << " place 2!!!!!!";
                     Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE, "string", *name, "double");
                 }
                 else initial_value = (yyvsp[(3) - (3)].union_expression)->eval_double();

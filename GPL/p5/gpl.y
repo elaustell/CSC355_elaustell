@@ -190,7 +190,7 @@ variable_declaration:
             {
                 if ($3->get_type() != INT) {
                     Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE, *name);
-                }
+                } 
                 else initial_value = $3->eval_int();
             }
             Symbol *s = new Symbol(*name, initial_value);
@@ -203,7 +203,6 @@ variable_declaration:
             if ($3 != NULL)
             {
                 if (($3->get_type() != DOUBLE) && ($3->get_type() != INT)) {
-                    cout << "PRINTINGGGGG" << $3->get_type();
                     Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE, "string", *name, "double");
                 }
                 else initial_value = $3->eval_double();
