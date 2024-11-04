@@ -10,16 +10,13 @@ using namespace std;
 
 Expression::Expression(int value)
 {
-    Gpl_type m_type = INT;
-    Constant *m_constant = new Constant(value);
-
-    cout << "CREATING TYPE " << m_type;
-
+    m_type = INT;
+    m_constant = new Constant(value);
 }
 Expression::Expression(double value)
 {
-    Gpl_type m_type = DOUBLE;
-    Constant *m_constant = new Constant(value);
+    m_type = DOUBLE;
+    m_constant = new Constant(value);
 }
 
 Expression::Expression(string *value)

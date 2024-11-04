@@ -1,0 +1,13 @@
+Semantic error on line 2: Incorrect type (empty_string) for initial value of variable '' of type ().
+Semantic error on line 3: Incorrect type (hello) for initial value of variable '' of type ().
+Semantic error on line 4: Incorrect type (world) for initial value of variable '' of type ().
+Semantic error on line 5: Incorrect type (space_string) for initial value of variable '' of type ().
+Semantic error on line 7: Incorrect type (aa) for initial value of variable '' of type ().
+Semantic error on line 8: Incorrect type (ab) for initial value of variable '' of type ().
+Semantic error on line 9: Incorrect type (ac) for initial value of variable '' of type ().
+Semantic error on line 11: Incorrect type (ad) for initial value of variable '' of type ().
+Semantic error on line 12: Incorrect type (ae) for initial value of variable '' of type ().
+Semantic error on line 13: Incorrect type (af) for initial value of variable '' of type ().
+Semantic error on line 15: Incorrect type (ag) for initial value of variable '' of type ().
+Semantic error on line 16: Incorrect type (ah) for initial value of variable '' of type ().
+Semantic error on line 17: Incorrect type (ai) for initial value of variable '' of type ().

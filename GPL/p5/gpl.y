@@ -189,7 +189,6 @@ variable_declaration:
             if ($3 != NULL)
             {
                 if ($3->get_type() != INT) {
-                    cout << "type: " << $3->get_type();
                     Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE, *name);
                 }
                 else initial_value = $3->eval_int();
@@ -462,7 +461,7 @@ variable:
 
 //---------------------------------------------------------------------
 expression:
-    primary_expression {$$ = $1; cout << "TYPE PRINTTTT " << $1->get_type();}
+    primary_expression {$$ = $1;}
     | expression T_OR expression {$$ = new Expression(OR, $1, $3);}
     | expression T_AND expression {$$ = new Expression(AND, $1, $3);}
     | expression T_LESS_EQUAL expression {$$ = new Expression(LESS_EQUAL, $1, $3);}
@@ -487,7 +486,7 @@ expression:
 primary_expression:
     T_LPAREN  expression T_RPAREN {$$ = $2;}
     | variable {$$ = new Expression($1);}
-    | T_INT_CONSTANT {$$ = new Expression($1); cout << "PRINTING " << $1;}
+    | T_INT_CONSTANT {$$ = new Expression($1);}
     | T_TRUE {$$ = new Expression(1);}
     | T_FALSE {$$ = new Expression(0);}
     | T_DOUBLE_CONSTANT {$$ = new Expression($1);}

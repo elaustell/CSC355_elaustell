@@ -1,1 +1,2 @@
+Semantic error on line 1: Incorrect type (ii) for initial value of variable '' of type ().
 Parse error on line 2 reported by parser: syntax error, unexpected identifier, expecting int constant.
