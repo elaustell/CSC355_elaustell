@@ -1843,7 +1843,7 @@ yyreduce:
             string initial_value = "";
             if ((yyvsp[(3) - (3)].union_expression) != NULL)
             {
-                if ((yyvsp[(3) - (3)].union_expression)->get_type() != INT) {
+                if ((yyvsp[(3) - (3)].union_expression)->get_type() != STRING) {
                     Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE, *name);
                 }
                 else initial_value = (yyvsp[(3) - (3)].union_expression)->eval_string();

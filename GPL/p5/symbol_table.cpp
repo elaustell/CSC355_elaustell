@@ -110,7 +110,7 @@ void Symbol_table::print(ostream &os) const
     {
         case INT: {os << "int " << name << " = " << s->get_int_value() << "\n"; break;}
         case DOUBLE: {os << "double " << name << " = " << s->get_double_value() << "\n"; break;}
-        case STRING: {os << "string " << name << " = " << s->get_string_value() << "\n"; break;}
+        case STRING: {os << "string " << name << " = \"" << s->get_string_value() << "\"\n"; break;}
         case ARRAY: {os <<  "array"; break;}
         case INT_ARRAY: {
           for (int i = 0; i < s->size(); i++){
@@ -126,7 +126,7 @@ void Symbol_table::print(ostream &os) const
         }
         case STRING_ARRAY: {
           for (int i = 0; i < s->size(); i++){
-            os << "string " << name << "[" << i << "] = " << s->get_string_value(i) << "\n";
+            os << "string " << name << "[" << i << "] = \"" << s->get_string_value(i) << "\"\n";
           }
           break;
         }
