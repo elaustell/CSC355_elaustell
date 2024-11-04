@@ -6,26 +6,4 @@ Semantic error on line 9: Incorrect type (s11) for initial value of variable '' 
 Semantic error on line 10: Incorrect type (s12) for initial value of variable '' of type ().
 Semantic error on line 11: Incorrect type (s13) for initial value of variable '' of type ().
 Semantic error on line 13: Incorrect type (s20) for initial value of variable '' of type ().
-Semantic error on line 14: Incorrect type (s21) for initial value of variable '' of type ().
-Semantic error on line 15: Incorrect type (s22) for initial value of variable '' of type ().
-Semantic error on line 16: Incorrect type (s23) for initial value of variable '' of type ().
-Semantic error on line 18: Incorrect type (s30) for initial value of variable '' of type ().
-Semantic error on line 19: Incorrect type (s31) for initial value of variable '' of type ().
-Semantic error on line 20: Incorrect type (s32) for initial value of variable '' of type ().
-Semantic error on line 21: Incorrect type (s33) for initial value of variable '' of type ().
-Semantic error on line 23: Incorrect type (s40) for initial value of variable '' of type ().
-Semantic error on line 24: Incorrect type (s41) for initial value of variable '' of type ().
-Semantic error on line 25: Incorrect type (s42) for initial value of variable '' of type ().
-Semantic error on line 26: Incorrect type (s43) for initial value of variable '' of type ().
-Semantic error on line 28: Incorrect type (s50) for initial value of variable '' of type ().
-Semantic error on line 29: Incorrect type (s51) for initial value of variable '' of type ().
-Semantic error on line 30: Incorrect type (s52) for initial value of variable '' of type ().
-Semantic error on line 31: Incorrect type (s53) for initial value of variable '' of type ().
-Semantic error on line 34: Incorrect type (s60) for initial value of variable '' of type ().
-Semantic error on line 35: Incorrect type (s61) for initial value of variable '' of type ().
-Semantic error on line 36: Incorrect type (s62) for initial value of variable '' of type ().
-Semantic error on line 37: Incorrect type (s63) for initial value of variable '' of type ().
-Semantic error on line 39: Incorrect type (s70) for initial value of variable '' of type ().
-Semantic error on line 40: Incorrect type (s71) for initial value of variable '' of type ().
-Semantic error on line 41: Incorrect type (s72) for initial value of variable '' of type ().
-Semantic error on line 42: Incorrect type (s73) for initial value of variable '' of type ().
+assertion "m_type == INT" failed: file "expression.cpp", line 176.  Input line 14.

@@ -9,15 +9,15 @@ using namespace std;
 
 Variable::Variable(Symbol *symbol)
 {
-    Symbol *m_symbol = symbol;
-    Gpl_type m_type = symbol->get_type();
+    m_symbol = symbol;
+    m_type = symbol->get_type();
 }
 
 Variable::Variable(Symbol *symbol, Expression *expression)
 {
-    Symbol *m_symbol = symbol;
-    Gpl_type m_type = symbol->get_type(); //maybe get type of expression instead?
-    Expression *m_expression = expression;
+    m_symbol = symbol;
+    m_type = symbol->get_type(); //maybe get type of expression instead?
+    m_expression = expression;
 }
 
 string Variable::get_name() const

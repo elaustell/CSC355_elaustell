@@ -1,3 +1,5 @@
-Semantic error on line 4: Incorrect type (a) for initial value of variable '' of type ().
-Semantic error on line 5: Incorrect type (b) for initial value of variable '' of type ().
-Semantic error on line 6: Incorrect type (c) for initial value of variable '' of type ().
+Semantic error on line 22: Incorrect type (o) for initial value of variable '' of type ().
+Semantic error on line 23: Incorrect type (p) for initial value of variable '' of type ().
+Semantic error on line 25: Incorrect type (q) for initial value of variable '' of type ().
+Semantic error on line 26: Incorrect type (s) for initial value of variable '' of type ().
+Semantic error on line 27: Incorrect type (t) for initial value of variable '' of type ().

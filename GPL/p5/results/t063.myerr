@@ -1,1 +1,1 @@
-Semantic error on line 1: Incorrect type (i) for initial value of variable '' of type ().
+Semantic error on line 1: Arithmetic divide by zero at parse time. Using zero as the result so parse can continue.

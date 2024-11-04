@@ -21,14 +21,14 @@ Expression::Expression(double value)
 
 Expression::Expression(string *value)
 {
-    Gpl_type m_type = STRING;
-    Constant *m_constant = new Constant(*value);
+    m_type = STRING;
+    m_constant = new Constant(*value);
 }
 
 Expression::Expression(Variable *variable)
 {
-    Gpl_type m_type = variable->get_type();
-    Variable *m_variable = variable;
+    m_type = variable->get_type();
+    m_variable = variable;
 }
 
 Expression::Expression(Operator_type op,
@@ -36,35 +36,35 @@ Expression::Expression(Operator_type op,
                        Expression *rhs
                        )
 {
-    Operator_type m_op = op;
-    Expression *m_rhs = rhs;
-    Expression *m_lhs = lhs;
+    m_op = op;
+    m_rhs = rhs;
+    m_lhs = lhs;
     // Check for boolean operations
     if (op == NOT || op == AND || op == OR || op == EQUAL || 
         op == NOT_EQUAL || op == LESS_THAN || op == LESS_EQUAL || 
         op == GREATER_THAN || op == GREATER_EQUAL || op == NEAR || op == TOUCHES){
-            Gpl_type m_type = INT;
+            m_type = INT;
     } 
     // Plus goes to string if a string is present, then double, and lastly int
     else if (op == PLUS){
       if (m_lhs->get_type() == STRING || m_rhs->get_type() == STRING){
-          Gpl_type m_type = STRING;
+          m_type = STRING;
       } else if (m_lhs->get_type() == DOUBLE || m_rhs->get_type() == DOUBLE) {
-          Gpl_type m_type = DOUBLE;
+          m_type = DOUBLE;
       } else if (m_lhs->get_type() == INT && m_rhs->get_type() == INT){
-          Gpl_type m_type = INT;
+          m_type = INT;
       } else {
         // we shouldn't use PLUS or MINUS for other types... 
         // maybe return error?
-          Gpl_type m_type = NO_TYPE; 
+          m_type = NO_TYPE; 
       }
     }
     // Valid over a mix of ints or doubles. Binary operations
     else if (op == MULTIPLY || op == DIVIDE) {
         if (m_lhs->get_type() == DOUBLE || m_rhs->get_type() == DOUBLE) {
-          Gpl_type m_type = DOUBLE;
+          m_type = DOUBLE;
         } else if (m_lhs->get_type() == INT, m_rhs->get_type() == INT){
-          Gpl_type m_type = INT;
+          m_type = INT;
         } else {
           //TODO: error
         }
@@ -76,7 +76,7 @@ Expression::Expression(Operator_type op,
              op == ACOS || op == ATAN || op == SQRT ){
         if (m_lhs->get_type() == DOUBLE || m_lhs->get_type() == INT || 
             m_rhs->get_type() == DOUBLE || m_rhs->get_type() == INT){
-                Gpl_type m_type = DOUBLE;
+                m_type = DOUBLE;
         } else {
           //TODO: error
         }      
@@ -84,19 +84,19 @@ Expression::Expression(Operator_type op,
     else if (op == ABS || op == UNARY_MINUS){
         if (m_lhs->get_type() == DOUBLE || m_lhs->get_type() == INT || 
             m_rhs->get_type() == DOUBLE || m_rhs->get_type() == INT){
-                Gpl_type m_type = m_lhs->get_type();
+                m_type = m_lhs->get_type();
         } else {
           //TODO: error
         }
     } else if (op == FLOOR) {
         if (m_lhs->get_type() == DOUBLE || m_lhs->get_type() == INT || 
             m_rhs->get_type() == DOUBLE || m_rhs->get_type() == INT){
-                Gpl_type m_type = INT;
+                m_type = INT;
         } else {
           //TODO: error
         }
     } else if (op == RANDOM) {
-        Gpl_type m_type = DOUBLE;
+        m_type = DOUBLE;
     } else {
       // error?
     }
@@ -104,35 +104,35 @@ Expression::Expression(Operator_type op,
 
 Expression::Expression(Operator_type op, Expression *operand)
 {
-    Expression *m_lhs = operand;
-    Operator_type m_op = op;
+    m_lhs = operand;
+    m_op = op;
 
     // Check for boolean operations
     if (op == NOT || op == AND || op == OR || op == EQUAL || 
         op == NOT_EQUAL || op == LESS_THAN || op == LESS_EQUAL || 
         op == GREATER_THAN || op == GREATER_EQUAL || op == NEAR || op == TOUCHES){
-            Gpl_type m_type = INT;
+            m_type = INT;
     } 
     // Plus goes to string if a string is present, then double, and lastly int
     else if (op == PLUS){
       if (m_lhs->get_type() == STRING || m_rhs->get_type() == STRING){
-          Gpl_type m_type = STRING;
+          m_type = STRING;
       } else if (m_lhs->get_type() == DOUBLE || m_rhs->get_type() == DOUBLE) {
-          Gpl_type m_type = DOUBLE;
+          m_type = DOUBLE;
       } else if (m_lhs->get_type() == INT && m_rhs->get_type() == INT){
-          Gpl_type m_type = INT;
+          m_type = INT;
       } else {
         // we shouldn't use PLUS or MINUS for other types... 
         // maybe return error?
-          Gpl_type m_type = NO_TYPE; 
+          m_type = NO_TYPE; 
       }
     }
     // Valid over a mix of ints or doubles. Binary operations
     else if (op == MULTIPLY || op == DIVIDE) {
         if (m_lhs->get_type() == DOUBLE || m_rhs->get_type() == DOUBLE) {
-          Gpl_type m_type = DOUBLE;
+          m_type = DOUBLE;
         } else if (m_lhs->get_type() == INT, m_rhs->get_type() == INT){
-          Gpl_type m_type = INT;
+          m_type = INT;
         } else {
           //TODO: error
         }
@@ -144,7 +144,7 @@ Expression::Expression(Operator_type op, Expression *operand)
              op == ACOS || op == ATAN || op == SQRT ){
         if (m_lhs->get_type() == DOUBLE || m_lhs->get_type() == INT || 
             m_rhs->get_type() == DOUBLE || m_rhs->get_type() == INT){
-                Gpl_type m_type = DOUBLE;
+                m_type = DOUBLE;
         } else {
           //TODO: error
         }      
@@ -152,19 +152,19 @@ Expression::Expression(Operator_type op, Expression *operand)
     else if (op == ABS || op == UNARY_MINUS){
         if (m_lhs->get_type() == DOUBLE || m_lhs->get_type() == INT || 
             m_rhs->get_type() == DOUBLE || m_rhs->get_type() == INT){
-                Gpl_type m_type = m_lhs->get_type();
+                m_type = m_lhs->get_type();
         } else {
           //TODO: error
         }
     } else if (op == FLOOR) {
         if (m_lhs->get_type() == DOUBLE || m_lhs->get_type() == INT || 
             m_rhs->get_type() == DOUBLE || m_rhs->get_type() == INT){
-                Gpl_type m_type = INT;
+                m_type = INT;
         } else {
           //TODO: error
         }
     } else if (op == RANDOM) {
-        Gpl_type m_type = DOUBLE;
+        m_type = DOUBLE;
     } else {
       // error?
     }

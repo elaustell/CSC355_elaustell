@@ -1,2 +1,2 @@
 Semantic error on line 4: Incorrect type (s) for initial value of variable '' of type ().
-Semantic error on line 6: Incorrect type (z) for initial value of variable '' of type ().
+assertion "m_rhs" failed: file "expression.cpp", line 353.  Input line 6.

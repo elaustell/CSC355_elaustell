@@ -1,3 +1,2 @@
-Semantic error on line 2: Incorrect type (not_four_point_two) for initial value of variable '' of type ().
 Semantic error on line 4: Incorrect type (zero) for initial value of variable '' of type ().
 Parse error on line 4 reported by parser: syntax error, unexpected double constant, expecting ;.

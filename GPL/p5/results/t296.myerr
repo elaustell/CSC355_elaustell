@@ -1,2 +1,2 @@
 Semantic error on line 5: Incorrect type (s) for initial value of variable '' of type ().
-Semantic error on line 6: Incorrect type (var) for initial value of variable '' of type ().
+assertion "m_type == INT" failed: file "expression.cpp", line 176.  Input line 6.
