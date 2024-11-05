@@ -510,8 +510,10 @@ expression:
     | expression T_MOD expression {
             if ($3->get_type() == DOUBLE || $3->get_type() == STRING){
                     Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "%");
+                    $$ = NULL;
             } else if ($1->get_type() == DOUBLE || $1->get_type() == STRING){
                     Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "%");
+                    $$ = NULL;
             } else {
                 $$ = new Expression(MOD, $1, $3);
             }
