@@ -1,1 +1,1 @@
-assertion "m_type == STRING || m_type == INT || m_type == DOUBLE" failed: file "expression.cpp", line 407.  Input line 8.
+assertion "m_type == STRING || m_type == INT || m_type == DOUBLE" failed: file "expression.cpp", line 405.  Input line 8.

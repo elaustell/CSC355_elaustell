@@ -188,12 +188,14 @@ variable_declaration:
             int initial_value = 0;
             if ($3 != NULL)
             {
-                if ($3->get_type() != INT) {
+                if ($3->get_type() != INT && $3->get_type() != DOUBLE) {
                     if ($3->get_type() == INT_ARRAY){
                         Error::error(Error::VARIABLE_IS_AN_ARRAY, $3->eval_variable()->get_name());
                     } 
                 } 
-                else initial_value = $3->eval_int();
+                else {
+                    initial_value = $3->eval_int();
+                }
             }
             Symbol *s = new Symbol(*name, initial_value);
             bool valid = table->insert(s);

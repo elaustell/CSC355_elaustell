@@ -69,8 +69,6 @@ Expression::Expression(Operator_type op,
           //TODO: error
         }
     }
-    //TODO: determine type using lots of case analysis
-
     //Unary operations. that always yield floats 
     else if (op == SIN || op == COS || op == TAN || op == ASIN || 
              op == ACOS || op == ATAN || op == SQRT || op == ABS){
@@ -95,7 +93,7 @@ Expression::Expression(Operator_type op,
         } else {
           //TODO: error
         }
-    } else if (op == RANDOM) {
+    } else if (op == RANDOM || op == MOD) {
         m_type = INT;
     } else {
       // error?

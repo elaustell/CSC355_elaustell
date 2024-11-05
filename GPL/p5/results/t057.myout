@@ -17,8 +17,8 @@ No errors found (parser probably worked correctly).
 Printing the symbol table from main()
 int a = 1025
 int b = 37
-int c = 0
-int d = 0
+int c = 26
+int d = 2
 Graphics is turned off by the Makefile.  Program exiting.
 
 gpl.cpp::main() done.

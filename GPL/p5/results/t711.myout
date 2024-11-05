@@ -19,8 +19,8 @@ int should_be_0 = 0
 int should_be_1 = 1
 int should_be_23 = 23
 int should_be_30 = 30
-int should_be_7 = 0
-int should_be_8 = 0
+int should_be_7 = 7
+int should_be_8 = 8
 Graphics is turned off by the Makefile.  Program exiting.
 
 gpl.cpp::main() done.
