@@ -477,8 +477,24 @@ variable:
 //---------------------------------------------------------------------
 expression:
     primary_expression {$$ = $1;}
-    | expression T_OR expression {$$ = new Expression(OR, $1, $3);}
-    | expression T_AND expression {$$ = new Expression(AND, $1, $3);}
+    | expression T_OR expression {
+            if ($3->get_type() == STRING){
+                Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "||");
+            } else if ($1->get_type() == STRING){
+                Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "||");
+            } else {
+                $$ = new Expression(OR, $1, $3);
+            }
+        }
+    | expression T_AND expression {
+            if ($3->get_type() == STRING){
+                Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "&&");
+            } else if ($1->get_type() == STRING){
+                Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "&&");
+            } else {
+                $$ = new Expression(AND, $1, $3);
+            }
+        }
     | expression T_LESS_EQUAL expression {$$ = new Expression(LESS_EQUAL, $1, $3);}
     | expression T_GREATER_EQUAL  expression {$$ = new Expression(GREATER_EQUAL, $1, $3);}
     | expression T_LESS expression {$$ = new Expression(LESS_THAN, $1, $3);}
