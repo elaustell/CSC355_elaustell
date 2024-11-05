@@ -1,1 +1,1 @@
-assertion "(index == UNDEFINED_INDEX && m_size == UNDEFINED_SIZE) || (index >= 0 && m_size >= 1 && index < m_size)" failed: file "symbol.cpp", line 79.  Input line 3.
+Semantic error on line 3: Variable 'not_an_array' is not an array.

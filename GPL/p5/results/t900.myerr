@@ -1,2 +1,1 @@
-Semantic error on line 3: Incorrect type (iiii) for initial value of variable '' of type ().
 assertion "m_type == INT || m_type == DOUBLE" failed: file "expression.cpp", line 321.  Input line 4.

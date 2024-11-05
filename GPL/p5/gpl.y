@@ -191,9 +191,7 @@ variable_declaration:
                 if ($3->get_type() != INT) {
                     if ($3->get_type() == INT_ARRAY){
                         Error::error(Error::VARIABLE_IS_AN_ARRAY, $3->eval_variable()->get_name());
-                    } else {
-                        Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE, *name);
-                    }
+                    } 
                 } 
                 else initial_value = $3->eval_int();
             }
@@ -463,7 +461,15 @@ assign_statement:
 //---------------------------------------------------------------------
 variable:
     T_ID {string *id = $1; $$ = new Variable(table->lookup(*id));}
-    | T_ID T_LBRACKET expression T_RBRACKET {string *id = $1; $$ = new Variable(table->lookup(*id), $3);}
+    | T_ID T_LBRACKET expression T_RBRACKET {
+            string *id = $1; 
+            Symbol *s = table->lookup(*id);
+            if (!s->is_array()){
+                Error::error(Error::VARIABLE_NOT_AN_ARRAY,*id);
+            } else {
+                $$ = new Variable(s, $3);
+            }
+        }
     | T_ID T_PERIOD T_ID
     | T_ID T_LBRACKET expression T_RBRACKET T_PERIOD T_ID
     ;
