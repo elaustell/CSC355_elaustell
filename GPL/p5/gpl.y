@@ -506,8 +506,20 @@ expression:
     | expression T_MULTIPLY expression {$$ = new Expression(MULTIPLY, $1, $3);}
     | expression T_DIVIDE expression {$$ = new Expression(DIVIDE, $1, $3);}
     | expression T_MOD expression {$$ = new Expression(MOD, $1, $3);}
-    | T_MINUS  expression %prec UNARY_OPS {$$ = new Expression(UNARY_MINUS, $2, NULL);}
-    | T_NOT  expression %prec UNARY_OPS {$$ = new Expression(NOT, $2, NULL);}
+    | T_MINUS  expression %prec UNARY_OPS {
+            if ($2->get_type() == STRING){
+                Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "-");
+            } else {
+                $$ = new Expression(UNARY_MINUS, $2, NULL);
+            }
+        }
+    | T_NOT  expression %prec UNARY_OPS {
+            if ($2->get_type() == STRING) {
+                Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "!");
+            } else {
+                $$ = new Expression(NOT, $2, NULL);
+            }
+        }
     | math_operator T_LPAREN expression T_RPAREN {$$ = new Expression($1, $3, NULL);}
     | expression T_NEAR expression
     | expression T_TOUCHES expression

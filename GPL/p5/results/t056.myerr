@@ -1,1 +1,1 @@
-assertion "m_type == INT || m_type == DOUBLE" failed: file "expression.cpp", line 321.  Input line 4.
+Semantic error on line 4: Invalid right operand for operator '!'.
