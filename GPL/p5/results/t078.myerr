@@ -1,3 +1,2 @@
 Semantic error on line 2: Incorrect type (i) for initial value of variable '' of type ().
-Semantic error on line 3: Incorrect type (s) for initial value of variable '' of type ().
-Semantic error on line 4: Incorrect type (string) for initial value of variable 'd' of type (double).
+assertion "m_type == STRING || m_type == INT || m_type == DOUBLE" failed: file "expression.cpp", line 407.  Input line 3.
