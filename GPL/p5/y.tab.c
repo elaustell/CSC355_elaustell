@@ -2024,15 +2024,15 @@ yyreduce:
   case 105:
 #line 510 "gpl.y"
     {
+            (yyval.union_expression) = new Expression(MOD, (yyvsp[(1) - (3)].union_expression), (yyvsp[(3) - (3)].union_expression));
+            if ((yyvsp[(1) - (3)].union_expression)->get_type() == DOUBLE || (yyvsp[(1) - (3)].union_expression)->get_type() == STRING){
+                    Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "%");
+                    (yyval.union_expression) = NULL;
+            }
             if ((yyvsp[(3) - (3)].union_expression)->get_type() == DOUBLE || (yyvsp[(3) - (3)].union_expression)->get_type() == STRING){
                     Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "%");
                     (yyval.union_expression) = NULL;
-            } else if ((yyvsp[(1) - (3)].union_expression)->get_type() == DOUBLE || (yyvsp[(1) - (3)].union_expression)->get_type() == STRING){
-                    Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "%");
-                    (yyval.union_expression) = NULL;
-            } else {
-                (yyval.union_expression) = new Expression(MOD, (yyvsp[(1) - (3)].union_expression), (yyvsp[(3) - (3)].union_expression));
-            }
+            } 
         }
     break;
 
