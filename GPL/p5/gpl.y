@@ -507,7 +507,15 @@ expression:
     | expression T_MINUS expression {$$ = new Expression(MINUS, $1, $3);}
     | expression T_MULTIPLY expression {$$ = new Expression(MULTIPLY, $1, $3);}
     | expression T_DIVIDE expression {$$ = new Expression(DIVIDE, $1, $3);}
-    | expression T_MOD expression {$$ = new Expression(MOD, $1, $3);}
+    | expression T_MOD expression {
+            if ($3->get_type() == DOUBLE || $3->get_type() == STRING){
+                    Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "%");
+            } else if ($1->get_type() == DOUBLE || $1->get_type() == STRING){
+                    Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "%");
+            } else {
+                $$ = new Expression(MOD, $1, $3);
+            }
+        }
     | T_MINUS  expression %prec UNARY_OPS {
             if ($2->get_type() == STRING){
                 Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "-");

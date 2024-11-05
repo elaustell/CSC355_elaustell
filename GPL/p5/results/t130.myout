@@ -22,7 +22,7 @@ int nums[0] = 5
 int nums[1] = 0
 int nums[2] = 0
 int nums[3] = 0
-int nums[4] = 0
+int nums[4] = -257485840
 Graphics is turned off by the Makefile.  Program exiting.
 
 gpl.cpp::main() done.
