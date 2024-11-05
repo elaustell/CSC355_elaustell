@@ -1,1 +1,1 @@
-Semantic error on line 4: Incorrect type (x) for initial value of variable '' of type ().
+Semantic error on line 4: Variable 'array[]' is an array.

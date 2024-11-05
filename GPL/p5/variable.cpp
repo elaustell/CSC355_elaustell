@@ -60,19 +60,18 @@ string Variable::get_string_value() const
 
 void Variable::set(int value)
 {
-    Symbol *m_symbol = new Symbol(m_symbol->get_name(), value);
+    m_symbol = new Symbol(m_symbol->get_name(), value);
 }
 
 void Variable::set(double value)
 {
-    Symbol *m_symbol = new Symbol(m_symbol->get_name(), value);
+    m_symbol = new Symbol(m_symbol->get_name(), value);
 
 }
 
 void Variable::set(string value)
 {
-    Symbol *m_symbol = new Symbol(m_symbol->get_name(), value);
-
+    m_symbol = new Symbol(m_symbol->get_name(), value);
 }
 
 // Evaluate expression if there is one, return index if index is out of bounds, 

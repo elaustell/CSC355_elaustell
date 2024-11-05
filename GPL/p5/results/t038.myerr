@@ -1,2 +1,2 @@
-Semantic error on line 4: Incorrect type (b) for initial value of variable '' of type ().
-Semantic error on line 5: Incorrect type (c) for initial value of variable '' of type ().
+Semantic error on line 4: Variable 'a' is an array.
+Semantic error on line 5: Variable 'a' is an array.

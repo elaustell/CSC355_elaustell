@@ -11,5 +11,59 @@ gpl.cpp::main() Calling yyparse()
 
 gpl.cpp::main() after call to yyparse().
 
-1 error found.
-gpl giving up.
+No errors found (parser probably worked correctly).
+
+
+Printing the symbol table from main()
+int i = 1
+int j = 2
+int k = 4
+int l = 8
+int num0[0] = 1
+int num1[0] = 2
+int num1[1] = 0
+int num2[0] = 3
+int num2[1] = 0
+int num2[2] = 0
+int num3[0] = 4
+int num3[1] = 0
+int num3[2] = 0
+int num3[3] = 0
+int num4[0] = 5
+int num4[1] = 0
+int num4[2] = 0
+int num4[3] = 0
+int num4[4] = 862022512
+int num5[0] = 6
+int num5[1] = 0
+int num5[2] = 0
+int num5[3] = 0
+int num5[4] = 862023984
+int num5[5] = 1
+int num6[0] = 7
+int num6[1] = 0
+int num6[2] = 0
+int num6[3] = 0
+int num6[4] = 862020704
+int num6[5] = 1
+int num6[6] = 1711095931
+int num7[0] = 8
+int num7[1] = 0
+int num7[2] = 0
+int num7[3] = 0
+int num7[4] = 862025936
+int num7[5] = 1
+int num7[6] = 921150370
+int num7[7] = 178885267
+int num8[0] = 9
+int num8[1] = 0
+int num8[2] = 0
+int num8[3] = 0
+int num8[4] = 862027088
+int num8[5] = 1
+int num8[6] = -1934517462
+int num8[7] = 198539339
+int num8[8] = 946697582
+Graphics is turned off by the Makefile.  Program exiting.
+
+gpl.cpp::main() done.

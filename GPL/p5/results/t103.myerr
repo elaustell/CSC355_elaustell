@@ -1,1 +1,1 @@
-Parse error on line 1 reported by parser: syntax error, unexpected string constant, expecting int constant.
+assertion "m_type == INT" failed: file "expression.cpp", line 176.  Input line 1.

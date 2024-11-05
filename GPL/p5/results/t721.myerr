@@ -1,1 +1,1 @@
-Parse error on line 2 reported by parser: syntax error, unexpected %, expecting ].
+assertion "m_type == INT" failed: file "expression.cpp", line 176.  Input line 2.

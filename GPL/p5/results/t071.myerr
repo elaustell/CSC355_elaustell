@@ -1,1 +1,2 @@
-assertion "m_type == STRING || m_type == INT || m_type == DOUBLE" failed: file "expression.cpp", line 407.  Input line 5.
+Semantic error on line 5: Variable 'int_array[]' is an array.
+Semantic error on line 11: Variable 'double_array[]' is an array.

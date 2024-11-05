@@ -37,7 +37,7 @@ class Expression
     double eval_double();
     string eval_string();
 
-    bool eval_variable() {return m_variable;}
+    Variable *eval_variable() {return m_variable;}
 
   private:
 

@@ -189,7 +189,11 @@ variable_declaration:
             if ($3 != NULL)
             {
                 if ($3->get_type() != INT) {
-                    Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE, *name);
+                    if ($3->get_type() == INT_ARRAY){
+                        Error::error(Error::VARIABLE_IS_AN_ARRAY, $3->eval_variable()->get_name());
+                    } else {
+                        Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE, *name);
+                    }
                 } 
                 else initial_value = $3->eval_int();
             }
@@ -203,7 +207,11 @@ variable_declaration:
             if ($3 != NULL)
             {
                 if (($3->get_type() != DOUBLE) && ($3->get_type() != INT)) {
-                    Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE, "string", *name, "double");
+                    if ($3->get_type() == INT_ARRAY || $3->get_type() == DOUBLE_ARRAY){
+                        Error::error(Error::VARIABLE_IS_AN_ARRAY, $3->eval_variable()->get_name());
+                    } else{
+                        Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE, "string", *name, "double");
+                    }
                 }
                 else initial_value = $3->eval_double();
             }
@@ -216,7 +224,11 @@ variable_declaration:
             string initial_value = "";
             if ($3 != NULL)
             {
-                initial_value = $3->eval_string();
+                if ($3->get_type() == INT_ARRAY || $3->get_type() == DOUBLE_ARRAY || $3->get_type() == STRING_ARRAY){
+                    Error::error(Error::VARIABLE_IS_AN_ARRAY, $3->eval_variable()->get_name());
+                } else {
+                    initial_value = $3->eval_string();
+                }
             }
             Symbol *s = new Symbol(*name, initial_value);
             bool valid = table->insert(s);
@@ -225,9 +237,9 @@ variable_declaration:
             }
         }
     }
-    | simple_type  T_ID  T_LBRACKET T_INT_CONSTANT T_RBRACKET {
+    | simple_type  T_ID  T_LBRACKET expression T_RBRACKET {
         string *name = $2;
-        int size = $4;
+        int size = $4->eval_int();
         if (size <= 0){
             Error::error(Error::INVALID_ARRAY_SIZE, *name, to_string(size));
         } else {
