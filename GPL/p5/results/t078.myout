@@ -27,7 +27,7 @@ int nums[6] = 0
 int nums[7] = 0
 int nums[8] = 0
 int nums[9] = 0
-string s = ""
+string s = "0"
 Graphics is turned off by the Makefile.  Program exiting.
 
 gpl.cpp::main() done.

@@ -1,14 +1,14 @@
-Nonterminals useless in grammar
+Useless nonterminals
 
-    animation_parameter
-
-
-Terminals unused in grammar
-
-    "error"
+   animation_parameter
 
 
-Rules useless in grammar
+Terminals which are not used
+
+   "error"
+
+
+Useless rules
 
   128 animation_parameter: object_type "identifier"
 
@@ -108,14 +108,14 @@ Grammar
 
    64 statement_block: "{" statement_block_creator statement_list "}" end_of_statement_block
 
-   65 statement_block_creator: ε
+   65 statement_block_creator: /* empty */
 
-   66 end_of_statement_block: ε
+   66 end_of_statement_block: /* empty */
 
    67 statement_list: statement_list statement
    68               | empty
 
-   69 statement: ε
+   69 statement: /* empty */
    70          | assign_statement ";"
    71          | if_statement
    72          | print_statement ";"
@@ -184,226 +184,194 @@ Grammar
   125              | "floor"
   126              | "random"
 
-  127 empty: ε
+  127 empty: /* empty */
 
 
 Terminals, with rules where they appear
 
-    $end (0) 0
-    error (256)
-    "int" (258) 9
-    "double" (259) 10
-    "string" (260) 11
-    "triangle" (261) 16
-    "pixmap" (262) 17
-    "circle" (263) 18
-    "rectangle" (264) 19
-    "textbox" (265) 20
-    "forward" <union_int> (266) 26
-    "initialization" (267) 33
-    "termination" (268) 34
-    "true" (269) 113
-    "false" (270) 114
-    "on" (271) 37
-    "space" (272) 38
-    "leftarrow" (273) 39
-    "rightarrow" (274) 40
-    "uparrow" (275) 41
-    "downarrow" (276) 42
-    "leftmouse_down" (277) 43
-    "middlemouse_down" (278) 44
-    "rightmouse_down" (279) 45
-    "leftmouse_up" (280) 46
-    "middlemouse_up" (281) 47
-    "rightmouse_up" (282) 48
-    "mouse_move" (283) 49
-    "mouse_drag" (284) 50
-    "f1" (285) 51
-    "akey" (286) 52
-    "skey" (287) 53
-    "dkey" (288) 54
-    "fkey" (289) 55
-    "hkey" (290) 56
-    "jkey" (291) 57
-    "kkey" (292) 58
-    "lkey" (293) 59
-    "wkey" (294) 60
-    "zkey" (295) 61
-    "touches" (296) 109
-    "near" (297) 108
-    "animation" (298) 26 35
-    "if" (299) 75 76
-    "for" (300) 77
-    "else" (301) 76
-    "print" <union_int> (302) 78
-    "exit" <union_int> (303) 79
-    "(" (304) 14 26 35 75 76 77 78 79 107 110
-    ")" (305) 14 26 35 75 76 77 78 79 107 110
-    "{" (306) 35 64
-    "}" (307) 35 64
-    "[" (308) 8 15 88 90
-    "]" (309) 8 15 88 90
-    ";" (310) 4 5 6 70 72 73 77
-    "," (311) 23
-    "." (312) 89 90
-    "=" (313) 12 25 82
-    "+=" (314) 83
-    "-=" (315) 84
-    "++" (316) 85
-    "--" (317) 86
-    "*" (318) 102
-    "/" (319) 103
-    "%" (320) 104
-    "+" (321) 100
-    "-" (322) 101 105
-    "sin" (323) 117
-    "cos" (324) 118
-    "tan" (325) 119
-    "asin" (326) 120
-    "acos" (327) 121
-    "atan" (328) 122
-    "sqrt" (329) 123
-    "floor" (330) 125
-    "abs" (331) 124
-    "random" (332) 126
-    "<" (333) 96
-    ">" (334) 97
-    "<=" (335) 94
-    ">=" (336) 95
-    "==" (337) 98
-    "!=" (338) 99
-    "&&" (339) 93
-    "||" (340) 92
-    "!" (341) 106
-    "identifier" <union_string> (342) 7 8 14 15 25 26 35 36 87 88 89 90
-    "int constant" <union_int> (343) 112
-    "double constant" <union_double> (344) 115
-    "string constant" <union_string> (345) 116
-    "error" (346)
-    IF_NO_ELSE (347)
-    UNARY_OPS (348)
+$end (0) 0
+error (256)
+"int" (258) 9
+"double" (259) 10
+"string" (260) 11
+"triangle" (261) 16
+"pixmap" (262) 17
+"circle" (263) 18
+"rectangle" (264) 19
+"textbox" (265) 20
+"forward" (266) 26
+"initialization" (267) 33
+"termination" (268) 34
+"true" (269) 113
+"false" (270) 114
+"on" (271) 37
+"space" (272) 38
+"leftarrow" (273) 39
+"rightarrow" (274) 40
+"uparrow" (275) 41
+"downarrow" (276) 42
+"leftmouse_down" (277) 43
+"middlemouse_down" (278) 44
+"rightmouse_down" (279) 45
+"leftmouse_up" (280) 46
+"middlemouse_up" (281) 47
+"rightmouse_up" (282) 48
+"mouse_move" (283) 49
+"mouse_drag" (284) 50
+"f1" (285) 51
+"akey" (286) 52
+"skey" (287) 53
+"dkey" (288) 54
+"fkey" (289) 55
+"hkey" (290) 56
+"jkey" (291) 57
+"kkey" (292) 58
+"lkey" (293) 59
+"wkey" (294) 60
+"zkey" (295) 61
+"touches" (296) 109
+"near" (297) 108
+"animation" (298) 26 35
+"if" (299) 75 76
+"for" (300) 77
+"else" (301) 76
+"print" (302) 78
+"exit" (303) 79
+"(" (304) 14 26 35 75 76 77 78 79 107 110
+")" (305) 14 26 35 75 76 77 78 79 107 110
+"{" (306) 35 64
+"}" (307) 35 64
+"[" (308) 8 15 88 90
+"]" (309) 8 15 88 90
+";" (310) 4 5 6 70 72 73 77
+"," (311) 23
+"." (312) 89 90
+"=" (313) 12 25 82
+"+=" (314) 83
+"-=" (315) 84
+"++" (316) 85
+"--" (317) 86
+"*" (318) 102
+"/" (319) 103
+"%" (320) 104
+"+" (321) 100
+"-" (322) 101 105
+"sin" (323) 117
+"cos" (324) 118
+"tan" (325) 119
+"asin" (326) 120
+"acos" (327) 121
+"atan" (328) 122
+"sqrt" (329) 123
+"floor" (330) 125
+"abs" (331) 124
+"random" (332) 126
+"<" (333) 96
+">" (334) 97
+"<=" (335) 94
+">=" (336) 95
+"==" (337) 98
+"!=" (338) 99
+"&&" (339) 93
+"||" (340) 92
+"!" (341) 106
+"identifier" (342) 7 8 14 15 25 26 35 36 87 88 89 90
+"int constant" (343) 112
+"double constant" (344) 115
+"string constant" (345) 116
+"error" (346)
+IF_NO_ELSE (347)
+UNARY_OPS (348)
 
 
 Nonterminals, with rules where they appear
 
-    $accept (94)
-        on left: 0
-    program (95)
-        on left: 1
-        on right: 0
-    declaration_list (96)
-        on left: 2 3
-        on right: 1 2
-    declaration (97)
-        on left: 4 5 6
-        on right: 2
-    variable_declaration (98)
-        on left: 7 8
-        on right: 4
-    simple_type <union_type> (99)
-        on left: 9 10 11
-        on right: 7 8
-    optional_initializer <union_expression> (100)
-        on left: 12 13
-        on right: 7
-    object_declaration (101)
-        on left: 14 15
-        on right: 5
-    object_type (102)
-        on left: 16 17 18 19 20
-        on right: 14 15 26 36
-    parameter_list_or_empty (103)
-        on left: 21 22
-        on right: 14
-    parameter_list (104)
-        on left: 23 24
-        on right: 21 23
-    parameter (105)
-        on left: 25
-        on right: 23 24
-    forward_declaration (106)
-        on left: 26
-        on right: 6
-    block_list (107)
-        on left: 27 28
-        on right: 1 27
-    block (108)
-        on left: 29 30 31 32
-        on right: 27
-    initialization_block (109)
-        on left: 33
-        on right: 29
-    termination_block (110)
-        on left: 34
-        on right: 30
-    animation_block (111)
-        on left: 35
-        on right: 31
-    check_animation_parameter (112)
-        on left: 36
-        on right: 35
-    on_block (113)
-        on left: 37
-        on right: 32
-    keystroke (114)
-        on left: 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61
-        on right: 37
-    if_block (115)
-        on left: 62 63
-        on right: 75 76
-    statement_block (116)
-        on left: 64
-        on right: 33 34 37 63 77
-    statement_block_creator (117)
-        on left: 65
-        on right: 62 64 77
-    end_of_statement_block (118)
-        on left: 66
-        on right: 35 62 64 77
-    statement_list (119)
-        on left: 67 68
-        on right: 35 64 67
-    statement (120)
-        on left: 69 70 71 72 73 74
-        on right: 62 67
-    if_statement (121)
-        on left: 75 76
-        on right: 71
-    for_statement (122)
-        on left: 77
-        on right: 74
-    print_statement (123)
-        on left: 78
-        on right: 72
-    exit_statement (124)
-        on left: 79
-        on right: 73
-    assign_statement_or_empty (125)
-        on left: 80 81
-        on right: 77
-    assign_statement (126)
-        on left: 82 83 84 85 86
-        on right: 70 80
-    variable <union_variable> (127)
-        on left: 87 88 89 90
-        on right: 82 83 84 85 86 111
-    expression <union_expression> (128)
-        on left: 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109
-        on right: 8 12 15 25 75 76 77 78 79 82 83 84 88 90 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110
-    primary_expression <union_expression> (129)
-        on left: 110 111 112 113 114 115 116
-        on right: 91
-    math_operator <union_op> (130)
-        on left: 117 118 119 120 121 122 123 124 125 126
-        on right: 107
-    empty (131)
-        on left: 127
-        on right: 3 13 22 28 68 81
+$accept (94)
+    on left: 0
+program (95)
+    on left: 1, on right: 0
+declaration_list (96)
+    on left: 2 3, on right: 1 2
+declaration (97)
+    on left: 4 5 6, on right: 2
+variable_declaration (98)
+    on left: 7 8, on right: 4
+simple_type (99)
+    on left: 9 10 11, on right: 7 8
+optional_initializer (100)
+    on left: 12 13, on right: 7
+object_declaration (101)
+    on left: 14 15, on right: 5
+object_type (102)
+    on left: 16 17 18 19 20, on right: 14 15 26 36
+parameter_list_or_empty (103)
+    on left: 21 22, on right: 14
+parameter_list (104)
+    on left: 23 24, on right: 21 23
+parameter (105)
+    on left: 25, on right: 23 24
+forward_declaration (106)
+    on left: 26, on right: 6
+block_list (107)
+    on left: 27 28, on right: 1 27
+block (108)
+    on left: 29 30 31 32, on right: 27
+initialization_block (109)
+    on left: 33, on right: 29
+termination_block (110)
+    on left: 34, on right: 30
+animation_block (111)
+    on left: 35, on right: 31
+check_animation_parameter (112)
+    on left: 36, on right: 35
+on_block (113)
+    on left: 37, on right: 32
+keystroke (114)
+    on left: 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55
+    56 57 58 59 60 61, on right: 37
+if_block (115)
+    on left: 62 63, on right: 75 76
+statement_block (116)
+    on left: 64, on right: 33 34 37 63 77
+statement_block_creator (117)
+    on left: 65, on right: 62 64 77
+end_of_statement_block (118)
+    on left: 66, on right: 35 62 64 77
+statement_list (119)
+    on left: 67 68, on right: 35 64 67
+statement (120)
+    on left: 69 70 71 72 73 74, on right: 62 67
+if_statement (121)
+    on left: 75 76, on right: 71
+for_statement (122)
+    on left: 77, on right: 74
+print_statement (123)
+    on left: 78, on right: 72
+exit_statement (124)
+    on left: 79, on right: 73
+assign_statement_or_empty (125)
+    on left: 80 81, on right: 77
+assign_statement (126)
+    on left: 82 83 84 85 86, on right: 70 80
+variable (127)
+    on left: 87 88 89 90, on right: 82 83 84 85 86 111
+expression (128)
+    on left: 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106
+    107 108 109, on right: 8 12 15 25 75 76 77 78 79 82 83 84 88 90
+    92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109
+    110
+primary_expression (129)
+    on left: 110 111 112 113 114 115 116, on right: 91
+math_operator (130)
+    on left: 117 118 119 120 121 122 123 124 125 126,
+    on right: 107
+empty (131)
+    on left: 127, on right: 3 13 22 28 68 81
 
 
-State 0
+state 0
 
-    0 $accept: • program $end
+    0 $accept: . program $end
 
     $default  reduce using rule 127 (empty)
 
@@ -412,17 +380,17 @@ State 0
     empty             go to state 3
 
 
-State 1
+state 1
 
-    0 $accept: program • $end
+    0 $accept: program . $end
 
     $end  shift, and go to state 4
 
 
-State 2
+state 2
 
-    1 program: declaration_list • block_list
-    2 declaration_list: declaration_list • declaration
+    1 program: declaration_list . block_list
+    2 declaration_list: declaration_list . declaration
 
     "int"        shift, and go to state 5
     "double"     shift, and go to state 6
@@ -446,131 +414,131 @@ State 2
     empty                 go to state 21
 
 
-State 3
+state 3
 
-    3 declaration_list: empty •
+    3 declaration_list: empty .
 
     $default  reduce using rule 3 (declaration_list)
 
 
-State 4
+state 4
 
-    0 $accept: program $end •
+    0 $accept: program $end .
 
     $default  accept
 
 
-State 5
+state 5
 
-    9 simple_type: "int" •
+    9 simple_type: "int" .
 
     $default  reduce using rule 9 (simple_type)
 
 
-State 6
+state 6
 
-   10 simple_type: "double" •
+   10 simple_type: "double" .
 
     $default  reduce using rule 10 (simple_type)
 
 
-State 7
+state 7
 
-   11 simple_type: "string" •
+   11 simple_type: "string" .
 
     $default  reduce using rule 11 (simple_type)
 
 
-State 8
+state 8
 
-   16 object_type: "triangle" •
+   16 object_type: "triangle" .
 
     $default  reduce using rule 16 (object_type)
 
 
-State 9
+state 9
 
-   17 object_type: "pixmap" •
+   17 object_type: "pixmap" .
 
     $default  reduce using rule 17 (object_type)
 
 
-State 10
+state 10
 
-   18 object_type: "circle" •
+   18 object_type: "circle" .
 
     $default  reduce using rule 18 (object_type)
 
 
-State 11
+state 11
 
-   19 object_type: "rectangle" •
+   19 object_type: "rectangle" .
 
     $default  reduce using rule 19 (object_type)
 
 
-State 12
+state 12
 
-   20 object_type: "textbox" •
+   20 object_type: "textbox" .
 
     $default  reduce using rule 20 (object_type)
 
 
-State 13
+state 13
 
-   26 forward_declaration: "forward" • "animation" "identifier" "(" object_type "identifier" ")"
+   26 forward_declaration: "forward" . "animation" "identifier" "(" object_type "identifier" ")"
 
     "animation"  shift, and go to state 22
 
 
-State 14
+state 14
 
-    2 declaration_list: declaration_list declaration •
+    2 declaration_list: declaration_list declaration .
 
     $default  reduce using rule 2 (declaration_list)
 
 
-State 15
+state 15
 
-    4 declaration: variable_declaration • ";"
+    4 declaration: variable_declaration . ";"
 
     ";"  shift, and go to state 23
 
 
-State 16
+state 16
 
-    7 variable_declaration: simple_type • "identifier" optional_initializer
-    8                     | simple_type • "identifier" "[" expression "]"
+    7 variable_declaration: simple_type . "identifier" optional_initializer
+    8                     | simple_type . "identifier" "[" expression "]"
 
     "identifier"  shift, and go to state 24
 
 
-State 17
+state 17
 
-    5 declaration: object_declaration • ";"
+    5 declaration: object_declaration . ";"
 
     ";"  shift, and go to state 25
 
 
-State 18
+state 18
 
-   14 object_declaration: object_type • "identifier" "(" parameter_list_or_empty ")"
-   15                   | object_type • "identifier" "[" expression "]"
+   14 object_declaration: object_type . "identifier" "(" parameter_list_or_empty ")"
+   15                   | object_type . "identifier" "[" expression "]"
 
     "identifier"  shift, and go to state 26
 
 
-State 19
+state 19
 
-    6 declaration: forward_declaration • ";"
+    6 declaration: forward_declaration . ";"
 
     ";"  shift, and go to state 27
 
 
-State 20
+state 20
 
-    1 program: declaration_list block_list •
-   27 block_list: block_list • block
+    1 program: declaration_list block_list .
+   27 block_list: block_list . block
 
     "initialization"  shift, and go to state 28
     "termination"     shift, and go to state 29
@@ -586,31 +554,31 @@ State 20
     on_block              go to state 36
 
 
-State 21
+state 21
 
-   28 block_list: empty •
+   28 block_list: empty .
 
     $default  reduce using rule 28 (block_list)
 
 
-State 22
+state 22
 
-   26 forward_declaration: "forward" "animation" • "identifier" "(" object_type "identifier" ")"
+   26 forward_declaration: "forward" "animation" . "identifier" "(" object_type "identifier" ")"
 
     "identifier"  shift, and go to state 37
 
 
-State 23
+state 23
 
-    4 declaration: variable_declaration ";" •
+    4 declaration: variable_declaration ";" .
 
     $default  reduce using rule 4 (declaration)
 
 
-State 24
+state 24
 
-    7 variable_declaration: simple_type "identifier" • optional_initializer
-    8                     | simple_type "identifier" • "[" expression "]"
+    7 variable_declaration: simple_type "identifier" . optional_initializer
+    8                     | simple_type "identifier" . "[" expression "]"
 
     "["  shift, and go to state 38
     "="  shift, and go to state 39
@@ -621,50 +589,50 @@ State 24
     empty                 go to state 41
 
 
-State 25
+state 25
 
-    5 declaration: object_declaration ";" •
+    5 declaration: object_declaration ";" .
 
     $default  reduce using rule 5 (declaration)
 
 
-State 26
+state 26
 
-   14 object_declaration: object_type "identifier" • "(" parameter_list_or_empty ")"
-   15                   | object_type "identifier" • "[" expression "]"
+   14 object_declaration: object_type "identifier" . "(" parameter_list_or_empty ")"
+   15                   | object_type "identifier" . "[" expression "]"
 
     "("  shift, and go to state 42
     "["  shift, and go to state 43
 
 
-State 27
+state 27
 
-    6 declaration: forward_declaration ";" •
+    6 declaration: forward_declaration ";" .
 
     $default  reduce using rule 6 (declaration)
 
 
-State 28
+state 28
 
-   33 initialization_block: "initialization" • statement_block
+   33 initialization_block: "initialization" . statement_block
 
     "{"  shift, and go to state 44
 
     statement_block  go to state 45
 
 
-State 29
+state 29
 
-   34 termination_block: "termination" • statement_block
+   34 termination_block: "termination" . statement_block
 
     "{"  shift, and go to state 44
 
     statement_block  go to state 46
 
 
-State 30
+state 30
 
-   37 on_block: "on" • keystroke statement_block
+   37 on_block: "on" . keystroke statement_block
 
     "space"             shift, and go to state 47
     "leftarrow"         shift, and go to state 48
@@ -694,58 +662,58 @@ State 30
     keystroke  go to state 71
 
 
-State 31
+state 31
 
-   35 animation_block: "animation" • "identifier" "(" check_animation_parameter ")" "{" statement_list "}" end_of_statement_block
+   35 animation_block: "animation" . "identifier" "(" check_animation_parameter ")" "{" statement_list "}" end_of_statement_block
 
     "identifier"  shift, and go to state 72
 
 
-State 32
+state 32
 
-   27 block_list: block_list block •
+   27 block_list: block_list block .
 
     $default  reduce using rule 27 (block_list)
 
 
-State 33
+state 33
 
-   29 block: initialization_block •
+   29 block: initialization_block .
 
     $default  reduce using rule 29 (block)
 
 
-State 34
+state 34
 
-   30 block: termination_block •
+   30 block: termination_block .
 
     $default  reduce using rule 30 (block)
 
 
-State 35
+state 35
 
-   31 block: animation_block •
+   31 block: animation_block .
 
     $default  reduce using rule 31 (block)
 
 
-State 36
+state 36
 
-   32 block: on_block •
+   32 block: on_block .
 
     $default  reduce using rule 32 (block)
 
 
-State 37
+state 37
 
-   26 forward_declaration: "forward" "animation" "identifier" • "(" object_type "identifier" ")"
+   26 forward_declaration: "forward" "animation" "identifier" . "(" object_type "identifier" ")"
 
     "("  shift, and go to state 73
 
 
-State 38
+state 38
 
-    8 variable_declaration: simple_type "identifier" "[" • expression "]"
+    8 variable_declaration: simple_type "identifier" "[" . expression "]"
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -773,9 +741,9 @@ State 38
     math_operator       go to state 96
 
 
-State 39
+state 39
 
-   12 optional_initializer: "=" • expression
+   12 optional_initializer: "=" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -803,23 +771,23 @@ State 39
     math_operator       go to state 96
 
 
-State 40
+state 40
 
-    7 variable_declaration: simple_type "identifier" optional_initializer •
+    7 variable_declaration: simple_type "identifier" optional_initializer .
 
     $default  reduce using rule 7 (variable_declaration)
 
 
-State 41
+state 41
 
-   13 optional_initializer: empty •
+   13 optional_initializer: empty .
 
     $default  reduce using rule 13 (optional_initializer)
 
 
-State 42
+state 42
 
-   14 object_declaration: object_type "identifier" "(" • parameter_list_or_empty ")"
+   14 object_declaration: object_type "identifier" "(" . parameter_list_or_empty ")"
 
     "identifier"  shift, and go to state 98
 
@@ -831,9 +799,9 @@ State 42
     empty                    go to state 102
 
 
-State 43
+state 43
 
-   15 object_declaration: object_type "identifier" "[" • expression "]"
+   15 object_declaration: object_type "identifier" "[" . expression "]"
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -861,216 +829,216 @@ State 43
     math_operator       go to state 96
 
 
-State 44
+state 44
 
-   64 statement_block: "{" • statement_block_creator statement_list "}" end_of_statement_block
+   64 statement_block: "{" . statement_block_creator statement_list "}" end_of_statement_block
 
     $default  reduce using rule 65 (statement_block_creator)
 
     statement_block_creator  go to state 104
 
 
-State 45
+state 45
 
-   33 initialization_block: "initialization" statement_block •
+   33 initialization_block: "initialization" statement_block .
 
     $default  reduce using rule 33 (initialization_block)
 
 
-State 46
+state 46
 
-   34 termination_block: "termination" statement_block •
+   34 termination_block: "termination" statement_block .
 
     $default  reduce using rule 34 (termination_block)
 
 
-State 47
+state 47
 
-   38 keystroke: "space" •
+   38 keystroke: "space" .
 
     $default  reduce using rule 38 (keystroke)
 
 
-State 48
+state 48
 
-   39 keystroke: "leftarrow" •
+   39 keystroke: "leftarrow" .
 
     $default  reduce using rule 39 (keystroke)
 
 
-State 49
+state 49
 
-   40 keystroke: "rightarrow" •
+   40 keystroke: "rightarrow" .
 
     $default  reduce using rule 40 (keystroke)
 
 
-State 50
+state 50
 
-   41 keystroke: "uparrow" •
+   41 keystroke: "uparrow" .
 
     $default  reduce using rule 41 (keystroke)
 
 
-State 51
+state 51
 
-   42 keystroke: "downarrow" •
+   42 keystroke: "downarrow" .
 
     $default  reduce using rule 42 (keystroke)
 
 
-State 52
+state 52
 
-   43 keystroke: "leftmouse_down" •
+   43 keystroke: "leftmouse_down" .
 
     $default  reduce using rule 43 (keystroke)
 
 
-State 53
+state 53
 
-   44 keystroke: "middlemouse_down" •
+   44 keystroke: "middlemouse_down" .
 
     $default  reduce using rule 44 (keystroke)
 
 
-State 54
+state 54
 
-   45 keystroke: "rightmouse_down" •
+   45 keystroke: "rightmouse_down" .
 
     $default  reduce using rule 45 (keystroke)
 
 
-State 55
+state 55
 
-   46 keystroke: "leftmouse_up" •
+   46 keystroke: "leftmouse_up" .
 
     $default  reduce using rule 46 (keystroke)
 
 
-State 56
+state 56
 
-   47 keystroke: "middlemouse_up" •
+   47 keystroke: "middlemouse_up" .
 
     $default  reduce using rule 47 (keystroke)
 
 
-State 57
+state 57
 
-   48 keystroke: "rightmouse_up" •
+   48 keystroke: "rightmouse_up" .
 
     $default  reduce using rule 48 (keystroke)
 
 
-State 58
+state 58
 
-   49 keystroke: "mouse_move" •
+   49 keystroke: "mouse_move" .
 
     $default  reduce using rule 49 (keystroke)
 
 
-State 59
+state 59
 
-   50 keystroke: "mouse_drag" •
+   50 keystroke: "mouse_drag" .
 
     $default  reduce using rule 50 (keystroke)
 
 
-State 60
+state 60
 
-   51 keystroke: "f1" •
+   51 keystroke: "f1" .
 
     $default  reduce using rule 51 (keystroke)
 
 
-State 61
+state 61
 
-   52 keystroke: "akey" •
+   52 keystroke: "akey" .
 
     $default  reduce using rule 52 (keystroke)
 
 
-State 62
+state 62
 
-   53 keystroke: "skey" •
+   53 keystroke: "skey" .
 
     $default  reduce using rule 53 (keystroke)
 
 
-State 63
+state 63
 
-   54 keystroke: "dkey" •
+   54 keystroke: "dkey" .
 
     $default  reduce using rule 54 (keystroke)
 
 
-State 64
+state 64
 
-   55 keystroke: "fkey" •
+   55 keystroke: "fkey" .
 
     $default  reduce using rule 55 (keystroke)
 
 
-State 65
+state 65
 
-   56 keystroke: "hkey" •
+   56 keystroke: "hkey" .
 
     $default  reduce using rule 56 (keystroke)
 
 
-State 66
+state 66
 
-   57 keystroke: "jkey" •
+   57 keystroke: "jkey" .
 
     $default  reduce using rule 57 (keystroke)
 
 
-State 67
+state 67
 
-   58 keystroke: "kkey" •
+   58 keystroke: "kkey" .
 
     $default  reduce using rule 58 (keystroke)
 
 
-State 68
+state 68
 
-   59 keystroke: "lkey" •
+   59 keystroke: "lkey" .
 
     $default  reduce using rule 59 (keystroke)
 
 
-State 69
+state 69
 
-   60 keystroke: "wkey" •
+   60 keystroke: "wkey" .
 
     $default  reduce using rule 60 (keystroke)
 
 
-State 70
+state 70
 
-   61 keystroke: "zkey" •
+   61 keystroke: "zkey" .
 
     $default  reduce using rule 61 (keystroke)
 
 
-State 71
+state 71
 
-   37 on_block: "on" keystroke • statement_block
+   37 on_block: "on" keystroke . statement_block
 
     "{"  shift, and go to state 44
 
     statement_block  go to state 105
 
 
-State 72
+state 72
 
-   35 animation_block: "animation" "identifier" • "(" check_animation_parameter ")" "{" statement_list "}" end_of_statement_block
+   35 animation_block: "animation" "identifier" . "(" check_animation_parameter ")" "{" statement_list "}" end_of_statement_block
 
     "("  shift, and go to state 106
 
 
-State 73
+state 73
 
-   26 forward_declaration: "forward" "animation" "identifier" "(" • object_type "identifier" ")"
+   26 forward_declaration: "forward" "animation" "identifier" "(" . object_type "identifier" ")"
 
     "triangle"   shift, and go to state 8
     "pixmap"     shift, and go to state 9
@@ -1081,23 +1049,23 @@ State 73
     object_type  go to state 107
 
 
-State 74
+state 74
 
-  113 primary_expression: "true" •
+  113 primary_expression: "true" .
 
     $default  reduce using rule 113 (primary_expression)
 
 
-State 75
+state 75
 
-  114 primary_expression: "false" •
+  114 primary_expression: "false" .
 
     $default  reduce using rule 114 (primary_expression)
 
 
-State 76
+state 76
 
-  110 primary_expression: "(" • expression ")"
+  110 primary_expression: "(" . expression ")"
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1125,9 +1093,9 @@ State 76
     math_operator       go to state 96
 
 
-State 77
+state 77
 
-  105 expression: "-" • expression
+  105 expression: "-" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1155,79 +1123,79 @@ State 77
     math_operator       go to state 96
 
 
-State 78
+state 78
 
-  117 math_operator: "sin" •
+  117 math_operator: "sin" .
 
     $default  reduce using rule 117 (math_operator)
 
 
-State 79
+state 79
 
-  118 math_operator: "cos" •
+  118 math_operator: "cos" .
 
     $default  reduce using rule 118 (math_operator)
 
 
-State 80
+state 80
 
-  119 math_operator: "tan" •
+  119 math_operator: "tan" .
 
     $default  reduce using rule 119 (math_operator)
 
 
-State 81
+state 81
 
-  120 math_operator: "asin" •
+  120 math_operator: "asin" .
 
     $default  reduce using rule 120 (math_operator)
 
 
-State 82
+state 82
 
-  121 math_operator: "acos" •
+  121 math_operator: "acos" .
 
     $default  reduce using rule 121 (math_operator)
 
 
-State 83
+state 83
 
-  122 math_operator: "atan" •
+  122 math_operator: "atan" .
 
     $default  reduce using rule 122 (math_operator)
 
 
-State 84
+state 84
 
-  123 math_operator: "sqrt" •
+  123 math_operator: "sqrt" .
 
     $default  reduce using rule 123 (math_operator)
 
 
-State 85
+state 85
 
-  125 math_operator: "floor" •
+  125 math_operator: "floor" .
 
     $default  reduce using rule 125 (math_operator)
 
 
-State 86
+state 86
 
-  124 math_operator: "abs" •
+  124 math_operator: "abs" .
 
     $default  reduce using rule 124 (math_operator)
 
 
-State 87
+state 87
 
-  126 math_operator: "random" •
+  126 math_operator: "random" .
 
     $default  reduce using rule 126 (math_operator)
 
 
-State 88
+state 88
 
-  106 expression: "!" • expression
+  106 expression: "!" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1255,12 +1223,12 @@ State 88
     math_operator       go to state 96
 
 
-State 89
+state 89
 
-   87 variable: "identifier" •
-   88         | "identifier" • "[" expression "]"
-   89         | "identifier" • "." "identifier"
-   90         | "identifier" • "[" expression "]" "." "identifier"
+   87 variable: "identifier" .
+   88         | "identifier" . "[" expression "]"
+   89         | "identifier" . "." "identifier"
+   90         | "identifier" . "[" expression "]" "." "identifier"
 
     "["  shift, and go to state 111
     "."  shift, and go to state 112
@@ -1268,52 +1236,52 @@ State 89
     $default  reduce using rule 87 (variable)
 
 
-State 90
+state 90
 
-  112 primary_expression: "int constant" •
+  112 primary_expression: "int constant" .
 
     $default  reduce using rule 112 (primary_expression)
 
 
-State 91
+state 91
 
-  115 primary_expression: "double constant" •
+  115 primary_expression: "double constant" .
 
     $default  reduce using rule 115 (primary_expression)
 
 
-State 92
+state 92
 
-  116 primary_expression: "string constant" •
+  116 primary_expression: "string constant" .
 
     $default  reduce using rule 116 (primary_expression)
 
 
-State 93
+state 93
 
-  111 primary_expression: variable •
+  111 primary_expression: variable .
 
     $default  reduce using rule 111 (primary_expression)
 
 
-State 94
+state 94
 
-    8 variable_declaration: simple_type "identifier" "[" expression • "]"
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+    8 variable_declaration: simple_type "identifier" "[" expression . "]"
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "touches"  shift, and go to state 113
     "near"     shift, and go to state 114
@@ -1333,38 +1301,38 @@ State 94
     "||"       shift, and go to state 128
 
 
-State 95
+state 95
 
-   91 expression: primary_expression •
+   91 expression: primary_expression .
 
     $default  reduce using rule 91 (expression)
 
 
-State 96
+state 96
 
-  107 expression: math_operator • "(" expression ")"
+  107 expression: math_operator . "(" expression ")"
 
     "("  shift, and go to state 129
 
 
-State 97
+state 97
 
-   12 optional_initializer: "=" expression •
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   12 optional_initializer: "=" expression .
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "touches"  shift, and go to state 113
     "near"     shift, and go to state 114
@@ -1385,62 +1353,62 @@ State 97
     $default  reduce using rule 12 (optional_initializer)
 
 
-State 98
+state 98
 
-   25 parameter: "identifier" • "=" expression
+   25 parameter: "identifier" . "=" expression
 
     "="  shift, and go to state 130
 
 
-State 99
+state 99
 
-   14 object_declaration: object_type "identifier" "(" parameter_list_or_empty • ")"
+   14 object_declaration: object_type "identifier" "(" parameter_list_or_empty . ")"
 
     ")"  shift, and go to state 131
 
 
-State 100
+state 100
 
-   21 parameter_list_or_empty: parameter_list •
-   23 parameter_list: parameter_list • "," parameter
+   21 parameter_list_or_empty: parameter_list .
+   23 parameter_list: parameter_list . "," parameter
 
     ","  shift, and go to state 132
 
     $default  reduce using rule 21 (parameter_list_or_empty)
 
 
-State 101
+state 101
 
-   24 parameter_list: parameter •
+   24 parameter_list: parameter .
 
     $default  reduce using rule 24 (parameter_list)
 
 
-State 102
+state 102
 
-   22 parameter_list_or_empty: empty •
+   22 parameter_list_or_empty: empty .
 
     $default  reduce using rule 22 (parameter_list_or_empty)
 
 
-State 103
+state 103
 
-   15 object_declaration: object_type "identifier" "[" expression • "]"
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   15 object_declaration: object_type "identifier" "[" expression . "]"
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "touches"  shift, and go to state 113
     "near"     shift, and go to state 114
@@ -1460,9 +1428,9 @@ State 103
     "||"       shift, and go to state 128
 
 
-State 104
+state 104
 
-   64 statement_block: "{" statement_block_creator • statement_list "}" end_of_statement_block
+   64 statement_block: "{" statement_block_creator . statement_list "}" end_of_statement_block
 
     $default  reduce using rule 127 (empty)
 
@@ -1470,16 +1438,16 @@ State 104
     empty           go to state 135
 
 
-State 105
+state 105
 
-   37 on_block: "on" keystroke statement_block •
+   37 on_block: "on" keystroke statement_block .
 
     $default  reduce using rule 37 (on_block)
 
 
-State 106
+state 106
 
-   35 animation_block: "animation" "identifier" "(" • check_animation_parameter ")" "{" statement_list "}" end_of_statement_block
+   35 animation_block: "animation" "identifier" "(" . check_animation_parameter ")" "{" statement_list "}" end_of_statement_block
 
     "triangle"   shift, and go to state 8
     "pixmap"     shift, and go to state 9
@@ -1491,31 +1459,31 @@ State 106
     check_animation_parameter  go to state 137
 
 
-State 107
+state 107
 
-   26 forward_declaration: "forward" "animation" "identifier" "(" object_type • "identifier" ")"
+   26 forward_declaration: "forward" "animation" "identifier" "(" object_type . "identifier" ")"
 
     "identifier"  shift, and go to state 138
 
 
-State 108
+state 108
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
-  110 primary_expression: "(" expression • ")"
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
+  110 primary_expression: "(" expression . ")"
 
     "touches"  shift, and go to state 113
     "near"     shift, and go to state 114
@@ -1535,54 +1503,54 @@ State 108
     "||"       shift, and go to state 128
 
 
-State 109
+state 109
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  105           | "-" expression •
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  105           | "-" expression .
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     $default  reduce using rule 105 (expression)
 
 
-State 110
+state 110
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  106           | "!" expression •
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  106           | "!" expression .
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     $default  reduce using rule 106 (expression)
 
 
-State 111
+state 111
 
-   88 variable: "identifier" "[" • expression "]"
-   90         | "identifier" "[" • expression "]" "." "identifier"
+   88 variable: "identifier" "[" . expression "]"
+   90         | "identifier" "[" . expression "]" "." "identifier"
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1610,16 +1578,16 @@ State 111
     math_operator       go to state 96
 
 
-State 112
+state 112
 
-   89 variable: "identifier" "." • "identifier"
+   89 variable: "identifier" "." . "identifier"
 
     "identifier"  shift, and go to state 141
 
 
-State 113
+state 113
 
-  109 expression: expression "touches" • expression
+  109 expression: expression "touches" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1647,9 +1615,9 @@ State 113
     math_operator       go to state 96
 
 
-State 114
+state 114
 
-  108 expression: expression "near" • expression
+  108 expression: expression "near" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1677,16 +1645,16 @@ State 114
     math_operator       go to state 96
 
 
-State 115
+state 115
 
-    8 variable_declaration: simple_type "identifier" "[" expression "]" •
+    8 variable_declaration: simple_type "identifier" "[" expression "]" .
 
     $default  reduce using rule 8 (variable_declaration)
 
 
-State 116
+state 116
 
-  102 expression: expression "*" • expression
+  102 expression: expression "*" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1714,9 +1682,9 @@ State 116
     math_operator       go to state 96
 
 
-State 117
+state 117
 
-  103 expression: expression "/" • expression
+  103 expression: expression "/" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1744,9 +1712,9 @@ State 117
     math_operator       go to state 96
 
 
-State 118
+state 118
 
-  104 expression: expression "%" • expression
+  104 expression: expression "%" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1774,9 +1742,9 @@ State 118
     math_operator       go to state 96
 
 
-State 119
+state 119
 
-  100 expression: expression "+" • expression
+  100 expression: expression "+" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1804,9 +1772,9 @@ State 119
     math_operator       go to state 96
 
 
-State 120
+state 120
 
-  101 expression: expression "-" • expression
+  101 expression: expression "-" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1834,9 +1802,9 @@ State 120
     math_operator       go to state 96
 
 
-State 121
+state 121
 
-   96 expression: expression "<" • expression
+   96 expression: expression "<" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1864,9 +1832,9 @@ State 121
     math_operator       go to state 96
 
 
-State 122
+state 122
 
-   97 expression: expression ">" • expression
+   97 expression: expression ">" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1894,9 +1862,9 @@ State 122
     math_operator       go to state 96
 
 
-State 123
+state 123
 
-   94 expression: expression "<=" • expression
+   94 expression: expression "<=" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1924,9 +1892,9 @@ State 123
     math_operator       go to state 96
 
 
-State 124
+state 124
 
-   95 expression: expression ">=" • expression
+   95 expression: expression ">=" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1954,9 +1922,9 @@ State 124
     math_operator       go to state 96
 
 
-State 125
+state 125
 
-   98 expression: expression "==" • expression
+   98 expression: expression "==" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -1984,9 +1952,9 @@ State 125
     math_operator       go to state 96
 
 
-State 126
+state 126
 
-   99 expression: expression "!=" • expression
+   99 expression: expression "!=" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -2014,9 +1982,9 @@ State 126
     math_operator       go to state 96
 
 
-State 127
+state 127
 
-   93 expression: expression "&&" • expression
+   93 expression: expression "&&" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -2044,9 +2012,9 @@ State 127
     math_operator       go to state 96
 
 
-State 128
+state 128
 
-   92 expression: expression "||" • expression
+   92 expression: expression "||" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -2074,9 +2042,9 @@ State 128
     math_operator       go to state 96
 
 
-State 129
+state 129
 
-  107 expression: math_operator "(" • expression ")"
+  107 expression: math_operator "(" . expression ")"
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -2104,9 +2072,9 @@ State 129
     math_operator       go to state 96
 
 
-State 130
+state 130
 
-   25 parameter: "identifier" "=" • expression
+   25 parameter: "identifier" "=" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -2134,33 +2102,33 @@ State 130
     math_operator       go to state 96
 
 
-State 131
+state 131
 
-   14 object_declaration: object_type "identifier" "(" parameter_list_or_empty ")" •
+   14 object_declaration: object_type "identifier" "(" parameter_list_or_empty ")" .
 
     $default  reduce using rule 14 (object_declaration)
 
 
-State 132
+state 132
 
-   23 parameter_list: parameter_list "," • parameter
+   23 parameter_list: parameter_list "," . parameter
 
     "identifier"  shift, and go to state 98
 
     parameter  go to state 159
 
 
-State 133
+state 133
 
-   15 object_declaration: object_type "identifier" "[" expression "]" •
+   15 object_declaration: object_type "identifier" "[" expression "]" .
 
     $default  reduce using rule 15 (object_declaration)
 
 
-State 134
+state 134
 
-   64 statement_block: "{" statement_block_creator statement_list • "}" end_of_statement_block
-   67 statement_list: statement_list • statement
+   64 statement_block: "{" statement_block_creator statement_list . "}" end_of_statement_block
+   67 statement_list: statement_list . statement
 
     "if"          shift, and go to state 160
     "for"         shift, and go to state 161
@@ -2185,60 +2153,60 @@ State 134
     variable          go to state 171
 
 
-State 135
+state 135
 
-   68 statement_list: empty •
+   68 statement_list: empty .
 
     $default  reduce using rule 68 (statement_list)
 
 
-State 136
+state 136
 
-   36 check_animation_parameter: object_type • "identifier"
+   36 check_animation_parameter: object_type . "identifier"
 
     "identifier"  shift, and go to state 172
 
 
-State 137
+state 137
 
-   35 animation_block: "animation" "identifier" "(" check_animation_parameter • ")" "{" statement_list "}" end_of_statement_block
+   35 animation_block: "animation" "identifier" "(" check_animation_parameter . ")" "{" statement_list "}" end_of_statement_block
 
     ")"  shift, and go to state 173
 
 
-State 138
+state 138
 
-   26 forward_declaration: "forward" "animation" "identifier" "(" object_type "identifier" • ")"
+   26 forward_declaration: "forward" "animation" "identifier" "(" object_type "identifier" . ")"
 
     ")"  shift, and go to state 174
 
 
-State 139
+state 139
 
-  110 primary_expression: "(" expression ")" •
+  110 primary_expression: "(" expression ")" .
 
     $default  reduce using rule 110 (primary_expression)
 
 
-State 140
+state 140
 
-   88 variable: "identifier" "[" expression • "]"
-   90         | "identifier" "[" expression • "]" "." "identifier"
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   88 variable: "identifier" "[" expression . "]"
+   90         | "identifier" "[" expression . "]" "." "identifier"
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "touches"  shift, and go to state 113
     "near"     shift, and go to state 114
@@ -2258,31 +2226,31 @@ State 140
     "||"       shift, and go to state 128
 
 
-State 141
+state 141
 
-   89 variable: "identifier" "." "identifier" •
+   89 variable: "identifier" "." "identifier" .
 
     $default  reduce using rule 89 (variable)
 
 
-State 142
+state 142
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
-  109           | expression "touches" expression •
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
+  109           | expression "touches" expression .
 
     "*"   shift, and go to state 116
     "/"   shift, and go to state 117
@@ -2301,24 +2269,24 @@ State 142
     $default  reduce using rule 109 (expression)
 
 
-State 143
+state 143
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  108           | expression "near" expression •
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  108           | expression "near" expression .
+  109           | expression . "touches" expression
 
     "*"   shift, and go to state 116
     "/"   shift, and go to state 117
@@ -2337,90 +2305,90 @@ State 143
     $default  reduce using rule 108 (expression)
 
 
-State 144
+state 144
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  102           | expression "*" expression •
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  102           | expression "*" expression .
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     $default  reduce using rule 102 (expression)
 
 
-State 145
+state 145
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  103           | expression "/" expression •
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  103           | expression "/" expression .
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     $default  reduce using rule 103 (expression)
 
 
-State 146
+state 146
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  104           | expression "%" expression •
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  104           | expression "%" expression .
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     $default  reduce using rule 104 (expression)
 
 
-State 147
+state 147
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  100           | expression "+" expression •
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  100           | expression "+" expression .
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "*"  shift, and go to state 116
     "/"  shift, and go to state 117
@@ -2429,24 +2397,24 @@ State 147
     $default  reduce using rule 100 (expression)
 
 
-State 148
+state 148
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  101           | expression "-" expression •
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  101           | expression "-" expression .
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "*"  shift, and go to state 116
     "/"  shift, and go to state 117
@@ -2455,24 +2423,24 @@ State 148
     $default  reduce using rule 101 (expression)
 
 
-State 149
+state 149
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   96           | expression "<" expression •
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   96           | expression "<" expression .
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "*"  shift, and go to state 116
     "/"  shift, and go to state 117
@@ -2483,24 +2451,24 @@ State 149
     $default  reduce using rule 96 (expression)
 
 
-State 150
+state 150
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   97           | expression ">" expression •
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   97           | expression ">" expression .
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "*"  shift, and go to state 116
     "/"  shift, and go to state 117
@@ -2511,24 +2479,24 @@ State 150
     $default  reduce using rule 97 (expression)
 
 
-State 151
+state 151
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   94           | expression "<=" expression •
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   94           | expression "<=" expression .
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "*"  shift, and go to state 116
     "/"  shift, and go to state 117
@@ -2539,24 +2507,24 @@ State 151
     $default  reduce using rule 94 (expression)
 
 
-State 152
+state 152
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   95           | expression ">=" expression •
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   95           | expression ">=" expression .
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "*"  shift, and go to state 116
     "/"  shift, and go to state 117
@@ -2567,24 +2535,24 @@ State 152
     $default  reduce using rule 95 (expression)
 
 
-State 153
+state 153
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   98           | expression "==" expression •
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   98           | expression "==" expression .
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "*"   shift, and go to state 116
     "/"   shift, and go to state 117
@@ -2599,24 +2567,24 @@ State 153
     $default  reduce using rule 98 (expression)
 
 
-State 154
+state 154
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-   99           | expression "!=" expression •
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+   99           | expression "!=" expression .
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "*"   shift, and go to state 116
     "/"   shift, and go to state 117
@@ -2631,24 +2599,24 @@ State 154
     $default  reduce using rule 99 (expression)
 
 
-State 155
+state 155
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   93           | expression "&&" expression •
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   93           | expression "&&" expression .
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "*"   shift, and go to state 116
     "/"   shift, and go to state 117
@@ -2665,24 +2633,24 @@ State 155
     $default  reduce using rule 93 (expression)
 
 
-State 156
+state 156
 
-   92 expression: expression • "||" expression
-   92           | expression "||" expression •
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   92           | expression "||" expression .
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "*"   shift, and go to state 116
     "/"   shift, and go to state 117
@@ -2700,24 +2668,24 @@ State 156
     $default  reduce using rule 92 (expression)
 
 
-State 157
+state 157
 
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  107           | math_operator "(" expression • ")"
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  107           | math_operator "(" expression . ")"
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "touches"  shift, and go to state 113
     "near"     shift, and go to state 114
@@ -2737,24 +2705,24 @@ State 157
     "||"       shift, and go to state 128
 
 
-State 158
+state 158
 
-   25 parameter: "identifier" "=" expression •
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   25 parameter: "identifier" "=" expression .
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "touches"  shift, and go to state 113
     "near"     shift, and go to state 114
@@ -2775,100 +2743,100 @@ State 158
     $default  reduce using rule 25 (parameter)
 
 
-State 159
+state 159
 
-   23 parameter_list: parameter_list "," parameter •
+   23 parameter_list: parameter_list "," parameter .
 
     $default  reduce using rule 23 (parameter_list)
 
 
-State 160
+state 160
 
-   75 if_statement: "if" • "(" expression ")" if_block
-   76             | "if" • "(" expression ")" if_block "else" if_block
+   75 if_statement: "if" . "(" expression ")" if_block
+   76             | "if" . "(" expression ")" if_block "else" if_block
 
     "("  shift, and go to state 177
 
 
-State 161
+state 161
 
-   77 for_statement: "for" • "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
+   77 for_statement: "for" . "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
 
     "("  shift, and go to state 178
 
 
-State 162
+state 162
 
-   78 print_statement: "print" • "(" expression ")"
+   78 print_statement: "print" . "(" expression ")"
 
     "("  shift, and go to state 179
 
 
-State 163
+state 163
 
-   79 exit_statement: "exit" • "(" expression ")"
+   79 exit_statement: "exit" . "(" expression ")"
 
     "("  shift, and go to state 180
 
 
-State 164
+state 164
 
-   64 statement_block: "{" statement_block_creator statement_list "}" • end_of_statement_block
+   64 statement_block: "{" statement_block_creator statement_list "}" . end_of_statement_block
 
     $default  reduce using rule 66 (end_of_statement_block)
 
     end_of_statement_block  go to state 181
 
 
-State 165
+state 165
 
-   67 statement_list: statement_list statement •
+   67 statement_list: statement_list statement .
 
     $default  reduce using rule 67 (statement_list)
 
 
-State 166
+state 166
 
-   71 statement: if_statement •
+   71 statement: if_statement .
 
     $default  reduce using rule 71 (statement)
 
 
-State 167
+state 167
 
-   74 statement: for_statement •
+   74 statement: for_statement .
 
     $default  reduce using rule 74 (statement)
 
 
-State 168
+state 168
 
-   72 statement: print_statement • ";"
+   72 statement: print_statement . ";"
 
     ";"  shift, and go to state 182
 
 
-State 169
+state 169
 
-   73 statement: exit_statement • ";"
+   73 statement: exit_statement . ";"
 
     ";"  shift, and go to state 183
 
 
-State 170
+state 170
 
-   70 statement: assign_statement • ";"
+   70 statement: assign_statement . ";"
 
     ";"  shift, and go to state 184
 
 
-State 171
+state 171
 
-   82 assign_statement: variable • "=" expression
-   83                 | variable • "+=" expression
-   84                 | variable • "-=" expression
-   85                 | variable • "++"
-   86                 | variable • "--"
+   82 assign_statement: variable . "=" expression
+   83                 | variable . "+=" expression
+   84                 | variable . "-=" expression
+   85                 | variable . "++"
+   86                 | variable . "--"
 
     "="   shift, and go to state 185
     "+="  shift, and go to state 186
@@ -2877,48 +2845,48 @@ State 171
     "--"  shift, and go to state 189
 
 
-State 172
+state 172
 
-   36 check_animation_parameter: object_type "identifier" •
+   36 check_animation_parameter: object_type "identifier" .
 
     $default  reduce using rule 36 (check_animation_parameter)
 
 
-State 173
+state 173
 
-   35 animation_block: "animation" "identifier" "(" check_animation_parameter ")" • "{" statement_list "}" end_of_statement_block
+   35 animation_block: "animation" "identifier" "(" check_animation_parameter ")" . "{" statement_list "}" end_of_statement_block
 
     "{"  shift, and go to state 190
 
 
-State 174
+state 174
 
-   26 forward_declaration: "forward" "animation" "identifier" "(" object_type "identifier" ")" •
+   26 forward_declaration: "forward" "animation" "identifier" "(" object_type "identifier" ")" .
 
     $default  reduce using rule 26 (forward_declaration)
 
 
-State 175
+state 175
 
-   88 variable: "identifier" "[" expression "]" •
-   90         | "identifier" "[" expression "]" • "." "identifier"
+   88 variable: "identifier" "[" expression "]" .
+   90         | "identifier" "[" expression "]" . "." "identifier"
 
     "."  shift, and go to state 191
 
     $default  reduce using rule 88 (variable)
 
 
-State 176
+state 176
 
-  107 expression: math_operator "(" expression ")" •
+  107 expression: math_operator "(" expression ")" .
 
     $default  reduce using rule 107 (expression)
 
 
-State 177
+state 177
 
-   75 if_statement: "if" "(" • expression ")" if_block
-   76             | "if" "(" • expression ")" if_block "else" if_block
+   75 if_statement: "if" "(" . expression ")" if_block
+   76             | "if" "(" . expression ")" if_block "else" if_block
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -2946,18 +2914,18 @@ State 177
     math_operator       go to state 96
 
 
-State 178
+state 178
 
-   77 for_statement: "for" "(" • statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
+   77 for_statement: "for" "(" . statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
 
     $default  reduce using rule 65 (statement_block_creator)
 
     statement_block_creator  go to state 193
 
 
-State 179
+state 179
 
-   78 print_statement: "print" "(" • expression ")"
+   78 print_statement: "print" "(" . expression ")"
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -2985,9 +2953,9 @@ State 179
     math_operator       go to state 96
 
 
-State 180
+state 180
 
-   79 exit_statement: "exit" "(" • expression ")"
+   79 exit_statement: "exit" "(" . expression ")"
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -3015,37 +2983,37 @@ State 180
     math_operator       go to state 96
 
 
-State 181
+state 181
 
-   64 statement_block: "{" statement_block_creator statement_list "}" end_of_statement_block •
+   64 statement_block: "{" statement_block_creator statement_list "}" end_of_statement_block .
 
     $default  reduce using rule 64 (statement_block)
 
 
-State 182
+state 182
 
-   72 statement: print_statement ";" •
+   72 statement: print_statement ";" .
 
     $default  reduce using rule 72 (statement)
 
 
-State 183
+state 183
 
-   73 statement: exit_statement ";" •
+   73 statement: exit_statement ";" .
 
     $default  reduce using rule 73 (statement)
 
 
-State 184
+state 184
 
-   70 statement: assign_statement ";" •
+   70 statement: assign_statement ";" .
 
     $default  reduce using rule 70 (statement)
 
 
-State 185
+state 185
 
-   82 assign_statement: variable "=" • expression
+   82 assign_statement: variable "=" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -3073,9 +3041,9 @@ State 185
     math_operator       go to state 96
 
 
-State 186
+state 186
 
-   83 assign_statement: variable "+=" • expression
+   83 assign_statement: variable "+=" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -3103,9 +3071,9 @@ State 186
     math_operator       go to state 96
 
 
-State 187
+state 187
 
-   84 assign_statement: variable "-=" • expression
+   84 assign_statement: variable "-=" . expression
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -3133,23 +3101,23 @@ State 187
     math_operator       go to state 96
 
 
-State 188
+state 188
 
-   85 assign_statement: variable "++" •
+   85 assign_statement: variable "++" .
 
     $default  reduce using rule 85 (assign_statement)
 
 
-State 189
+state 189
 
-   86 assign_statement: variable "--" •
+   86 assign_statement: variable "--" .
 
     $default  reduce using rule 86 (assign_statement)
 
 
-State 190
+state 190
 
-   35 animation_block: "animation" "identifier" "(" check_animation_parameter ")" "{" • statement_list "}" end_of_statement_block
+   35 animation_block: "animation" "identifier" "(" check_animation_parameter ")" "{" . statement_list "}" end_of_statement_block
 
     $default  reduce using rule 127 (empty)
 
@@ -3157,32 +3125,32 @@ State 190
     empty           go to state 135
 
 
-State 191
+state 191
 
-   90 variable: "identifier" "[" expression "]" "." • "identifier"
+   90 variable: "identifier" "[" expression "]" "." . "identifier"
 
     "identifier"  shift, and go to state 200
 
 
-State 192
+state 192
 
-   75 if_statement: "if" "(" expression • ")" if_block
-   76             | "if" "(" expression • ")" if_block "else" if_block
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   75 if_statement: "if" "(" expression . ")" if_block
+   76             | "if" "(" expression . ")" if_block "else" if_block
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "touches"  shift, and go to state 113
     "near"     shift, and go to state 114
@@ -3202,9 +3170,9 @@ State 192
     "||"       shift, and go to state 128
 
 
-State 193
+state 193
 
-   77 for_statement: "for" "(" statement_block_creator • assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
+   77 for_statement: "for" "(" statement_block_creator . assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
 
     "identifier"  shift, and go to state 89
 
@@ -3216,24 +3184,24 @@ State 193
     empty                      go to state 204
 
 
-State 194
+state 194
 
-   78 print_statement: "print" "(" expression • ")"
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   78 print_statement: "print" "(" expression . ")"
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "touches"  shift, and go to state 113
     "near"     shift, and go to state 114
@@ -3253,24 +3221,24 @@ State 194
     "||"       shift, and go to state 128
 
 
-State 195
+state 195
 
-   79 exit_statement: "exit" "(" expression • ")"
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   79 exit_statement: "exit" "(" expression . ")"
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "touches"  shift, and go to state 113
     "near"     shift, and go to state 114
@@ -3290,24 +3258,24 @@ State 195
     "||"       shift, and go to state 128
 
 
-State 196
+state 196
 
-   82 assign_statement: variable "=" expression •
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   82 assign_statement: variable "=" expression .
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "touches"  shift, and go to state 113
     "near"     shift, and go to state 114
@@ -3328,24 +3296,24 @@ State 196
     $default  reduce using rule 82 (assign_statement)
 
 
-State 197
+state 197
 
-   83 assign_statement: variable "+=" expression •
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   83 assign_statement: variable "+=" expression .
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "touches"  shift, and go to state 113
     "near"     shift, and go to state 114
@@ -3366,24 +3334,24 @@ State 197
     $default  reduce using rule 83 (assign_statement)
 
 
-State 198
+state 198
 
-   84 assign_statement: variable "-=" expression •
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   84 assign_statement: variable "-=" expression .
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "touches"  shift, and go to state 113
     "near"     shift, and go to state 114
@@ -3404,10 +3372,10 @@ State 198
     $default  reduce using rule 84 (assign_statement)
 
 
-State 199
+state 199
 
-   35 animation_block: "animation" "identifier" "(" check_animation_parameter ")" "{" statement_list • "}" end_of_statement_block
-   67 statement_list: statement_list • statement
+   35 animation_block: "animation" "identifier" "(" check_animation_parameter ")" "{" statement_list . "}" end_of_statement_block
+   67 statement_list: statement_list . statement
 
     "if"          shift, and go to state 160
     "for"         shift, and go to state 161
@@ -3432,17 +3400,17 @@ State 199
     variable          go to state 171
 
 
-State 200
+state 200
 
-   90 variable: "identifier" "[" expression "]" "." "identifier" •
+   90 variable: "identifier" "[" expression "]" "." "identifier" .
 
     $default  reduce using rule 90 (variable)
 
 
-State 201
+state 201
 
-   75 if_statement: "if" "(" expression ")" • if_block
-   76             | "if" "(" expression ")" • if_block "else" if_block
+   75 if_statement: "if" "(" expression ")" . if_block
+   76             | "if" "(" expression ")" . if_block "else" if_block
 
     "{"  shift, and go to state 44
 
@@ -3453,72 +3421,72 @@ State 201
     statement_block_creator  go to state 210
 
 
-State 202
+state 202
 
-   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty • end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
+   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty . end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
 
     $default  reduce using rule 66 (end_of_statement_block)
 
     end_of_statement_block  go to state 211
 
 
-State 203
+state 203
 
-   80 assign_statement_or_empty: assign_statement •
+   80 assign_statement_or_empty: assign_statement .
 
     $default  reduce using rule 80 (assign_statement_or_empty)
 
 
-State 204
+state 204
 
-   81 assign_statement_or_empty: empty •
+   81 assign_statement_or_empty: empty .
 
     $default  reduce using rule 81 (assign_statement_or_empty)
 
 
-State 205
+state 205
 
-   78 print_statement: "print" "(" expression ")" •
+   78 print_statement: "print" "(" expression ")" .
 
     $default  reduce using rule 78 (print_statement)
 
 
-State 206
+state 206
 
-   79 exit_statement: "exit" "(" expression ")" •
+   79 exit_statement: "exit" "(" expression ")" .
 
     $default  reduce using rule 79 (exit_statement)
 
 
-State 207
+state 207
 
-   35 animation_block: "animation" "identifier" "(" check_animation_parameter ")" "{" statement_list "}" • end_of_statement_block
+   35 animation_block: "animation" "identifier" "(" check_animation_parameter ")" "{" statement_list "}" . end_of_statement_block
 
     $default  reduce using rule 66 (end_of_statement_block)
 
     end_of_statement_block  go to state 212
 
 
-State 208
+state 208
 
-   75 if_statement: "if" "(" expression ")" if_block •
-   76             | "if" "(" expression ")" if_block • "else" if_block
+   75 if_statement: "if" "(" expression ")" if_block .
+   76             | "if" "(" expression ")" if_block . "else" if_block
 
     "else"  shift, and go to state 213
 
     $default  reduce using rule 75 (if_statement)
 
 
-State 209
+state 209
 
-   63 if_block: statement_block •
+   63 if_block: statement_block .
 
     $default  reduce using rule 63 (if_block)
 
 
-State 210
+state 210
 
-   62 if_block: statement_block_creator • statement end_of_statement_block
+   62 if_block: statement_block_creator . statement end_of_statement_block
 
     "if"          shift, and go to state 160
     "for"         shift, and go to state 161
@@ -3542,23 +3510,23 @@ State 210
     variable          go to state 171
 
 
-State 211
+state 211
 
-   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block • ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
+   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block . ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
 
     ";"  shift, and go to state 215
 
 
-State 212
+state 212
 
-   35 animation_block: "animation" "identifier" "(" check_animation_parameter ")" "{" statement_list "}" end_of_statement_block •
+   35 animation_block: "animation" "identifier" "(" check_animation_parameter ")" "{" statement_list "}" end_of_statement_block .
 
     $default  reduce using rule 35 (animation_block)
 
 
-State 213
+state 213
 
-   76 if_statement: "if" "(" expression ")" if_block "else" • if_block
+   76 if_statement: "if" "(" expression ")" if_block "else" . if_block
 
     "{"  shift, and go to state 44
 
@@ -3569,18 +3537,18 @@ State 213
     statement_block_creator  go to state 210
 
 
-State 214
+state 214
 
-   62 if_block: statement_block_creator statement • end_of_statement_block
+   62 if_block: statement_block_creator statement . end_of_statement_block
 
     $default  reduce using rule 66 (end_of_statement_block)
 
     end_of_statement_block  go to state 217
 
 
-State 215
+state 215
 
-   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" • expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
+   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" . expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
 
     "true"             shift, and go to state 74
     "false"            shift, and go to state 75
@@ -3608,38 +3576,38 @@ State 215
     math_operator       go to state 96
 
 
-State 216
+state 216
 
-   76 if_statement: "if" "(" expression ")" if_block "else" if_block •
+   76 if_statement: "if" "(" expression ")" if_block "else" if_block .
 
     $default  reduce using rule 76 (if_statement)
 
 
-State 217
+state 217
 
-   62 if_block: statement_block_creator statement end_of_statement_block •
+   62 if_block: statement_block_creator statement end_of_statement_block .
 
     $default  reduce using rule 62 (if_block)
 
 
-State 218
+state 218
 
-   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression • ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
-   92 expression: expression • "||" expression
-   93           | expression • "&&" expression
-   94           | expression • "<=" expression
-   95           | expression • ">=" expression
-   96           | expression • "<" expression
-   97           | expression • ">" expression
-   98           | expression • "==" expression
-   99           | expression • "!=" expression
-  100           | expression • "+" expression
-  101           | expression • "-" expression
-  102           | expression • "*" expression
-  103           | expression • "/" expression
-  104           | expression • "%" expression
-  108           | expression • "near" expression
-  109           | expression • "touches" expression
+   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression . ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
+   92 expression: expression . "||" expression
+   93           | expression . "&&" expression
+   94           | expression . "<=" expression
+   95           | expression . ">=" expression
+   96           | expression . "<" expression
+   97           | expression . ">" expression
+   98           | expression . "==" expression
+   99           | expression . "!=" expression
+  100           | expression . "+" expression
+  101           | expression . "-" expression
+  102           | expression . "*" expression
+  103           | expression . "/" expression
+  104           | expression . "%" expression
+  108           | expression . "near" expression
+  109           | expression . "touches" expression
 
     "touches"  shift, and go to state 113
     "near"     shift, and go to state 114
@@ -3659,18 +3627,18 @@ State 218
     "||"       shift, and go to state 128
 
 
-State 219
+state 219
 
-   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" • statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
+   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" . statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block
 
     $default  reduce using rule 65 (statement_block_creator)
 
     statement_block_creator  go to state 220
 
 
-State 220
+state 220
 
-   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator • assign_statement_or_empty end_of_statement_block ")" statement_block
+   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator . assign_statement_or_empty end_of_statement_block ")" statement_block
 
     "identifier"  shift, and go to state 89
 
@@ -3682,33 +3650,33 @@ State 220
     empty                      go to state 204
 
 
-State 221
+state 221
 
-   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty • end_of_statement_block ")" statement_block
+   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty . end_of_statement_block ")" statement_block
 
     $default  reduce using rule 66 (end_of_statement_block)
 
     end_of_statement_block  go to state 222
 
 
-State 222
+state 222
 
-   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block • ")" statement_block
+   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block . ")" statement_block
 
     ")"  shift, and go to state 223
 
 
-State 223
+state 223
 
-   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" • statement_block
+   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" . statement_block
 
     "{"  shift, and go to state 44
 
     statement_block  go to state 224
 
 
-State 224
+state 224
 
-   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block •
+   77 for_statement: "for" "(" statement_block_creator assign_statement_or_empty end_of_statement_block ";" expression ";" statement_block_creator assign_statement_or_empty end_of_statement_block ")" statement_block .
 
     $default  reduce using rule 77 (for_statement)

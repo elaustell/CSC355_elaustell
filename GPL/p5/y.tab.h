@@ -1,14 +1,14 @@
-/* A Bison parser, made by GNU Bison 3.8.2.  */
+/* A Bison parser, made by GNU Bison 2.3.  */
 
-/* Bison interface for Yacc-like parsers in C
+/* Skeleton interface for Bison's Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2021 Free Software Foundation,
-   Inc.
+   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
+   Free Software Foundation, Inc.
 
-   This program is free software: you can redistribute it and/or modify
+   This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+   the Free Software Foundation; either version 2, or (at your option)
+   any later version.
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -16,7 +16,9 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor,
+   Boston, MA 02110-1301, USA.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -31,128 +33,106 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
-   especially those whose name start with YY_ or yy_.  They are
-   private implementation details that can be changed or removed.  */
-
-#ifndef YY_YY_Y_TAB_H_INCLUDED
-# define YY_YY_Y_TAB_H_INCLUDED
-/* Debug traces.  */
-#ifndef YYDEBUG
-# define YYDEBUG 0
-#endif
-#if YYDEBUG
-extern int yydebug;
-#endif
-
-/* Token kinds.  */
+/* Tokens.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
-  enum yytokentype
-  {
-    YYEMPTY = -2,
-    YYEOF = 0,                     /* "end of file"  */
-    YYerror = 256,                 /* error  */
-    YYUNDEF = 257,                 /* "invalid token"  */
-    T_INT = 258,                   /* "int"  */
-    T_DOUBLE = 259,                /* "double"  */
-    T_STRING = 260,                /* "string"  */
-    T_TRIANGLE = 261,              /* "triangle"  */
-    T_PIXMAP = 262,                /* "pixmap"  */
-    T_CIRCLE = 263,                /* "circle"  */
-    T_RECTANGLE = 264,             /* "rectangle"  */
-    T_TEXTBOX = 265,               /* "textbox"  */
-    T_FORWARD = 266,               /* "forward"  */
-    T_INITIALIZATION = 267,        /* "initialization"  */
-    T_TERMINATION = 268,           /* "termination"  */
-    T_TRUE = 269,                  /* "true"  */
-    T_FALSE = 270,                 /* "false"  */
-    T_ON = 271,                    /* "on"  */
-    T_SPACE = 272,                 /* "space"  */
-    T_LEFTARROW = 273,             /* "leftarrow"  */
-    T_RIGHTARROW = 274,            /* "rightarrow"  */
-    T_UPARROW = 275,               /* "uparrow"  */
-    T_DOWNARROW = 276,             /* "downarrow"  */
-    T_LEFTMOUSE_DOWN = 277,        /* "leftmouse_down"  */
-    T_MIDDLEMOUSE_DOWN = 278,      /* "middlemouse_down"  */
-    T_RIGHTMOUSE_DOWN = 279,       /* "rightmouse_down"  */
-    T_LEFTMOUSE_UP = 280,          /* "leftmouse_up"  */
-    T_MIDDLEMOUSE_UP = 281,        /* "middlemouse_up"  */
-    T_RIGHTMOUSE_UP = 282,         /* "rightmouse_up"  */
-    T_MOUSE_MOVE = 283,            /* "mouse_move"  */
-    T_MOUSE_DRAG = 284,            /* "mouse_drag"  */
-    T_F1 = 285,                    /* "f1"  */
-    T_AKEY = 286,                  /* "akey"  */
-    T_SKEY = 287,                  /* "skey"  */
-    T_DKEY = 288,                  /* "dkey"  */
-    T_FKEY = 289,                  /* "fkey"  */
-    T_HKEY = 290,                  /* "hkey"  */
-    T_JKEY = 291,                  /* "jkey"  */
-    T_KKEY = 292,                  /* "kkey"  */
-    T_LKEY = 293,                  /* "lkey"  */
-    T_WKEY = 294,                  /* "wkey"  */
-    T_ZKEY = 295,                  /* "zkey"  */
-    T_TOUCHES = 296,               /* "touches"  */
-    T_NEAR = 297,                  /* "near"  */
-    T_ANIMATION = 298,             /* "animation"  */
-    T_IF = 299,                    /* "if"  */
-    T_FOR = 300,                   /* "for"  */
-    T_ELSE = 301,                  /* "else"  */
-    T_PRINT = 302,                 /* "print"  */
-    T_EXIT = 303,                  /* "exit"  */
-    T_LPAREN = 304,                /* "("  */
-    T_RPAREN = 305,                /* ")"  */
-    T_LBRACE = 306,                /* "{"  */
-    T_RBRACE = 307,                /* "}"  */
-    T_LBRACKET = 308,              /* "["  */
-    T_RBRACKET = 309,              /* "]"  */
-    T_SEMIC = 310,                 /* ";"  */
-    T_COMMA = 311,                 /* ","  */
-    T_PERIOD = 312,                /* "."  */
-    T_ASSIGN = 313,                /* "="  */
-    T_PLUS_ASSIGN = 314,           /* "+="  */
-    T_MINUS_ASSIGN = 315,          /* "-="  */
-    T_PLUS_PLUS = 316,             /* "++"  */
-    T_MINUS_MINUS = 317,           /* "--"  */
-    T_MULTIPLY = 318,              /* "*"  */
-    T_DIVIDE = 319,                /* "/"  */
-    T_MOD = 320,                   /* "%"  */
-    T_PLUS = 321,                  /* "+"  */
-    T_MINUS = 322,                 /* "-"  */
-    T_SIN = 323,                   /* "sin"  */
-    T_COS = 324,                   /* "cos"  */
-    T_TAN = 325,                   /* "tan"  */
-    T_ASIN = 326,                  /* "asin"  */
-    T_ACOS = 327,                  /* "acos"  */
-    T_ATAN = 328,                  /* "atan"  */
-    T_SQRT = 329,                  /* "sqrt"  */
-    T_FLOOR = 330,                 /* "floor"  */
-    T_ABS = 331,                   /* "abs"  */
-    T_RANDOM = 332,                /* "random"  */
-    T_LESS = 333,                  /* "<"  */
-    T_GREATER = 334,               /* ">"  */
-    T_LESS_EQUAL = 335,            /* "<="  */
-    T_GREATER_EQUAL = 336,         /* ">="  */
-    T_EQUAL = 337,                 /* "=="  */
-    T_NOT_EQUAL = 338,             /* "!="  */
-    T_AND = 339,                   /* "&&"  */
-    T_OR = 340,                    /* "||"  */
-    T_NOT = 341,                   /* "!"  */
-    T_ID = 342,                    /* "identifier"  */
-    T_INT_CONSTANT = 343,          /* "int constant"  */
-    T_DOUBLE_CONSTANT = 344,       /* "double constant"  */
-    T_STRING_CONSTANT = 345,       /* "string constant"  */
-    T_ERROR = 346,                 /* "error"  */
-    IF_NO_ELSE = 347,              /* IF_NO_ELSE  */
-    UNARY_OPS = 348                /* UNARY_OPS  */
-  };
-  typedef enum yytokentype yytoken_kind_t;
+   /* Put the tokens into the symbol table, so that GDB and other debuggers
+      know about them.  */
+   enum yytokentype {
+     T_INT = 258,
+     T_DOUBLE = 259,
+     T_STRING = 260,
+     T_TRIANGLE = 261,
+     T_PIXMAP = 262,
+     T_CIRCLE = 263,
+     T_RECTANGLE = 264,
+     T_TEXTBOX = 265,
+     T_FORWARD = 266,
+     T_INITIALIZATION = 267,
+     T_TERMINATION = 268,
+     T_TRUE = 269,
+     T_FALSE = 270,
+     T_ON = 271,
+     T_SPACE = 272,
+     T_LEFTARROW = 273,
+     T_RIGHTARROW = 274,
+     T_UPARROW = 275,
+     T_DOWNARROW = 276,
+     T_LEFTMOUSE_DOWN = 277,
+     T_MIDDLEMOUSE_DOWN = 278,
+     T_RIGHTMOUSE_DOWN = 279,
+     T_LEFTMOUSE_UP = 280,
+     T_MIDDLEMOUSE_UP = 281,
+     T_RIGHTMOUSE_UP = 282,
+     T_MOUSE_MOVE = 283,
+     T_MOUSE_DRAG = 284,
+     T_F1 = 285,
+     T_AKEY = 286,
+     T_SKEY = 287,
+     T_DKEY = 288,
+     T_FKEY = 289,
+     T_HKEY = 290,
+     T_JKEY = 291,
+     T_KKEY = 292,
+     T_LKEY = 293,
+     T_WKEY = 294,
+     T_ZKEY = 295,
+     T_TOUCHES = 296,
+     T_NEAR = 297,
+     T_ANIMATION = 298,
+     T_IF = 299,
+     T_FOR = 300,
+     T_ELSE = 301,
+     T_PRINT = 302,
+     T_EXIT = 303,
+     T_LPAREN = 304,
+     T_RPAREN = 305,
+     T_LBRACE = 306,
+     T_RBRACE = 307,
+     T_LBRACKET = 308,
+     T_RBRACKET = 309,
+     T_SEMIC = 310,
+     T_COMMA = 311,
+     T_PERIOD = 312,
+     T_ASSIGN = 313,
+     T_PLUS_ASSIGN = 314,
+     T_MINUS_ASSIGN = 315,
+     T_PLUS_PLUS = 316,
+     T_MINUS_MINUS = 317,
+     T_MULTIPLY = 318,
+     T_DIVIDE = 319,
+     T_MOD = 320,
+     T_PLUS = 321,
+     T_MINUS = 322,
+     T_SIN = 323,
+     T_COS = 324,
+     T_TAN = 325,
+     T_ASIN = 326,
+     T_ACOS = 327,
+     T_ATAN = 328,
+     T_SQRT = 329,
+     T_FLOOR = 330,
+     T_ABS = 331,
+     T_RANDOM = 332,
+     T_LESS = 333,
+     T_GREATER = 334,
+     T_LESS_EQUAL = 335,
+     T_GREATER_EQUAL = 336,
+     T_EQUAL = 337,
+     T_NOT_EQUAL = 338,
+     T_AND = 339,
+     T_OR = 340,
+     T_NOT = 341,
+     T_ID = 342,
+     T_INT_CONSTANT = 343,
+     T_DOUBLE_CONSTANT = 344,
+     T_STRING_CONSTANT = 345,
+     T_ERROR = 346,
+     IF_NO_ELSE = 347,
+     UNARY_OPS = 348
+   };
 #endif
-/* Token kinds.  */
-#define YYEMPTY -2
-#define YYEOF 0
-#define YYerror 256
-#define YYUNDEF 257
+/* Tokens.  */
 #define T_INT 258
 #define T_DOUBLE 259
 #define T_STRING 260
@@ -245,12 +225,13 @@ extern int yydebug;
 #define IF_NO_ELSE 347
 #define UNARY_OPS 348
 
-/* Value type.  */
-#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-union YYSTYPE
-{
-#line 29 "gpl.y"
 
+
+
+#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
+typedef union YYSTYPE
+#line 29 "gpl.y"
+{
   int              union_int;
   double           union_double;
   std::string      *union_string;  // MUST be a pointer to a string ARG!
@@ -258,20 +239,14 @@ union YYSTYPE
   Expression       *union_expression;
   Variable         *union_variable;
   Operator_type    union_op;
-
-#line 263 "y.tab.h"
-
-};
-typedef union YYSTYPE YYSTYPE;
-# define YYSTYPE_IS_TRIVIAL 1
+}
+/* Line 1529 of yacc.c.  */
+#line 245 "y.tab.h"
+	YYSTYPE;
+# define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
+# define YYSTYPE_IS_TRIVIAL 1
 #endif
-
 
 extern YYSTYPE yylval;
 
-
-int yyparse (void);
-
-
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */

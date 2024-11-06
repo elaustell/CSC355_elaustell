@@ -1,1 +1,5 @@
-assertion "m_type == STRING || m_type == INT || m_type == DOUBLE" failed: file "expression.cpp", line 405.  Input line 8.
+Semantic error on line 10: Invalid left operand for operator '/'.
+Semantic error on line 10: Invalid right operand for operator '/'.
+Semantic error on line 11: Invalid left operand for operator '%'.
+Semantic error on line 11: Invalid right operand for operator '%'.
+assertion "m_type == INT" failed: file "expression.cpp", line 174.  Input line 13.

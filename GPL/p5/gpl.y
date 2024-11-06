@@ -221,9 +221,19 @@ variable_declaration:
             string initial_value = "";
             if ($3 != NULL)
             {
-                if ($3->get_type() == INT_ARRAY || $3->get_type() == DOUBLE_ARRAY || $3->get_type() == STRING_ARRAY){
-                } else {
+                if ($3->get_type() == INT || $3->get_type() == DOUBLE || $3->get_type() == STRING) {
                     initial_value = $3->eval_string();
+                } else if ($3->get_type() == INT_ARRAY) {
+                    Variable *v = $3->eval_variable();
+                    int val = v->get_int_value();
+                    initial_value = to_string(val);
+                } else if ($3->get_type() == DOUBLE_ARRAY) {
+                    Variable *v = $3->eval_variable();
+                    double val = v->get_double_value();
+                    initial_value = to_string(val);
+                } else if ($3->get_type() == STRING_ARRAY) {
+                    Variable *v = $3->eval_variable();
+                    initial_value = v->get_string_value();
                 }
             }
             Symbol *s = new Symbol(*name, initial_value);
