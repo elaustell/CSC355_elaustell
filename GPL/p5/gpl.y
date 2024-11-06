@@ -471,7 +471,10 @@ variable:
     T_ID {
         string *id = $1; 
         Symbol *s = table->lookup(*id);
-        if (s->is_array()) {
+        if (s == NULL) {
+            Error::error(Error::UNDECLARED_VARIABLE,*id);
+        }
+        else if (s->is_array()) {
             Error::error(Error::VARIABLE_IS_AN_ARRAY,*id);
         } else {
             $$ = new Variable(table->lookup(*id));
@@ -584,7 +587,12 @@ expression:
 //---------------------------------------------------------------------
 primary_expression:
     T_LPAREN  expression T_RPAREN {$$ = $2;}
-    | variable {$$ = new Expression($1);}
+    | variable {
+            if ($1 == NULL) {
+            } else {
+                $$ = new Expression($1);
+            }
+        }
     | T_INT_CONSTANT {$$ = new Expression($1);}
     | T_TRUE {$$ = new Expression(1);}
     | T_FALSE {$$ = new Expression(0);}
