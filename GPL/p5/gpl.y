@@ -518,8 +518,28 @@ expression:
     | expression T_EQUAL expression {$$ = new Expression(EQUAL, $1, $3);}
     | expression T_NOT_EQUAL expression {$$ = new Expression(NOT_EQUAL, $1, $3);}
     | expression T_PLUS expression {$$ = new Expression(PLUS, $1, $3);}
-    | expression T_MINUS expression {$$ = new Expression(MINUS, $1, $3);}
-    | expression T_MULTIPLY expression {$$ = new Expression(MULTIPLY, $1, $3);}
+    | expression T_MINUS expression {
+        $$ = new Expression(MINUS, $1, $3);
+        if ($1->get_type() == STRING){
+                    Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "-");
+                    $$ = NULL;
+            }
+            if ($3->get_type() == STRING){
+                    Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "-");
+                    $$ = NULL;
+            } 
+        }
+    | expression T_MULTIPLY expression {
+        $$ = new Expression(MULTIPLY, $1, $3);
+        if ($1->get_type() == STRING){
+                    Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "*");
+                    $$ = NULL;
+            }
+            if ($3->get_type() == STRING){
+                    Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "*");
+                    $$ = NULL;
+            } 
+        }
     | expression T_DIVIDE expression {
             $$ = new Expression(DIVIDE, $1, $3);
             if ($1->get_type() == STRING){

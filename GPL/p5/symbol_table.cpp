@@ -38,8 +38,11 @@ bool Symbol_table::insert(Symbol *symbol)
 
 Symbol *Symbol_table::lookup(string name) const
 {
-    // if (m_symbols.find(name) == m_symbols.end()){
-    return m_symbols.find(name)->second;
+    if (m_symbols.find(name) == m_symbols.end()){
+      return NULL;
+    } else {
+      return m_symbols.find(name)->second;
+    }
     // cout << "LOOKUP\n";
 }
 
