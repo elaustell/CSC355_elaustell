@@ -18,7 +18,7 @@ Printing the symbol table from main()
 int i = 2
 int j = 40
 int k = 0
-int nums[0] = 5
+int nums[0] = 0
 int nums[1] = 0
 int nums[2] = 0
 int nums[3] = 0

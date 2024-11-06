@@ -35,7 +35,12 @@ Symbol::Symbol(string name, Gpl_type type, int size)
 {
   m_name = name;
   m_type = type;
-  m_data_void_ptr = (void *) new int(size);
+  if (type == INT_ARRAY) {m_data_void_ptr = (void *) new int[size]();}
+  else if (type == DOUBLE_ARRAY) {m_data_void_ptr = (void *) new double[size]();}
+  else if (type == STRING_ARRAY) {m_data_void_ptr = (void *) new string[size]();}
+  else {
+    //error?
+  }
   m_size = size;
   validate();
 }

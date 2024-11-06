@@ -18,11 +18,11 @@ Printing the symbol table from main()
 double d = 0
 int i = 0
 string s = ""
-int values[0] = 5
+int values[0] = 0
 int values[1] = 0
 int values[2] = 0
 int values[3] = 0
-int values[4] = -257485840
+int values[4] = 0
 Graphics is turned off by the Makefile.  Program exiting.
 
 gpl.cpp::main() done.
