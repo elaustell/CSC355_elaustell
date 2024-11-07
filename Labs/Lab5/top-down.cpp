@@ -120,7 +120,7 @@ bool interpret(const vector<string>& input) {
 
     int i = 0;
 
-    while (i < input.size()) {
+    while (true) {
         if (isTerminal(top())){
             if (input.at(i) == top()) {
                 pop();
@@ -130,8 +130,20 @@ bool interpret(const vector<string>& input) {
             }
         } else {
             string prod = table(top(),input.at(i));
+            if (prod == "error") {
+                return false;
+            } else {
+                pop();
+                for (int j = prod.length() - 1; j >= 0; j--) {
+                    push(string(1,prod[j]));
+                }
+            }
+        }
+        if(top() == "$" && input.at(i) == "$") {
+            return true;
         }
     }
+    return false;
 
 }
 
