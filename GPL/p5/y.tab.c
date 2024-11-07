@@ -2089,7 +2089,7 @@ yyreduce:
             if ((yyvsp[(2) - (2)].union_expression)->get_type() == STRING){
                 Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "-");
             } else {
-                (yyval.union_expression) = new Expression(UNARY_MINUS, (yyvsp[(2) - (2)].union_expression), NULL);
+                (yyval.union_expression) = new Expression(UNARY_MINUS, (yyvsp[(2) - (2)].union_expression));
             }
         }
     break;
@@ -2100,14 +2100,14 @@ yyreduce:
             if ((yyvsp[(2) - (2)].union_expression)->get_type() == STRING) {
                 Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "!");
             } else {
-                (yyval.union_expression) = new Expression(NOT, (yyvsp[(2) - (2)].union_expression), NULL);
+                (yyval.union_expression) = new Expression(NOT, (yyvsp[(2) - (2)].union_expression));
             }
         }
     break;
 
   case 108:
 #line 582 "gpl.y"
-    {(yyval.union_expression) = new Expression((yyvsp[(1) - (4)].union_op), (yyvsp[(3) - (4)].union_expression), NULL);}
+    {(yyval.union_expression) = new Expression((yyvsp[(1) - (4)].union_op), (yyvsp[(3) - (4)].union_expression));}
     break;
 
   case 111:

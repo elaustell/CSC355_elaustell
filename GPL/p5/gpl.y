@@ -569,17 +569,17 @@ expression:
             if ($2->get_type() == STRING){
                 Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "-");
             } else {
-                $$ = new Expression(UNARY_MINUS, $2, NULL);
+                $$ = new Expression(UNARY_MINUS, $2);
             }
         }
     | T_NOT  expression %prec UNARY_OPS {
             if ($2->get_type() == STRING) {
                 Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "!");
             } else {
-                $$ = new Expression(NOT, $2, NULL);
+                $$ = new Expression(NOT, $2);
             }
         }
-    | math_operator T_LPAREN expression T_RPAREN {$$ = new Expression($1, $3, NULL);}
+    | math_operator T_LPAREN expression T_RPAREN {$$ = new Expression($1, $3);}
     | expression T_NEAR expression
     | expression T_TOUCHES expression
     ;
