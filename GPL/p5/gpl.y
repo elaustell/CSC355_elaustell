@@ -245,27 +245,33 @@ variable_declaration:
     }
     | simple_type  T_ID  T_LBRACKET expression T_RBRACKET {
         string *name = $2;
-        int size = $4->eval_int();
-        if (size <= 0){
-            Error::error(Error::INVALID_ARRAY_SIZE, *name, to_string(size));
+        if ($4 == NULL) {
+
+        } else if ($4->get_type() != INT) {
+            Error::error(Error::ARRAY_SIZE_MUST_BE_AN_INTEGER,gpl_type_to_string($4->get_type()),*name);
         } else {
-            if ($1 == INT){
-                Symbol *s = new Symbol(*name, INT_ARRAY, size);
-                bool valid = table->insert(s);
-                if (!valid) {
-                    Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
-                }
-            } else if ($1 == DOUBLE){
-                Symbol *s = new Symbol(*name, DOUBLE_ARRAY, size);
-                bool valid = table->insert(s);
-                if (!valid) {
-                    Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
-                }
+            int size = $4->eval_int();
+            if (size <= 0){
+                Error::error(Error::INVALID_ARRAY_SIZE, *name, to_string(size));
             } else {
-                Symbol *s = new Symbol(*name, STRING_ARRAY, size);
-                bool valid = table->insert(s);
-                if (!valid) {
-                    Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
+                if ($1 == INT){
+                    Symbol *s = new Symbol(*name, INT_ARRAY, size);
+                    bool valid = table->insert(s);
+                    if (!valid) {
+                        Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
+                    }
+                } else if ($1 == DOUBLE){
+                    Symbol *s = new Symbol(*name, DOUBLE_ARRAY, size);
+                    bool valid = table->insert(s);
+                    if (!valid) {
+                        Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
+                    }
+                } else {
+                    Symbol *s = new Symbol(*name, STRING_ARRAY, size);
+                    bool valid = table->insert(s);
+                    if (!valid) {
+                        Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
+                    }
                 }
             }
         }
@@ -489,7 +495,7 @@ variable:
                 Error::error(Error::UNDECLARED_VARIABLE,*id);
                 $$ = new Variable(new Symbol("undeclared",0));
             }
-            if (!s->is_array()){
+            else if (!s->is_array()){
                 Error::error(Error::VARIABLE_NOT_AN_ARRAY,*id);
                 $$ = new Variable(new Symbol("undeclared",0));
             } else {
@@ -502,7 +508,10 @@ variable:
 
 //---------------------------------------------------------------------
 expression:
-    primary_expression {$$ = $1;}
+    primary_expression {
+        Expression *e = $1;
+        $$ = $1;
+        }
     | expression T_OR expression {
             if ($3->get_type() == STRING){
                 Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "||");

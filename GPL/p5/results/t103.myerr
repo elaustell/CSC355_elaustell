@@ -1,1 +1,1 @@
-assertion "m_type == INT" failed: file "expression.cpp", line 174.  Input line 1.
+Semantic error on line 1: The given expression is not a legal type for the size of array <array>.  The size must be an integer.  Given expression is of type string.
