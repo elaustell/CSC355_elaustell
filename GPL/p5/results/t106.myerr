@@ -1,2 +1,1 @@
 Semantic error on line 1: Variable 'i' was not declared before it was used.
-assertion "m_type == INT" failed: file "expression.cpp", line 174.  Input line 1.

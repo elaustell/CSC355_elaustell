@@ -473,9 +473,11 @@ variable:
         Symbol *s = table->lookup(*id);
         if (s == NULL) {
             Error::error(Error::UNDECLARED_VARIABLE,*id);
+            $$ = new Variable(new Symbol("undeclared",0));
         }
         else if (s->is_array()) {
             Error::error(Error::VARIABLE_IS_AN_ARRAY,*id);
+            $$ = new Variable(new Symbol("undeclared",0));
         } else {
             $$ = new Variable(table->lookup(*id));
         }
@@ -483,8 +485,13 @@ variable:
     | T_ID T_LBRACKET expression T_RBRACKET {
             string *id = $1; 
             Symbol *s = table->lookup(*id);
+            if (s == NULL) {
+                Error::error(Error::UNDECLARED_VARIABLE,*id);
+                $$ = new Variable(new Symbol("undeclared",0));
+            }
             if (!s->is_array()){
                 Error::error(Error::VARIABLE_NOT_AN_ARRAY,*id);
+                $$ = new Variable(new Symbol("undeclared",0));
             } else {
                 $$ = new Variable(s, $3);
             }
@@ -579,7 +586,15 @@ expression:
                 $$ = new Expression(NOT, $2);
             }
         }
-    | math_operator T_LPAREN expression T_RPAREN {$$ = new Expression($1, $3);}
+    | math_operator T_LPAREN expression T_RPAREN {
+        if ($3->get_type() == INT || $3->get_type() == DOUBLE){
+            $$ = new Expression($1, $3);
+        } else {
+
+            Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, operator_to_string($1));
+            $$ = new Expression(0);
+        }
+        }
     | expression T_NEAR expression
     | expression T_TOUCHES expression
     ;
