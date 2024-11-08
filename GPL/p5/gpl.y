@@ -598,6 +598,7 @@ expression:
     | T_MINUS  expression %prec UNARY_OPS {
             if ($2->get_type() == STRING){
                 Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "-");
+                $$ = new Expression(0);
             } else {
                 $$ = new Expression(UNARY_MINUS, $2);
             }
@@ -605,6 +606,7 @@ expression:
     | T_NOT  expression %prec UNARY_OPS {
             if ($2->get_type() == STRING) {
                 Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "!");
+                $$ = new Expression(0);
             } else {
                 $$ = new Expression(NOT, $2);
             }
