@@ -1,1 +1,2 @@
 Semantic error on line 1: Invalid left operand for operator '&&'.
+Semantic error on line 1: Incorrect type (string) for initial value of variable 'i' of type (int).

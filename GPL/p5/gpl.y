@@ -189,7 +189,7 @@ variable_declaration:
             if ($3 != NULL)
             {
                 if ($3->get_type() != INT) {
-                    
+                    Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE,gpl_type_to_string($3->get_type()),*name,"int");
                 } 
                 else {
                     initial_value = $3->eval_int();
