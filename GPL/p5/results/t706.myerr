@@ -1,1 +1,1 @@
-Semantic error on line 3: Incorrect type (int array) for initial value of variable 'should_be_zero' of type (int).
+assertion "m_type == INT" failed: file "expression.cpp", line 174.  Input line 3.

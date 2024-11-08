@@ -1957,7 +1957,7 @@ yyreduce:
             int initial_value = 0;
             if ((yyvsp[0].union_expression) != NULL)
             {
-                if ((yyvsp[0].union_expression)->get_type() != INT) {
+                if ((yyvsp[0].union_expression)->get_type() != INT && (yyvsp[0].union_expression)->get_type() != INT_ARRAY) {
                     Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE,gpl_type_to_string((yyvsp[0].union_expression)->get_type()),*name,"int");
                 } 
                 else {

@@ -188,7 +188,7 @@ variable_declaration:
             int initial_value = 0;
             if ($3 != NULL)
             {
-                if ($3->get_type() != INT) {
+                if ($3->get_type() != INT && $3->get_type() != INT_ARRAY) {
                     Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE,gpl_type_to_string($3->get_type()),*name,"int");
                 } 
                 else {
