@@ -535,22 +535,28 @@ expression:
         $$ = $1;
         }
     | expression T_OR expression {
+            $$ = new Expression(0);
+            if ($1->get_type() == STRING){
+                Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "||");
+            } 
             if ($3->get_type() == STRING){
                 Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "||");
-            } else if ($1->get_type() == STRING){
-                Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "||");
-            } else {
+            } 
+            if ($1->get_type() != STRING && $3->get_type() != STRING) {
                 $$ = new Expression(OR, $1, $3);
             }
         }
     | expression T_AND expression {
+            $$ = new Expression(0);
+            if ($1->get_type() == STRING){
+                Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "&&");
+                $$ = new Expression(0);
+            } 
             if ($3->get_type() == STRING){
                 Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "&&");
                 $$ = new Expression(0);
-            } else if ($1->get_type() == STRING){
-                Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "&&");
-                $$ = new Expression(0);
-            } else {
+            } 
+            if ($1->get_type() != STRING && $3->get_type() != STRING) {
                 $$ = new Expression(AND, $1, $3);
             }
         }
