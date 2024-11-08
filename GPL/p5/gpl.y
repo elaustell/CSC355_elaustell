@@ -536,8 +536,10 @@ expression:
     | expression T_AND expression {
             if ($3->get_type() == STRING){
                 Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "&&");
+                $$ = new Expression(0);
             } else if ($1->get_type() == STRING){
                 Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "&&");
+                $$ = new Expression(0);
             } else {
                 $$ = new Expression(AND, $1, $3);
             }
