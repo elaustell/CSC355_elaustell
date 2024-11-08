@@ -63,7 +63,7 @@ Expression::Expression(Operator_type op,
     else if (op == MULTIPLY || op == DIVIDE || op == MINUS) {
         if (m_lhs->get_type() == DOUBLE || m_rhs->get_type() == DOUBLE) {
           m_type = DOUBLE;
-        } else if (m_lhs->get_type() == INT, m_rhs->get_type() == INT){
+        } else if (m_lhs->get_type() == INT && m_rhs->get_type() == INT){
           m_type = INT;
         } else {
           //TODO: error
@@ -129,7 +129,7 @@ Expression::Expression(Operator_type op, Expression *operand)
     else if (op == MULTIPLY || op == DIVIDE) {
         if (m_lhs->get_type() == DOUBLE || m_rhs->get_type() == DOUBLE) {
           m_type = DOUBLE;
-        } else if (m_lhs->get_type() == INT, m_rhs->get_type() == INT){
+        } else if (m_lhs->get_type() == INT && m_rhs->get_type() == INT){
           m_type = INT;
         } else {
           //TODO: error
@@ -150,7 +150,7 @@ Expression::Expression(Operator_type op, Expression *operand)
     else if (op == ABS || op == UNARY_MINUS){
         if (m_lhs->get_type() == DOUBLE || m_lhs->get_type() == INT || 
             m_rhs->get_type() == DOUBLE || m_rhs->get_type() == INT){
-                m_type = m_lhs->get_type();
+                m_type = operand->get_type();
         } else {
           //TODO: error
         }

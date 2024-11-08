@@ -1957,7 +1957,7 @@ yyreduce:
             int initial_value = 0;
             if ((yyvsp[0].union_expression) != NULL)
             {
-                if ((yyvsp[0].union_expression)->get_type() != INT && (yyvsp[0].union_expression)->get_type() != DOUBLE) {
+                if ((yyvsp[0].union_expression)->get_type() != INT) {
                     
                 } 
                 else {

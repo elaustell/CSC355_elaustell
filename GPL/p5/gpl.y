@@ -188,7 +188,7 @@ variable_declaration:
             int initial_value = 0;
             if ($3 != NULL)
             {
-                if ($3->get_type() != INT && $3->get_type() != DOUBLE) {
+                if ($3->get_type() != INT) {
                     
                 } 
                 else {
