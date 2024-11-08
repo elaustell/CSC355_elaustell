@@ -190,9 +190,11 @@ variable_declaration:
             {
                 if ($3->get_type() != INT && $3->get_type() != INT_ARRAY) {
                     Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE,gpl_type_to_string($3->get_type()),*name,"int");
-                } 
+                }
                 else {
-                    initial_value = $3->eval_int();
+                    if ($3->get_type() == INT) {
+                        initial_value = $3->eval_int();
+                    }
                 }
             }
             Symbol *s = new Symbol(*name, initial_value);
