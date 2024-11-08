@@ -491,6 +491,7 @@ variable:
     | T_ID T_LBRACKET expression T_RBRACKET {
             string *id = $1; 
             Symbol *s = table->lookup(*id);
+            Expression *e = $3;
             if (s == NULL) {
                 Error::error(Error::UNDECLARED_VARIABLE,*id);
                 $$ = new Variable(new Symbol("undeclared",0));
@@ -498,7 +499,18 @@ variable:
             else if (!s->is_array()){
                 Error::error(Error::VARIABLE_NOT_AN_ARRAY,*id);
                 $$ = new Variable(new Symbol("undeclared",0));
-            } else {
+            } else if (e == NULL) {
+                
+            } else if (e->get_type() != INT) {
+                Error::error(Error::ARRAY_INDEX_MUST_BE_AN_INTEGER,*id,*id);
+                $$ = new Variable(new Symbol("undeclared",0));
+            } else if (!s->index_within_range(e->eval_int())) {
+                int num = e->eval_int();
+                string n = std::to_string(num);
+                Error::error(Error::ARRAY_INDEX_OUT_OF_BOUNDS,*id,n);
+                $$ = new Variable(new Symbol("undeclared",0));
+            }
+            else {
                 $$ = new Variable(s, $3);
             }
         }

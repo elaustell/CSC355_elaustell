@@ -1,1 +1,3 @@
-assertion "(index == UNDEFINED_INDEX && m_size == UNDEFINED_SIZE) || (index >= 0 && m_size >= 1 && index < m_size)" failed: file "symbol.cpp", line 83.  Input line 3.
+Semantic error on line 2: Index value '10' is out of bounds for array 'nums'.
+Semantic error on line 3: Index value '20' is out of bounds for array 'nums'.
+Semantic error on line 4: Index value '30' is out of bounds for array 'nums'.
