@@ -504,7 +504,15 @@ variable:
             } else if (e == NULL) {
                 
             } else if (e->get_type() != INT) {
-                Error::error(Error::ARRAY_INDEX_MUST_BE_AN_INTEGER,*id,*id);
+                string err = "";
+                if (e->get_type() == DOUBLE) {
+                    err = "A double expression";
+                } else if (e->get_type() == STRING) {
+                    err = "A string expression";
+                } else {
+                    err = "A animation_block expression";
+                }
+                Error::error(Error::ARRAY_INDEX_MUST_BE_AN_INTEGER,*id, err);
                 $$ = new Variable(new Symbol("undeclared",0));
             } else if (!s->index_within_range(e->eval_int())) {
                 int num = e->eval_int();
