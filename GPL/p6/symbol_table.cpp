@@ -92,20 +92,9 @@ void Symbol_table::print(ostream &os) const
   vector<Symbol *> v;
 
   for (const pair<const string, Symbol*>& keyValue : m_symbols) {
-      // Symbol *val = keyValue.second;
-      // cout << "KEY: " << keyValue.first << " VALUE: " << val->get_name() << "\n";
-      //  << (keyValue.second)->get_name();
       v.push_back(keyValue.second);
   }
-  // for (Symbol *s : v){
-  //   cout << s->get_name() << "\n";
-  // }
-  // cout << "sorting NOWWWWWWWW\n";
   sort(v.begin(), v.end(), compare_symbols);
-  // for (Symbol *s : v){
-  //   cout << s->get_name() << "\n";
-  // }
-  // cout << v.size();
   for (Symbol *s : v){
   
     string name = s->get_name();
@@ -131,6 +120,12 @@ void Symbol_table::print(ostream &os) const
           for (int i = 0; i < s->size(); i++){
             os << "string " << name << "[" << i << "] = \"" << s->get_string_value(i) << "\"\n";
           }
+          break;
+        }
+        case GAME_OBJECT: {
+          
+          Game_object *g = s->get_game_object_value();
+          g->print(s->get_name(),os);
           break;
         }
         default: os <<  "error";

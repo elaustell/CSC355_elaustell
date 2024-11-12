@@ -18,3 +18,6 @@ gpl.cpp::main() Calling window->initialize().
 
 
 gpl.cpp::main() Passing control to window->main_loop().
+
+User quit program. Printing the symbol table.
+string window_title = "p6 t001.gpl -- compare to t001.jpg  ***PRESS q TO QUIT***"
