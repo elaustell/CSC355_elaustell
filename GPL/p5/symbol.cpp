@@ -113,7 +113,10 @@ string Symbol::get_string_value(int index /* = UNDEFINED_INDEX */) const
 
 void Symbol::print(ostream &os) const
 {
-  os << m_type << " " << m_name;
+  os << m_name;
+  if (is_array()) {
+    os << "[]";
+  }
 }
 
 void Symbol::validate() const

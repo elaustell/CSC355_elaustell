@@ -495,7 +495,8 @@ variable:
             Symbol *s = table->lookup(*id);
             Expression *e = $3;
             if (s == NULL) {
-                Error::error(Error::UNDECLARED_VARIABLE,*id);
+                string name = *id + "[]";
+                Error::error(Error::UNDECLARED_VARIABLE,name);
                 $$ = new Variable(new Symbol("undeclared",0));
             }
             else if (!s->is_array()){
