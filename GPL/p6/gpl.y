@@ -14,6 +14,16 @@
 #include <sstream>
 #include <cmath> // for floor()
 #include <stack>
+#include "event_manager.h"
+#include "statement_block.h"
+#include "animation_block.h"
+#include "game_object.h"
+#include "triangle.h"
+#include "pixmap.h"
+#include "circle.h"
+#include "rectangle.h"
+#include "textbox.h"
+#include "window.h"
 using namespace std;
 
 extern int yylex();

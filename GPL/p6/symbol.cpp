@@ -30,16 +30,46 @@ Symbol::Symbol(string name, string initial_value)
   validate();
 }
 
+Symbol::Symbol(string name, Gpl_type type)
+{
+    assert(type == CIRCLE
+           || type == RECTANGLE
+           || type == TRIANGLE
+           || type == TEXTBOX
+           || type == PIXMAP
+           || type == ANIMATION_BLOCK
+          );
+  
+    m_name = name;
+    m_type = type;
+    m_size = UNDEFINED_SIZE;
+  
+    switch(type)
+    {
+      case CIRCLE: m_data_void_ptr  = (void *) new Circle(); break;
+      case RECTANGLE: m_data_void_ptr = (void *) new Rectangle(); break;
+      case TRIANGLE: m_data_void_ptr  = (void *) new Triangle(); break;
+      case TEXTBOX: m_data_void_ptr  = (void *) new Textbox(); break;
+      case PIXMAP: m_data_void_ptr  = (void *) new Pixmap(); break;
+      default: assert(0);
+    }
+}
+
 
 Symbol::Symbol(string name, Gpl_type type, int size)
 {
   m_name = name;
   m_type = type;
-  if (type == INT_ARRAY) {m_data_void_ptr = (void *) new int[size]();}
-  else if (type == DOUBLE_ARRAY) {m_data_void_ptr = (void *) new double[size]();}
-  else if (type == STRING_ARRAY) {m_data_void_ptr = (void *) new string[size]();}
-  else {
-    //error?
+  switch(type) {
+    case INT_ARRAY: m_data_void_ptr = (void *) new int[size](); break;
+    case DOUBLE_ARRAY: m_data_void_ptr = (void *) new double[size](); break;
+    case STRING_ARRAY: m_data_void_ptr = (void *) new string[size](); break;
+    case CIRCLE_ARRAY: m_data_void_ptr  = (void *) new Circle[size]; break;
+    case RECTANGLE_ARRAY: m_data_void_ptr = (void *) new Rectangle[size]; break;
+    case TRIANGLE_ARRAY: m_data_void_ptr  = (void *) new Triangle[size]; break;
+    case TEXTBOX_ARRAY: m_data_void_ptr  = (void *) new Textbox[size]; break;
+    case PIXMAP_ARRAY: m_data_void_ptr  = (void *) new Pixmap[size]; break;
+    default: assert(0);
   }
   m_size = size;
   validate();
@@ -111,11 +141,69 @@ string Symbol::get_string_value(int index /* = UNDEFINED_INDEX */) const
     return *((string *) m_data_void_ptr);
 }
 
+Game_object *Symbol::get_game_object_value(int index /* = UNDEFINED_INDEX */) const
+{
+  validate_type_and_index(GAME_OBJECT, index);
+
+  if (is_array())
+  {
+    // since this is an array of actual object, can't consider it an array of Game_object
+    // must consider each type: Rectangle, Triangle, etc...
+
+    switch(m_type)
+    {
+      case CIRCLE_ARRAY:
+      {
+        Circle *object_array = (Circle *) m_data_void_ptr;
+        return object_array + index;
+        break;
+      }
+      case RECTANGLE_ARRAY:
+      {
+        Rectangle *object_array = (Rectangle *) m_data_void_ptr;
+        return object_array + index;
+        break;
+      }
+      case TRIANGLE_ARRAY:
+      {
+        Triangle *object_array = (Triangle *) m_data_void_ptr;
+        return object_array + index;
+        break;
+      }
+      case TEXTBOX_ARRAY:
+      {
+        Textbox *object_array = (Textbox *) m_data_void_ptr;
+        return object_array + index;
+        break;
+      }
+      case PIXMAP_ARRAY:
+      {
+        Pixmap *object_array = (Pixmap *) m_data_void_ptr;
+        return object_array + index;
+        break;
+      }
+      default: 
+      {
+        assert(false && "given type is not handled by switch");
+        return NULL;
+      }
+    }
+  }
+  else
+    // m_data_void_ptr is a void pointer, that really points to a Game_object.
+    return (Game_object *) m_data_void_ptr;
+}
+
 void Symbol::print(ostream &os) const
 {
-  os << m_name;
-  if (is_array()) {
-    os << "[]";
+  if (is_game_object()) {
+      Game_object *g = get_game_object_value();
+      g->print(m_name,os);
+  } else {
+    os << m_name;
+    if (is_array()) {
+      os << "[]";
+    }
   }
 }
 
