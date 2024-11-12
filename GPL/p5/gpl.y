@@ -36,7 +36,7 @@ Symbol_table *table = Symbol_table::instance();
   Operator_type    union_op;
 }
 
-%define parse.error verbose
+%error-verbose
 
 %token T_INT                 "int"
 %token T_DOUBLE              "double"

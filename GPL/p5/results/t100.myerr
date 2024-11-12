@@ -1,1 +1,1 @@
-Parse error on line 3 reported by parser: syntax error, unexpected ;.
+Semantic error on line 3: A double expression is not a legal array index. The array is 'array'.
