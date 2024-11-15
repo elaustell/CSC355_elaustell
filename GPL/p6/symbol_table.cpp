@@ -104,26 +104,31 @@ void Symbol_table::print(ostream &os) const
         case CIRCLE: {
           Game_object *g = s->get_game_object_value();
           g->print(s->get_name(),os);
+          os << "\n";
           break;
         } 
         case RECTANGLE: {
           Game_object *g = s->get_game_object_value();
           g->print(s->get_name(),os);
+          os << "\n";
           break;
         } 
         case TRIANGLE: {
           Game_object *g = s->get_game_object_value();
           g->print(s->get_name(),os);
+          os << "\n";
           break;
         } 
         case TEXTBOX: {
           Game_object *g = s->get_game_object_value();
           g->print(s->get_name(),os);
+          os << "\n";
           break;
         } 
         case PIXMAP:{
           Game_object *g = s->get_game_object_value();
           g->print(s->get_name(),os);
+          os << "\n";
           break;
         } 
         case ARRAY: {os <<  "array"; break;}
