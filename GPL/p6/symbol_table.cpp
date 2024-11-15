@@ -29,9 +29,8 @@ bool Symbol_table::insert(Symbol *symbol)
 
     //match every symbol?
     if (m_symbols.find(symbol->get_name()) == m_symbols.end()){
-       m_symbols.insert({symbol->get_name(), symbol});
-      // cout << "inserting " << symbol->get_name() << "\n";
-      return true;
+        m_symbols.insert({symbol->get_name(), symbol});
+        return true;
     }
       return false;
 }
@@ -43,7 +42,6 @@ Symbol *Symbol_table::lookup(string name) const
     } else {
       return m_symbols.find(name)->second;
     }
-    // cout << "LOOKUP\n";
 }
 
 // comparison function for the STL sort algorithm
@@ -94,15 +92,40 @@ void Symbol_table::print(ostream &os) const
   for (const pair<const string, Symbol*>& keyValue : m_symbols) {
       v.push_back(keyValue.second);
   }
+ 
   sort(v.begin(), v.end(), compare_symbols);
   for (Symbol *s : v){
-  
     string name = s->get_name();
     switch (s->get_type())
     {
         case INT: {os << "int " << name << " = " << s->get_int_value() << "\n"; break;}
         case DOUBLE: {os << "double " << name << " = " << s->get_double_value() << "\n"; break;}
         case STRING: {os << "string " << name << " = \"" << s->get_string_value() << "\"\n"; break;}
+        case CIRCLE: {
+          Game_object *g = s->get_game_object_value();
+          g->print(s->get_name(),os);
+          break;
+        } 
+        case RECTANGLE: {
+          Game_object *g = s->get_game_object_value();
+          g->print(s->get_name(),os);
+          break;
+        } 
+        case TRIANGLE: {
+          Game_object *g = s->get_game_object_value();
+          g->print(s->get_name(),os);
+          break;
+        } 
+        case TEXTBOX: {
+          Game_object *g = s->get_game_object_value();
+          g->print(s->get_name(),os);
+          break;
+        } 
+        case PIXMAP:{
+          Game_object *g = s->get_game_object_value();
+          g->print(s->get_name(),os);
+          break;
+        } 
         case ARRAY: {os <<  "array"; break;}
         case INT_ARRAY: {
           for (int i = 0; i < s->size(); i++){
@@ -122,12 +145,24 @@ void Symbol_table::print(ostream &os) const
           }
           break;
         }
-        case GAME_OBJECT: {
-          
-          Game_object *g = s->get_game_object_value();
-          g->print(s->get_name(),os);
+        case CIRCLE_ARRAY: {
+          for (int i = 0; i < s->size(); i++){
+            os << "circle " << name << "[" << i << "] = " << s->get_game_object_value(i) << "\n";
+          }
           break;
-        }
+        } 
+        case RECTANGLE_ARRAY: {
+          break;
+        } 
+        case TRIANGLE_ARRAY: {
+          break;
+        } 
+        case TEXTBOX_ARRAY: {
+          break;
+        } 
+        case PIXMAP_ARRAY:{
+          break;
+        } 
         default: os <<  "error";
       }
     }
