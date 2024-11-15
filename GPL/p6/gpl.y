@@ -403,7 +403,25 @@ parameter_list :
 
 //---------------------------------------------------------------------
 parameter:
-    T_ID T_ASSIGN expression
+    T_ID T_ASSIGN expression {
+        string *name = $1;
+        if (cur_object_under_construction->has_member_variable(*name)) {
+            if ($3->get_type() == INT) {
+                int val = $3->eval_int();
+                cur_object_under_construction->set_member_variable(*name,val);
+            } else if ($3->get_type() == DOUBLE) {
+                double val = $3->eval_double();
+                cur_object_under_construction->set_member_variable(*name,val);
+            } else if ($3->get_type() == STRING) {
+                string val = $3->eval_string();
+                cur_object_under_construction->set_member_variable(*name,val);
+            } else {
+
+            }
+        } else {
+
+        }
+    }
     ;
 
 //---------------------------------------------------------------------
