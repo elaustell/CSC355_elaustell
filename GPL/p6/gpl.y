@@ -331,7 +331,53 @@ object_declaration:
         cur_object_under_construction = NULL;
         delete $2; // Scanner allocates memory for each T_ID string
     }
-    | object_type T_ID T_LBRACKET expression T_RBRACKET
+    | object_type T_ID T_LBRACKET expression T_RBRACKET {
+        string *name = $2;
+        if ($4 == NULL) {
+
+        } else if ($4->get_type() != INT) {
+            Error::error(Error::ARRAY_SIZE_MUST_BE_AN_INTEGER,gpl_type_to_string($4->get_type()),*name);
+        } else {
+            int size = $4->eval_int();
+            if (size <= 0){
+                Error::error(Error::INVALID_ARRAY_SIZE, *name, to_string(size));
+            } else {
+                if ($1 == TRIANGLE){
+                    Symbol *s = new Symbol(*name, TRIANGLE_ARRAY, size);
+                    bool valid = table->insert(s);
+                    if (!valid) {
+                        Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
+                    }
+                } else if ($1 == CIRCLE){
+                    Symbol *s = new Symbol(*name, CIRCLE_ARRAY, size);
+                    bool valid = table->insert(s);
+                    if (!valid) {
+                        Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
+                    }
+                } else if ($1 == RECTANGLE){
+                    Symbol *s = new Symbol(*name, RECTANGLE_ARRAY, size);
+                    bool valid = table->insert(s);
+                    if (!valid) {
+                        Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
+                    }
+                } else if ($1 == TEXTBOX){
+                    Symbol *s = new Symbol(*name, TEXTBOX_ARRAY, size);
+                    bool valid = table->insert(s);
+                    if (!valid) {
+                        Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
+                    }
+                } else if ($1 == PIXMAP){
+                    Symbol *s = new Symbol(*name, PIXMAP_ARRAY, size);
+                    bool valid = table->insert(s);
+                    if (!valid) {
+                        Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *name);
+                    }
+                } else {
+                    //invalid type error?
+                }
+            }
+        }
+    }
     ;
 
 //---------------------------------------------------------------------
