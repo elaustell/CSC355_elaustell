@@ -30,9 +30,12 @@ extern int yylex();
 extern int yyerror(const char *);
 extern int line_count;  // from gpl.l, used for statement blocks
 
+// Global variable to make the construction of object much less complex
+// Only one object can ever be under construction at one time
+Game_object *cur_object_under_construction = 0;
+string cur_object_under_construction_name;
 int undeclared = 0;
 Symbol_table *table = Symbol_table::instance();
-
 
 %}
 
@@ -44,6 +47,7 @@ Symbol_table *table = Symbol_table::instance();
   Expression       *union_expression;
   Variable         *union_variable;
   Operator_type    union_op;
+  Game_object      *union_object;
 }
 
 %error-verbose
@@ -168,6 +172,7 @@ Symbol_table *table = Symbol_table::instance();
 %type <union_expression> primary_expression
 %type <union_variable> variable
 %type <union_op> math_operator
+%type <union_type> object_type
 
 
 
@@ -305,17 +310,37 @@ optional_initializer:
 
 //---------------------------------------------------------------------
 object_declaration:
-    object_type T_ID T_LPAREN parameter_list_or_empty T_RPAREN
+    object_type T_ID {
+        // create a new object and it's symbol
+        // (Symbol() creates the new object);
+        Symbol *symbol = new Symbol(*$2, $1);
+    
+        if (!table->insert(symbol))
+        {
+        Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *$2);
+        }
+
+        // assign to global variable so the parameters can be inserted into
+        // this object when each parameter is parsed
+        cur_object_under_construction = symbol->get_game_object_value();
+        cur_object_under_construction_name = symbol->get_name();
+  
+    }
+    T_LPAREN parameter_list_or_empty T_RPAREN
+    {
+        cur_object_under_construction = NULL;
+        delete $2; // Scanner allocates memory for each T_ID string
+    }
     | object_type T_ID T_LBRACKET expression T_RBRACKET
     ;
 
 //---------------------------------------------------------------------
 object_type:
-    T_TRIANGLE
-    | T_PIXMAP
-    | T_CIRCLE
-    | T_RECTANGLE
-    | T_TEXTBOX
+    T_TRIANGLE {$$ = TRIANGLE;}
+    | T_PIXMAP {$$ = PIXMAP;}
+    | T_CIRCLE {$$ = CIRCLE;}
+    | T_RECTANGLE {$$ = RECTANGLE;}
+    | T_TEXTBOX {$$ = TEXTBOX;}
     ;
 
 //---------------------------------------------------------------------
