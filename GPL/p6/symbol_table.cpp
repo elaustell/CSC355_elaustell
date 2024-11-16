@@ -168,7 +168,11 @@ void Symbol_table::print(ostream &os) const
         case PIXMAP_ARRAY:{
           break;
         } 
-        default: os <<  "error";
+        case ANIMATION_BLOCK: {
+          os << "animation_block " << name << "\n"; break;
+        }
+        default: os << "error";
+        // default: os <<  "TYPE: " << s->get_type() << "\n";
       }
     }
 }

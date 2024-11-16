@@ -1,0 +1,2 @@
+Semantic error on line 5: Incorrect type (no type) for initial value of variable 'sum' of type (int).
+Semantic error on line 11: Incorrect type (no type) for initial value of variable 'sum2' of type (int).

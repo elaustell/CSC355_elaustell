@@ -416,6 +416,11 @@ parameter:
             } else if ($3->get_type() == STRING) {
                 string val = $3->eval_string();
                 Status status = cur_object_under_construction->set_member_variable(*name,val);
+            } else if ($3->get_type() == ANIMATION_BLOCK) {
+                string var_name = $3->eval_variable()->get_name();
+                Symbol *var_sym = table->lookup(var_name);
+                Animation_block *ablock = var_sym->get_animation_block_value();
+                Status status = cur_object_under_construction->set_member_variable(*name,ablock);
             } else {
 
             }
