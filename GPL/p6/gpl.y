@@ -427,7 +427,15 @@ parameter:
 
 //---------------------------------------------------------------------
 forward_declaration:
-    T_FORWARD T_ANIMATION T_ID T_LPAREN object_type T_ID T_RPAREN
+    T_FORWARD T_ANIMATION T_ID T_LPAREN object_type T_ID T_RPAREN 
+    {
+        // put animation block and game object into symbol table
+        Symbol *s_object = new Symbol(*$6, $5);
+        Symbol *s_ablock = new Symbol(*$3,ANIMATION_BLOCK);
+
+        table->insert(s_object);
+        table->insert(s_ablock);
+    }
     ;
 
 //---------------------------------------------------------------------
