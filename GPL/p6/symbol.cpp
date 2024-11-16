@@ -46,11 +46,12 @@ Symbol::Symbol(string name, Gpl_type type)
   
     switch(type)
     {
-      case CIRCLE: m_data_void_ptr  = (void *) new Circle(); break;
-      case RECTANGLE: m_data_void_ptr = (void *) new Rectangle(); break;
-      case TRIANGLE: m_data_void_ptr  = (void *) new Triangle(); break;
-      case TEXTBOX: m_data_void_ptr  = (void *) new Textbox(); break;
-      case PIXMAP: m_data_void_ptr  = (void *) new Pixmap(); break;
+      case CIRCLE: {m_data_void_ptr  = (void *) new Circle(); break;}
+      case RECTANGLE: {m_data_void_ptr = (void *) new Rectangle(); break;}
+      case TRIANGLE: {m_data_void_ptr  = (void *) new Triangle(); break;}
+      case TEXTBOX: {m_data_void_ptr  = (void *) new Textbox(); break;}
+      case PIXMAP: {m_data_void_ptr  = (void *) new Pixmap(); break;}
+      case ANIMATION_BLOCK: {m_data_void_ptr = (void *) new Animation_block(); break;}
       default: assert(0);
     }
 }
@@ -192,6 +193,16 @@ Game_object *Symbol::get_game_object_value(int index /* = UNDEFINED_INDEX */) co
   else
     // m_data_void_ptr is a void pointer, that really points to a Game_object.
     return (Game_object *) m_data_void_ptr;
+}
+
+Animation_block *Symbol::get_animation_block_value() const
+{
+    validate_type_and_index(ANIMATION_BLOCK, UNDEFINED_INDEX);
+  
+    // arrays of Animation_blocks are not allowed
+    assert(!is_array());
+    // return &(*((Animation_block *) m_data_void_ptr));
+    return (Animation_block *) m_data_void_ptr;
 }
 
 void Symbol::print(ostream &os) const
