@@ -641,6 +641,49 @@ variable:
             else {$$ = new Variable(s, $3);}
         }
     | T_ID T_PERIOD T_ID
+    {
+        //TODO
+        Symbol *s = table->lookup(*$1);
+        if (s == NULL) {
+
+        } else {
+            Game_object *g = s->get_game_object_value();
+            if (g == NULL) {
+
+            } else {
+                Gpl_type *type;
+                g->get_member_variable_type(*$3,*type);
+                if (*type == INT) {
+                    int *val = 0;
+                    Status status = g->get_member_variable(*$3,*val);
+                    string newName = *$1 + "." + *$3;
+                    Symbol *newSymbol = new Symbol(newName,*val);
+                    $$ = new Variable(newSymbol);
+                } else if (*type == DOUBLE) {
+                    double *val;
+                    Status status = g->get_member_variable(*$3,*val);
+                    string newName = *$1 + "." + *$3;
+                    Symbol *newSymbol = new Symbol(newName,*val);
+                    $$ = new Variable(newSymbol);
+                } else if (*type == STRING) {
+                    string *val;
+                    Status status = g->get_member_variable(*$3,*val);
+                    string newName = *$1 + "." + *$3;
+                    Symbol *newSymbol = new Symbol(newName,*val);
+                    $$ = new Variable(newSymbol);
+                } else if (*type == ANIMATION_BLOCK) {
+                    Animation_block **a;
+                    Status status = g->get_member_variable(*$3,*a);
+                    string newName = *$1 + "." + *$3;
+                    Symbol *newSymbol = new Symbol(newName,ANIMATION_BLOCK);
+                    $$ = new Variable(newSymbol);
+                } else {
+
+                }
+            }
+        }
+
+    }
     | T_ID T_LBRACKET expression T_RBRACKET T_PERIOD T_ID
     ;
 
