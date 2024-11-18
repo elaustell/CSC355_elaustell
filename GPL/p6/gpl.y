@@ -405,7 +405,6 @@ parameter_list :
 parameter:
     T_ID T_ASSIGN expression {
         string *name = $1;
-        delete $1;
         if (cur_object_under_construction->has_member_variable(*name)) {
             if ($3->get_type() == INT) {
                 int val = $3->eval_int();
@@ -420,6 +419,8 @@ parameter:
                 string var_name = $3->eval_variable()->get_name();
                 Symbol *var_sym = table->lookup(var_name);
                 Animation_block *ablock = var_sym->get_animation_block_value();
+                Symbol *curr = table->lookup(cur_object_under_construction_name);
+                ablock->initialize(curr,var_name);
                 Status status = cur_object_under_construction->set_member_variable(*name,ablock);
             } else {
 
@@ -437,6 +438,9 @@ forward_declaration:
         // put animation block and game object into symbol table
         Symbol *s_object = new Symbol(*$6, $5);
         Symbol *s_ablock = new Symbol(*$3,ANIMATION_BLOCK);
+
+        Animation_block *a = new Animation_block();
+        // a->initialize(s_object, *$6);
 
         table->insert(s_object);
         table->insert(s_ablock);
