@@ -688,7 +688,78 @@ variable:
         }
 
     }
-    | T_ID T_LBRACKET expression T_RBRACKET T_PERIOD T_ID
+    | T_ID T_LBRACKET expression T_RBRACKET T_PERIOD T_ID {
+            string *id = $1; 
+            Symbol *s = table->lookup(*id);
+            Expression *e = $3;
+            if (s == NULL) {
+                string name = *id + "[]";
+                Error::error(Error::UNDECLARED_VARIABLE,name);
+                $$ = new Variable(new Symbol("undeclared",0));
+            }
+            else if (!s->is_array()){
+                Error::error(Error::VARIABLE_NOT_AN_ARRAY,*id);
+                $$ = new Variable(new Symbol("undeclared",0));
+            } else if (e == NULL) {
+                
+            } else if (e->get_type() != INT) {
+                string err = "";
+                if (e->get_type() == DOUBLE) {
+                    err = "A double expression";
+                } else if (e->get_type() == STRING) {
+                    err = "A string expression";
+                } else {
+                    err = "A animation_block expression";
+                }
+                Error::error(Error::ARRAY_INDEX_MUST_BE_AN_INTEGER,*id, err);
+                $$ = new Variable(new Symbol("undeclared",0));
+            } else if (!s->index_within_range(e->eval_int())) {
+                int num = e->eval_int();
+                string n = std::to_string(num);
+                Error::error(Error::ARRAY_INDEX_OUT_OF_BOUNDS,*id,n);
+                $$ = new Variable(new Symbol("undeclared",0));
+            }
+            else if (!s->is_game_object()) {
+            
+            } else {
+                int index = e->eval_int();
+                Game_object *g = s->get_game_object_value(index);
+                Gpl_type *type = new Gpl_type(NO_TYPE);
+                if (!g->has_member_variable(*$6)) {
+                    
+                } else {
+                    g->get_member_variable_type(*$6,*type);
+                    if (*type == INT) {
+                        int *val = new int(0);
+                        Status status = g->get_member_variable(*$6,*val);
+                        string newName = *$1 + "." + *$6;
+                        Symbol *newSymbol = new Symbol(newName,*val);
+                        $$ = new Variable(newSymbol);
+                    } else if (*type == DOUBLE) {
+                        double *val = new double(0.0);
+                        Status status = g->get_member_variable(*$6,*val);
+                        string newName = *$1 + "." + *$6;
+                        Symbol *newSymbol = new Symbol(newName,*val);
+                        $$ = new Variable(newSymbol);
+                    } else if (*type == STRING) {
+                        string *val = new string("");
+                        Status status = g->get_member_variable(*$6,*val);
+                        string newName = *$1 + "." + *$6;
+                        Symbol *newSymbol = new Symbol(newName,*val);
+                        $$ = new Variable(newSymbol);
+                    } else if (*type == ANIMATION_BLOCK) {
+                        // Animation_block **a;
+                        // Status status = g->get_member_variable(*$6,*a);
+                        // string newName = *$1 + "." + *$6;
+                        // Symbol *newSymbol = new Symbol(newName,ANIMATION_BLOCK);
+                        // $$ = new Variable(newSymbol);
+                    } else {
+
+                    }
+                }
+            }
+    }
+
     ;
 
 //---------------------------------------------------------------------
