@@ -80,8 +80,6 @@ bool compare_symbols(Symbol *a, Symbol *b)
 
 void Symbol_table::print(ostream &os) const
 {
-  // COMPLETE ME
-
   // HINT: What I would do here is ...
   // (1) add all symbols in the table into a vector.
   // (2) sort the vector.
@@ -152,20 +150,52 @@ void Symbol_table::print(ostream &os) const
         }
         case CIRCLE_ARRAY: {
           for (int i = 0; i < s->size(); i++){
-            os << "circle " << name << "[" << i << "] = " << s->get_game_object_value(i) << "\n";
+              Game_object *g = s->get_game_object_value(i);
+              string index = to_string(i);
+              string name = s->get_name() + "[" + index + "]";
+              g->print(name,os);
+              os << "\n";
           }
           break;
         } 
         case RECTANGLE_ARRAY: {
+          for (int i = 0; i < s->size(); i++){
+              Game_object *g = s->get_game_object_value(i);
+              string index = to_string(i);
+              string name = s->get_name() + "[" + index + "]";
+              g->print(name,os);
+              os << "\n";
+          }
           break;
         } 
         case TRIANGLE_ARRAY: {
+          for (int i = 0; i < s->size(); i++){
+              Game_object *g = s->get_game_object_value(i);
+              string index = to_string(i);
+              string name = s->get_name() + "[" + index + "]";
+              g->print(name,os);
+              os << "\n";
+          }
           break;
         } 
         case TEXTBOX_ARRAY: {
+          for (int i = 0; i < s->size(); i++){
+              Game_object *g = s->get_game_object_value(i);
+              string index = to_string(i);
+              string name = s->get_name() + "[" + index + "]";
+              g->print(name,os);
+              os << "\n";
+          }
           break;
         } 
         case PIXMAP_ARRAY:{
+          for (int i = 0; i < s->size(); i++){
+              Game_object *g = s->get_game_object_value(i);
+              string index = to_string(i);
+              string name = s->get_name() + "[" + index + "]";
+              g->print(name,os);
+              os << "\n";
+          }
           break;
         } 
         case ANIMATION_BLOCK: {
