@@ -675,47 +675,51 @@ variable:
             Error::error(Error::UNDECLARED_VARIABLE, *$1);
             $$ = new Variable(new Symbol("undeclared",0));
         } else {
-            Game_object *g = s->get_game_object_value();
-            if (g == NULL) {
-
+            if (!(s->get_type() & GAME_OBJECT)) {
+                Error::error(Error::LHS_OF_PERIOD_MUST_BE_OBJECT,*$1);
+                $$ = new Variable(new Symbol("undeclared",0));
             } else {
-                Gpl_type *type = new Gpl_type(NO_TYPE);
-                if (!g->has_member_variable(*$3)) {
-                    Error::error(Error::UNDECLARED_MEMBER,*$1,*$3);
-                    $$ = new Variable(new Symbol("undeclared",0));
-                } else {
-                    g->get_member_variable_type(*$3,*type);
-                    if (*type == INT) {
-                        int *val = new int(0);
-                        Status status = g->get_member_variable(*$3,*val);
-                        string newName = *$1 + "." + *$3;
-                        Symbol *newSymbol = new Symbol(newName,*val);
-                        $$ = new Variable(newSymbol);
-                    } else if (*type == DOUBLE) {
-                        double *val = new double(0.0);
-                        Status status = g->get_member_variable(*$3,*val);
-                        string newName = *$1 + "." + *$3;
-                        Symbol *newSymbol = new Symbol(newName,*val);
-                        $$ = new Variable(newSymbol);
-                    } else if (*type == STRING) {
-                        string *val = new string("");
-                        Status status = g->get_member_variable(*$3,*val);
-                        string newName = *$1 + "." + *$3;
-                        Symbol *newSymbol = new Symbol(newName,*val);
-                        $$ = new Variable(newSymbol);
-                    } else if (*type == ANIMATION_BLOCK) {
-                        // Animation_block **a;
-                        // Status status = g->get_member_variable(*$3,*a);
-                        // string newName = *$1 + "." + *$3;
-                        // Symbol *newSymbol = new Symbol(newName,ANIMATION_BLOCK);
-                        // $$ = new Variable(newSymbol);
-                    } else {
+                Game_object *g = s->get_game_object_value();
+                if (g == NULL) {
 
+                } else {
+                    Gpl_type *type = new Gpl_type(NO_TYPE);
+                    if (!g->has_member_variable(*$3)) {
+                        Error::error(Error::UNDECLARED_MEMBER,*$1,*$3);
+                        $$ = new Variable(new Symbol("undeclared",0));
+                    } else {
+                        g->get_member_variable_type(*$3,*type);
+                        if (*type == INT) {
+                            int *val = new int(0);
+                            Status status = g->get_member_variable(*$3,*val);
+                            string newName = *$1 + "." + *$3;
+                            Symbol *newSymbol = new Symbol(newName,*val);
+                            $$ = new Variable(newSymbol);
+                        } else if (*type == DOUBLE) {
+                            double *val = new double(0.0);
+                            Status status = g->get_member_variable(*$3,*val);
+                            string newName = *$1 + "." + *$3;
+                            Symbol *newSymbol = new Symbol(newName,*val);
+                            $$ = new Variable(newSymbol);
+                        } else if (*type == STRING) {
+                            string *val = new string("");
+                            Status status = g->get_member_variable(*$3,*val);
+                            string newName = *$1 + "." + *$3;
+                            Symbol *newSymbol = new Symbol(newName,*val);
+                            $$ = new Variable(newSymbol);
+                        } else if (*type == ANIMATION_BLOCK) {
+                            // Animation_block **a;
+                            // Status status = g->get_member_variable(*$3,*a);
+                            // string newName = *$1 + "." + *$3;
+                            // Symbol *newSymbol = new Symbol(newName,ANIMATION_BLOCK);
+                            // $$ = new Variable(newSymbol);
+                        } else {
+
+                        }
                     }
                 }
             }
         }
-
     }
     | T_ID T_LBRACKET expression T_RBRACKET T_PERIOD T_ID {
             string *id = $1; 
