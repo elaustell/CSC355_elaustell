@@ -407,35 +407,48 @@ parameter_list :
 parameter:
     T_ID T_ASSIGN expression {
         string *name = $1;
-        if (cur_object_under_construction->has_member_variable(*name)) {
-            if ($3->get_type() == INT) {
-                string *rotation = new string("rotation");
-                if (*$1 == *rotation) {
-                    double val = $3->eval_double();
-                    Status status = cur_object_under_construction->set_member_variable(*name,val);
+        if (!cur_object_under_construction->has_member_variable(*name)) {
+            Error::error(Error::UNKNOWN_CONSTRUCTOR_PARAMETER,gpl_type_to_string(cur_object_under_construction->get_type()),*name);
+        } else {
+            Gpl_type *param_type = new Gpl_type(NO_TYPE);
+            cur_object_under_construction->get_member_variable_type(*name,*param_type);
+
+            Gpl_type exp_type = $3->get_type();
+
+            if (*param_type == INT) {
+                if (exp_type != INT) {
+                    Error::error(Error::INCORRECT_CONSTRUCTOR_PARAMETER_TYPE,cur_object_under_construction_name, *$1);
                 } else {
                     int val = $3->eval_int();
                     Status status = cur_object_under_construction->set_member_variable(*name,val);
                 }
-            } else if ($3->get_type() == DOUBLE) {
-                double val = $3->eval_double();
-                Status status = cur_object_under_construction->set_member_variable(*name,val);
-            } else if ($3->get_type() == STRING) {
-                string val = $3->eval_string();
-                Status status = cur_object_under_construction->set_member_variable(*name,val);
+            } else if (*param_type == DOUBLE) {
+                if (exp_type != INT && exp_type != DOUBLE) {
+                    Error::error(Error::INCORRECT_CONSTRUCTOR_PARAMETER_TYPE, cur_object_under_construction_name, *$1);
+                } else {
+                    double val = $3->eval_double();
+                    Status status = cur_object_under_construction->set_member_variable(*name,val);
+                }
+            } else if (*param_type == STRING) {
+                if (exp_type != INT && exp_type != DOUBLE && exp_type != STRING) {
+                    Error::error(Error::INCORRECT_CONSTRUCTOR_PARAMETER_TYPE, cur_object_under_construction_name, *$1);
+                } else {
+                    string val = $3->eval_string();
+                    Status status = cur_object_under_construction->set_member_variable(*name,val);
+                }
             } else if ($3->get_type() == ANIMATION_BLOCK) {
-                string var_name = $3->eval_variable()->get_name();
-                Symbol *var_sym = table->lookup(var_name);
-                Animation_block *ablock = var_sym->get_animation_block_value();
-                Symbol *curr = table->lookup(cur_object_under_construction_name);
-                ablock->initialize(curr,var_name);
-                Status status = cur_object_under_construction->set_member_variable(*name,ablock);
-            } else {
-
-            }
-        } else {
-            Error::error(Error::UNKNOWN_CONSTRUCTOR_PARAMETER,gpl_type_to_string(cur_object_under_construction->get_type()),*name);
-        }
+                if (*param_type != $3->get_type()) {
+                    Error::error(Error::INCORRECT_CONSTRUCTOR_PARAMETER_TYPE, cur_object_under_construction_name, *$1);
+                } else {
+                    string var_name = $3->eval_variable()->get_name();
+                    Symbol *var_sym = table->lookup(var_name);
+                    Animation_block *ablock = var_sym->get_animation_block_value();
+                    Symbol *curr = table->lookup(cur_object_under_construction_name);
+                    ablock->initialize(curr,var_name);
+                    Status status = cur_object_under_construction->set_member_variable(*name,ablock);
+                }
+            } else {}
+        } 
     }
     ;
 
