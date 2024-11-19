@@ -456,17 +456,21 @@ parameter:
 forward_declaration:
     T_FORWARD T_ANIMATION T_ID T_LPAREN object_type T_ID T_RPAREN 
     {
-        // put animation block and game object into symbol table
-        Symbol *s_object = new Symbol(*$6, $5);
-        Symbol *s_ablock = new Symbol(*$3,ANIMATION_BLOCK);
+        if (table->lookup(*$6) != NULL) {
+            Error::error(Error::ANIMATION_PARAMETER_NAME_NOT_UNIQUE,*$6);
+        } else {
+            // put animation block and game object into symbol table
+            Symbol *s_object = new Symbol(*$6, $5);
+            Symbol *s_ablock = new Symbol(*$3,ANIMATION_BLOCK);
 
-        Animation_block *a = new Animation_block();
-        // a->initialize(s_object, *$6);
+            Animation_block *a = new Animation_block();
+            // a->initialize(s_object, *$6);
 
-        table->insert(s_object);
-        bool flag = table->insert(s_ablock);
-        if (!flag) {
-            Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *$3);
+            table->insert(s_object);
+            bool flag = table->insert(s_ablock);
+            if (!flag) {
+                Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *$3);
+            }
         }
     }
     ;
