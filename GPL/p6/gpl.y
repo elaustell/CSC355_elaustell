@@ -251,6 +251,8 @@ variable_declaration:
                 } else if ($3->get_type() == STRING_ARRAY) {
                     Variable *v = $3->eval_variable();
                     initial_value = v->get_string_value();
+                } else {
+                    Error::error(Error::INVALID_TYPE_FOR_INITIAL_VALUE,gpl_type_to_string($3->get_type()), *name, "string");
                 }
             }
             Symbol *s = new Symbol(*name, initial_value);
