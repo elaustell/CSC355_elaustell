@@ -434,7 +434,7 @@ parameter:
 
             }
         } else {
-
+            Error::error(Error::UNKNOWN_CONSTRUCTOR_PARAMETER,gpl_type_to_string(cur_object_under_construction->get_type()),*name);
         }
     }
     ;
