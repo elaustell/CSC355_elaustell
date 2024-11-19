@@ -464,7 +464,10 @@ forward_declaration:
         // a->initialize(s_object, *$6);
 
         table->insert(s_object);
-        table->insert(s_ablock);
+        bool flag = table->insert(s_ablock);
+        if (!flag) {
+            Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *$3);
+        }
     }
     ;
 
