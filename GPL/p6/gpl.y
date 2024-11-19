@@ -753,7 +753,8 @@ variable:
                 $$ = new Variable(new Symbol("undeclared",0));
             }
             else if (!s->is_game_object()) {
-            
+                Error::error(Error::LHS_OF_PERIOD_MUST_BE_OBJECT,*$1);
+                $$ = new Variable(new Symbol("undeclared",0));
             } else {
                 int index = e->eval_int();
                 Game_object *g = s->get_game_object_value(index);
