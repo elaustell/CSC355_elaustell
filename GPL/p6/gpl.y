@@ -670,10 +670,10 @@ variable:
         }
     | T_ID T_PERIOD T_ID
     {
-        //TODO
         Symbol *s = table->lookup(*$1);
         if (s == NULL) {
-
+            Error::error(Error::UNDECLARED_VARIABLE, *$1);
+            $$ = new Variable(new Symbol("undeclared",0));
         } else {
             Game_object *g = s->get_game_object_value();
             if (g == NULL) {
