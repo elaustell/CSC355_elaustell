@@ -681,7 +681,8 @@ variable:
             } else {
                 Gpl_type *type = new Gpl_type(NO_TYPE);
                 if (!g->has_member_variable(*$3)) {
-                    
+                    Error::error(Error::UNDECLARED_MEMBER,*$1,*$3);
+                    $$ = new Variable(new Symbol("undeclared",0));
                 } else {
                     g->get_member_variable_type(*$3,*type);
                     if (*type == INT) {
