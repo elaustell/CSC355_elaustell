@@ -445,7 +445,7 @@ parameter:
                     Animation_block *ablock = var_sym->get_animation_block_value();
                     Symbol *param_symbol = ablock->get_parameter_symbol();
                     if (param_symbol == NULL) {} 
-                    else if (param_symbol->get_type() != *param_type) {
+                    else if (param_symbol->get_type() != cur_object_under_construction->get_type()) {
                         Error::error(Error::TYPE_MISMATCH_BETWEEN_ANIMATION_BLOCK_AND_OBJECT,cur_object_under_construction_name,ablock->name());
                     } else {
                         Symbol *curr = table->lookup(cur_object_under_construction_name);
