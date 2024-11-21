@@ -316,12 +316,11 @@ object_declaration:
         // create a new object and it's symbol
         // (Symbol() creates the new object);
         Symbol *symbol = new Symbol(*$2, $1);
-    
+
         if (!table->insert(symbol))
         {
-        Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *$2);
+            Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *$2);
         }
-
         // assign to global variable so the parameters can be inserted into
         // this object when each parameter is parsed
         cur_object_under_construction = symbol->get_game_object_value();
@@ -464,7 +463,8 @@ forward_declaration:
     {
         if (table->lookup(*$6) != NULL) {
             Error::error(Error::ANIMATION_PARAMETER_NAME_NOT_UNIQUE,*$6);
-        } else {
+        }
+
             // put animation block and game object into symbol table
             Symbol *s_object = new Symbol(*$6, $5);
             Symbol *s_ablock = new Symbol(*$3,ANIMATION_BLOCK);
@@ -477,7 +477,7 @@ forward_declaration:
             if (!flag) {
                 Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *$3);
             }
-        }
+        
     }
     ;
 
