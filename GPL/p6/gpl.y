@@ -436,16 +436,22 @@ parameter:
                     string val = $3->eval_string();
                     Status status = cur_object_under_construction->set_member_variable(*name,val);
                 }
-            } else if ($3->get_type() == ANIMATION_BLOCK) {
-                if (*param_type != $3->get_type()) {
+            } else if (exp_type == ANIMATION_BLOCK) {
+                if (*param_type != exp_type) {
                     Error::error(Error::INCORRECT_CONSTRUCTOR_PARAMETER_TYPE, cur_object_under_construction_name, *$1);
                 } else {
                     string var_name = $3->eval_variable()->get_name();
                     Symbol *var_sym = table->lookup(var_name);
                     Animation_block *ablock = var_sym->get_animation_block_value();
-                    Symbol *curr = table->lookup(cur_object_under_construction_name);
-                    ablock->initialize(curr,var_name);
-                    Status status = cur_object_under_construction->set_member_variable(*name,ablock);
+                    Symbol *param_symbol = ablock->get_parameter_symbol();
+                    if (param_symbol == NULL) {} 
+                    else if (param_symbol->get_type() != *param_type) {
+                        Error::error(Error::TYPE_MISMATCH_BETWEEN_ANIMATION_BLOCK_AND_OBJECT,cur_object_under_construction_name,ablock->name());
+                    } else {
+                        Symbol *curr = table->lookup(cur_object_under_construction_name);
+                        ablock->initialize(curr,var_name);
+                        Status status = cur_object_under_construction->set_member_variable(*name,ablock);
+                    }
                 }
             } else {}
         } 
@@ -463,8 +469,8 @@ forward_declaration:
             Symbol *s_object = new Symbol(*$6, $5);
             Symbol *s_ablock = new Symbol(*$3,ANIMATION_BLOCK);
 
-            Animation_block *a = new Animation_block();
-            // a->initialize(s_object, *$6);
+            Animation_block *a = s_ablock->get_animation_block_value();
+            a->initialize(s_object, *$3);
 
             table->insert(s_object);
             bool flag = table->insert(s_ablock);

@@ -40,7 +40,7 @@ circle c00
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
+    x = int(300),
     y = int(0)
 }
 circle c01
@@ -70,8 +70,8 @@ circle c01
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(293),
+    y = int(34)
 }
 circle c02
 {
@@ -100,8 +100,8 @@ circle c02
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(276),
+    y = int(64)
 }
 circle c03
 {
@@ -130,8 +130,8 @@ circle c03
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(250),
+    y = int(86)
 }
 circle c04
 {
@@ -160,8 +160,8 @@ circle c04
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(217),
+    y = int(98)
 }
 circle c05
 {
@@ -190,8 +190,8 @@ circle c05
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(182),
+    y = int(98)
 }
 circle c06
 {
@@ -220,8 +220,8 @@ circle c06
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(150),
+    y = int(86)
 }
 circle c07
 {
@@ -250,8 +250,8 @@ circle c07
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(123),
+    y = int(64)
 }
 circle c08
 {
@@ -280,8 +280,8 @@ circle c08
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(106),
+    y = int(34)
 }
 circle c10
 {
@@ -310,7 +310,7 @@ circle c10
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
+    x = int(100),
     y = int(0)
 }
 string window_title = "p6 t008.gpl -- compare to t008.jpg ***PRESS q TO QUIT***"
@@ -347,7 +347,7 @@ circle c00
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
+    x = int(300),
     y = int(0)
 }
 circle c01
@@ -377,8 +377,8 @@ circle c01
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(293),
+    y = int(34)
 }
 circle c02
 {
@@ -407,8 +407,8 @@ circle c02
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(276),
+    y = int(64)
 }
 circle c03
 {
@@ -437,8 +437,8 @@ circle c03
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(250),
+    y = int(86)
 }
 circle c04
 {
@@ -467,8 +467,8 @@ circle c04
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(217),
+    y = int(98)
 }
 circle c05
 {
@@ -497,8 +497,8 @@ circle c05
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(182),
+    y = int(98)
 }
 circle c06
 {
@@ -527,8 +527,8 @@ circle c06
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(150),
+    y = int(86)
 }
 circle c07
 {
@@ -557,8 +557,8 @@ circle c07
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(123),
+    y = int(64)
 }
 circle c08
 {
@@ -587,8 +587,8 @@ circle c08
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
-    y = int(0)
+    x = int(106),
+    y = int(34)
 }
 circle c10
 {
@@ -617,7 +617,7 @@ circle c10
     user_string5 = string(""),
     visible = int(1),
     w = int(20),
-    x = int(0),
+    x = int(100),
     y = int(0)
 }
 string window_title = "p6 t008.gpl -- compare to t008.jpg ***PRESS q TO QUIT***"
