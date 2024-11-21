@@ -685,8 +685,8 @@ static const yytype_int16 yyrhs[] =
 static const yytype_uint16 yyrline[] =
 {
        0,   182,   182,   187,   188,   193,   194,   195,   200,   265,
-     302,   303,   304,   309,   310,   315,   315,   336,   387,   388,
-     389,   390,   391,   396,   397,   402,   403,   408,   463,   486,
+     302,   303,   304,   309,   310,   315,   315,   335,   386,   387,
+     388,   389,   390,   395,   396,   401,   402,   407,   462,   486,
      487,   492,   493,   494,   495,   500,   505,   510,   520,   525,
      530,   531,   532,   533,   534,   535,   536,   537,   538,   539,
      540,   541,   542,   543,   544,   545,   546,   547,   548,   549,
@@ -1955,12 +1955,11 @@ yyreduce:
         // create a new object and it's symbol
         // (Symbol() creates the new object);
         Symbol *symbol = new Symbol(*(yyvsp[(2) - (2)].union_string), (yyvsp[(1) - (2)].union_type));
-    
+
         if (!table->insert(symbol))
         {
-        Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *(yyvsp[(2) - (2)].union_string));
+            Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *(yyvsp[(2) - (2)].union_string));
         }
-
         // assign to global variable so the parameters can be inserted into
         // this object when each parameter is parsed
         cur_object_under_construction = symbol->get_game_object_value();
@@ -1970,7 +1969,7 @@ yyreduce:
     break;
 
   case 16:
-#line 332 "gpl.y"
+#line 331 "gpl.y"
     {
         cur_object_under_construction = NULL;
         delete (yyvsp[(2) - (6)].union_string); // Scanner allocates memory for each T_ID string
@@ -1978,7 +1977,7 @@ yyreduce:
     break;
 
   case 17:
-#line 336 "gpl.y"
+#line 335 "gpl.y"
     {
         string *name = (yyvsp[(2) - (5)].union_string);
         if ((yyvsp[(4) - (5)].union_expression) == NULL) {
@@ -2029,32 +2028,32 @@ yyreduce:
     break;
 
   case 18:
-#line 387 "gpl.y"
+#line 386 "gpl.y"
     {(yyval.union_type) = TRIANGLE;}
     break;
 
   case 19:
-#line 388 "gpl.y"
+#line 387 "gpl.y"
     {(yyval.union_type) = PIXMAP;}
     break;
 
   case 20:
-#line 389 "gpl.y"
+#line 388 "gpl.y"
     {(yyval.union_type) = CIRCLE;}
     break;
 
   case 21:
-#line 390 "gpl.y"
+#line 389 "gpl.y"
     {(yyval.union_type) = RECTANGLE;}
     break;
 
   case 22:
-#line 391 "gpl.y"
+#line 390 "gpl.y"
     {(yyval.union_type) = TEXTBOX;}
     break;
 
   case 27:
-#line 408 "gpl.y"
+#line 407 "gpl.y"
     {
         string *name = (yyvsp[(1) - (3)].union_string);
         if (!cur_object_under_construction->has_member_variable(*name)) {
@@ -2095,7 +2094,7 @@ yyreduce:
                     Animation_block *ablock = var_sym->get_animation_block_value();
                     Symbol *param_symbol = ablock->get_parameter_symbol();
                     if (param_symbol == NULL) {} 
-                    else if (param_symbol->get_type() != *param_type) {
+                    else if (param_symbol->get_type() != cur_object_under_construction->get_type()) {
                         Error::error(Error::TYPE_MISMATCH_BETWEEN_ANIMATION_BLOCK_AND_OBJECT,cur_object_under_construction_name,ablock->name());
                     } else {
                         Symbol *curr = table->lookup(cur_object_under_construction_name);
@@ -2109,11 +2108,12 @@ yyreduce:
     break;
 
   case 28:
-#line 464 "gpl.y"
+#line 463 "gpl.y"
     {
         if (table->lookup(*(yyvsp[(6) - (7)].union_string)) != NULL) {
             Error::error(Error::ANIMATION_PARAMETER_NAME_NOT_UNIQUE,*(yyvsp[(6) - (7)].union_string));
-        } else {
+        }
+
             // put animation block and game object into symbol table
             Symbol *s_object = new Symbol(*(yyvsp[(6) - (7)].union_string), (yyvsp[(5) - (7)].union_type));
             Symbol *s_ablock = new Symbol(*(yyvsp[(3) - (7)].union_string),ANIMATION_BLOCK);
@@ -2126,7 +2126,7 @@ yyreduce:
             if (!flag) {
                 Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *(yyvsp[(3) - (7)].union_string));
             }
-        }
+        
     }
     break;
 
