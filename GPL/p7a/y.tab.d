@@ -1,0 +1,5 @@
+y.tab.o: y.tab.c error.h gpl_assert.h symbol_table.h gpl_type.h symbol.h \
+  event_manager.h window.h statement_block.h animation_block.h \
+  game_object.h triangle.h pixmap.h circle.h rectangle.h textbox.h \
+  expression.h variable.h if_statement.h statement.h for_statement.h \
+  print_statement.h exit_statement.h assign_statement.h

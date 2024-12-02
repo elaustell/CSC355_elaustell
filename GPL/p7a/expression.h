@@ -38,6 +38,7 @@ class Expression
     string eval_string();
 
     Variable *eval_variable() {return m_variable;}
+    Animation_block *eval_animation_block();
 
   private:
 

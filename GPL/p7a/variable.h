@@ -76,6 +76,19 @@ class Variable
     void set(double value);
     void set(std::string value);
 
+    Game_object *get_game_object_value() const;
+    Animation_block *get_animation_block_value() const;
+
+    // if this Variable is, for example, circles[i].animation_block then it's type is ANIMATION_BLOCK
+    // and it's base_game_object_type is circle.
+    Gpl_type get_base_game_object_type() const;
+
+    bool is_game_object() const {return m_type & GAME_OBJECT;}
+    bool is_animation_block() const {return m_type == ANIMATION_BLOCK;}
+    bool is_non_member_animation_block() const;
+
+    std::string *m_field = NULL;
+
   private:
     Variable(const Variable&);  // disable default copy constructor
     const Variable &operator=(const Variable&); // disable default assignmnt
