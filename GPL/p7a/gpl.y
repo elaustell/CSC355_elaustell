@@ -24,6 +24,11 @@
 #include "rectangle.h"
 #include "textbox.h"
 #include "window.h"
+#include "if_statement.h"
+#include "for_statement.h"
+#include "print_statement.h"
+#include "exit_statement.h"
+#include "assign_statement.h"
 using namespace std;
 
 extern int yylex();
