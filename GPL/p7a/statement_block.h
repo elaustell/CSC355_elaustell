@@ -1,34 +1,37 @@
-// updated 2/14/16
-
-/***
-  This file is a placeholder for the Statement_block class you will write in 
-  the next assignment p7.
-
-  You may use it w/o modification in p6.
-
-  You may use it as a starting point for your Statement_block class for p7.
-
-  I have put in just enough for it to work in p6.
-
-***/
-
 
 #ifndef STATEMENT_BLOCK_H
 #define STATEMENT_BLOCK_H
 
-#include <iostream>
+#include <vector>
 
-class Game_object;
+class Symbol;
+class Statement;
 
 class Statement_block
 {
   public:
     Statement_block();
 
-    // This is called when a statement block is executed
-    // Implement it for p7
+    void insert(Statement *statement);
+
+    bool valid() const {return m_cookie == m_global_cookie;}
+
     void execute();
-  
+
+  protected:
+    // vector of all statements in the block
+    std::vector<Statement *> m_statements;
+
+
+    // cookies are used to check for valid types for when debugging code
+    // they server no other purpose
+    static const int m_global_cookie;
+    int m_cookie;
+
+    // disable default copy constructor and default assignment
+    // done as a precaution, they should never be called
+    Statement_block(const Statement_block &);
+    const Statement_block &operator=(const Statement_block &);
 };
 
 #endif // #ifndef STATEMENT_BLOCK_H

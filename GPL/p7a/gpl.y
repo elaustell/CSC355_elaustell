@@ -41,7 +41,7 @@ Game_object *cur_object_under_construction = 0;
 string cur_object_under_construction_name;
 int undeclared = 0;
 Symbol_table *table = Symbol_table::instance();
-std::stack<*Statement_block> *statement_block_stack = new std::stack<*Statement_block>();
+std::stack<Statement_block*> statement_block_stack;
 
 %}
 

@@ -58,6 +58,17 @@ string Variable::get_string_value() const
     }
 }
 
+Animation_block *Variable::get_animation_block_value() const
+{
+    assert(is_animation_block());
+    if (m_expression == NULL){
+        return m_symbol->get_animation_block_value();
+    } else {
+        // todo: error
+        return m_symbol->get_animation_block_value();
+    }
+}
+
 void Variable::set(int value)
 {
     m_symbol = new Symbol(m_symbol->get_name(), value);
@@ -72,6 +83,11 @@ void Variable::set(double value)
 void Variable::set(string value)
 {
     m_symbol = new Symbol(m_symbol->get_name(), value);
+}
+
+void Variable::set(Animation_block *value)
+{
+    m_symbol = new Symbol(m_symbol->get_name(), ANIMATION_BLOCK);
 }
 
 // Evaluate expression if there is one, return index if index is out of bounds, 
@@ -96,4 +112,14 @@ int Variable::eval_index_with_error_checking() const
 
     return 0; // 0 is always within range
   }
+}
+
+Gpl_type Variable::get_base_game_object_type() const
+{
+    return m_symbol->get_base_type();
+}
+
+bool Variable::is_non_member_animation_block() const
+{
+    return !m_symbol->is_animation_block();
 }

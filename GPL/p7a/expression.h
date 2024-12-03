@@ -11,6 +11,7 @@ using namespace std;
 
 class Variable;
 class Constant;
+class Animation_block;
 
 
 class Expression

@@ -75,6 +75,7 @@ class Variable
     void set(int value);
     void set(double value);
     void set(std::string value);
+    void set(Animation_block *value);
 
     Game_object *get_game_object_value() const;
     Animation_block *get_animation_block_value() const;

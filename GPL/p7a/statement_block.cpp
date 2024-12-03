@@ -1,23 +1,32 @@
-// updated 2/14/16
-
 #include "statement_block.h"
+#include "statement.h"
+#include "game_object.h"
 #include "gpl_assert.h"
-using namespace std;
+#include "symbol.h"
 
+using namespace std; // for vector
+
+
+/* static */ const int Statement_block::m_global_cookie = 4282309;
 
 Statement_block::Statement_block()
 {
+  // create an empty Statement_block
 
+  // use cookies during debugging to check for invalid pointers
+  // there are a lot of pointers floating around through bison
+  // without any real type checking
+  m_cookie = m_global_cookie;
 }
 
-// this function is called for all non-animation_block statement_blocks
-// Implement it for p7
-void Statement_block::execute()
+void Statement_block::insert(Statement *statement)
 {
-  // This function should be defined before it is ever called
-  // This assert will cause the program to abort if this function 
-  // is called before it is implemented.
+  m_statements.push_back(statement);
+}
 
-  // *** ==> Remove this assert when you implement this function
-  assert(false && "you must implement this function for p7");
+/* virtual */ void Statement_block::execute()
+{
+  vector<Statement *>::iterator iter;
+  for (iter = m_statements.begin(); iter != m_statements.end(); iter++)
+      (*iter)->execute();
 }
