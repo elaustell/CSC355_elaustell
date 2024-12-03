@@ -40,8 +40,9 @@ extern int line_count;  // from gpl.l, used for statement blocks
 Game_object *cur_object_under_construction = 0;
 string cur_object_under_construction_name;
 int undeclared = 0;
-Symbol_table *table = Symbol_table::instance();
+static Symbol_table *table = Symbol_table::instance();
 std::stack<Statement_block*> statement_block_stack;
+static Event_manager *manager = Event_manager::instance();
 
 %}
 
@@ -537,8 +538,7 @@ check_animation_parameter:
 on_block:
   T_ON keystroke statement_block
   {
-      Window::Keystroke k = $2;
-      
+        manager->register_handler($2, $3);
   }
   ;
 //---------------------------------------------------------------------

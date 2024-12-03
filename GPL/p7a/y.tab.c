@@ -299,8 +299,9 @@ extern int line_count;  // from gpl.l, used for statement blocks
 Game_object *cur_object_under_construction = 0;
 string cur_object_under_construction_name;
 int undeclared = 0;
-Symbol_table *table = Symbol_table::instance();
+static Symbol_table *table = Symbol_table::instance();
 std::stack<Statement_block*> statement_block_stack;
+static Event_manager *manager = Event_manager::instance();
 
 
 
@@ -324,7 +325,7 @@ std::stack<Statement_block*> statement_block_stack;
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 48 "gpl.y"
+#line 49 "gpl.y"
 {
   int              union_int;
   double           union_double;
@@ -338,7 +339,7 @@ typedef union YYSTYPE
   Statement_block *union_stmtblock;
 }
 /* Line 193 of yacc.c.  */
-#line 342 "y.tab.c"
+#line 343 "y.tab.c"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -351,7 +352,7 @@ typedef union YYSTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 355 "y.tab.c"
+#line 356 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -692,10 +693,10 @@ static const yytype_int16 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   194,   194,   199,   200,   205,   206,   207,   212,   277,
-     314,   315,   316,   321,   322,   327,   327,   347,   398,   399,
-     400,   401,   402,   407,   408,   413,   414,   419,   474,   498,
-     499,   504,   505,   506,   507,   512,   517,   524,   533,   538,
+       0,   195,   195,   200,   201,   206,   207,   208,   213,   278,
+     315,   316,   317,   322,   323,   328,   328,   348,   399,   400,
+     401,   402,   403,   408,   409,   414,   415,   420,   475,   499,
+     500,   505,   506,   507,   508,   513,   518,   525,   534,   539,
      546,   550,   554,   558,   562,   566,   570,   574,   578,   582,
      586,   590,   594,   598,   602,   606,   610,   614,   618,   622,
      626,   630,   634,   638,   645,   649,   656,   663,   671,   678,
@@ -1827,7 +1828,7 @@ yyreduce:
   switch (yyn)
     {
         case 8:
-#line 212 "gpl.y"
+#line 213 "gpl.y"
     {
         string *name = (yyvsp[(2) - (3)].union_string);
         if ((yyvsp[(1) - (3)].union_type) == INT){
@@ -1896,7 +1897,7 @@ yyreduce:
     break;
 
   case 9:
-#line 277 "gpl.y"
+#line 278 "gpl.y"
     {
         string *name = (yyvsp[(2) - (5)].union_string);
         if ((yyvsp[(4) - (5)].union_expression) == NULL) {
@@ -1933,32 +1934,32 @@ yyreduce:
     break;
 
   case 10:
-#line 314 "gpl.y"
+#line 315 "gpl.y"
     {(yyval.union_type) = INT;}
     break;
 
   case 11:
-#line 315 "gpl.y"
+#line 316 "gpl.y"
     {(yyval.union_type) = DOUBLE;}
     break;
 
   case 12:
-#line 316 "gpl.y"
+#line 317 "gpl.y"
     {(yyval.union_type) = STRING;}
     break;
 
   case 13:
-#line 321 "gpl.y"
+#line 322 "gpl.y"
     {(yyval.union_expression) = (yyvsp[(2) - (2)].union_expression);}
     break;
 
   case 14:
-#line 322 "gpl.y"
+#line 323 "gpl.y"
     {(yyval.union_expression) = NULL;}
     break;
 
   case 15:
-#line 327 "gpl.y"
+#line 328 "gpl.y"
     {
         // create a new object and it's symbol
         // (Symbol() creates the new object);
@@ -1977,7 +1978,7 @@ yyreduce:
     break;
 
   case 16:
-#line 343 "gpl.y"
+#line 344 "gpl.y"
     {
         cur_object_under_construction = NULL;
         delete (yyvsp[(2) - (6)].union_string); // Scanner allocates memory for each T_ID string
@@ -1985,7 +1986,7 @@ yyreduce:
     break;
 
   case 17:
-#line 347 "gpl.y"
+#line 348 "gpl.y"
     {
         string *name = (yyvsp[(2) - (5)].union_string);
         if ((yyvsp[(4) - (5)].union_expression) == NULL) {
@@ -2036,32 +2037,32 @@ yyreduce:
     break;
 
   case 18:
-#line 398 "gpl.y"
+#line 399 "gpl.y"
     {(yyval.union_type) = TRIANGLE;}
     break;
 
   case 19:
-#line 399 "gpl.y"
+#line 400 "gpl.y"
     {(yyval.union_type) = PIXMAP;}
     break;
 
   case 20:
-#line 400 "gpl.y"
+#line 401 "gpl.y"
     {(yyval.union_type) = CIRCLE;}
     break;
 
   case 21:
-#line 401 "gpl.y"
+#line 402 "gpl.y"
     {(yyval.union_type) = RECTANGLE;}
     break;
 
   case 22:
-#line 402 "gpl.y"
+#line 403 "gpl.y"
     {(yyval.union_type) = TEXTBOX;}
     break;
 
   case 27:
-#line 419 "gpl.y"
+#line 420 "gpl.y"
     {
         string *name = (yyvsp[(1) - (3)].union_string);
         if (!cur_object_under_construction->has_member_variable(*name)) {
@@ -2116,7 +2117,7 @@ yyreduce:
     break;
 
   case 28:
-#line 475 "gpl.y"
+#line 476 "gpl.y"
     {
         if (table->lookup(*(yyvsp[(6) - (7)].union_string)) != NULL) {
             Error::error(Error::ANIMATION_PARAMETER_NAME_NOT_UNIQUE,*(yyvsp[(6) - (7)].union_string));
@@ -2139,17 +2140,16 @@ yyreduce:
     break;
 
   case 36:
-#line 518 "gpl.y"
+#line 519 "gpl.y"
     {
       // COMPLETE ME
   }
     break;
 
   case 39:
-#line 539 "gpl.y"
+#line 540 "gpl.y"
     {
-      Window::Keystroke k = (yyvsp[(2) - (3)].union_keystroke);
-      
+        manager->register_handler((yyvsp[(2) - (3)].union_keystroke), (yyvsp[(3) - (3)].union_stmtblock));
   }
     break;
 

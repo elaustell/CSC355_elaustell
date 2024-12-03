@@ -230,7 +230,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 48 "gpl.y"
+#line 49 "gpl.y"
 {
   int              union_int;
   double           union_double;
