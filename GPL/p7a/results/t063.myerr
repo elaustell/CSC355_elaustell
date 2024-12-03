@@ -1,1 +1,0 @@
-assertion "!statement_block_stack.empty()" failed: file "gpl.y", line 672.  Input line 6.

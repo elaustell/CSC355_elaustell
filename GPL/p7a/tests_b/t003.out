@@ -1,8 +1,8 @@
 gpl.cpp::main()
-  input file(tests/t003.gpl)
+  input file(tests_b/t003.gpl)
   random seed(42)
   read_keypresses_from_standard_input(false)
-  dump_pixels(true, file = results/t003.mypixels)
+  dump_pixels(true, file = results_b/t003.pixels)
   symbol_table(true)
   graphics(true)
 

@@ -1,5 +1,5 @@
 gpl.cpp::main()
-  input file(tests/t112.gpl)
+  input file(tests_b/t112.gpl)
   random seed(42)
   read_keypresses_from_standard_input(true)
   dump_pixels(false)

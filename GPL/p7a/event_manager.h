@@ -1,25 +1,39 @@
-// updated 2/14/16
-
 /***
-  This file is a placeholder for the Event_manager class you will write 
-  in phase 7 (p7).
 
-  My class Window uses class Event_manager.  Since p6 uses class Window
-  you need this placeholder class to get p6 to work.
+Overview:
 
-  You may use this file and event_manager.cpp w/o modification in p6.
+    class Event_manager stores all the event handlers.
 
-  You may use them as a starting point for your Event_manager class for p7.
+    It is a singleton.
 
-  I have put in just enough for it to work in p6.
+    When an event handler is declared in a gpl program its
+    statement_block should be inserted into the Event_manager using:
 
+      void register_handler(Window::Keystroke keystroke,
+                 Statement_block *statement_block
+                );
+
+    When class Window receives an event from the windowing system (via GLUT)
+    it calls:
+    
+        void execute_handlers(Window::Keystroke keystroke);
+
+    This function will execute all the statement_blocks registered with
+    that keystroke.
+
+How to use:
+
+    When a event handler is parsed (in gpl.y) pass the statement_block
+    and the keystroke to register_handler()
+
+    Class Window already calls execute_handlers(), you don't have to.
+    
 ***/
 
 #ifndef EVENT_MANAGER_H
 #define EVENT_MANAGER_H
 
 #include <iostream>
-#include <string>
 #include <vector>
 
 #include "window.h" // for Keystroke enum
@@ -32,9 +46,13 @@ class Event_manager
 
     static Event_manager *instance();
 
+    void register_handler(Window::Keystroke keystroke,
+                          Statement_block *statement_block
+                         );
+
     void execute_handlers(Window::Keystroke keystroke);
 
-    ~Event_manager();
+    std::ostream &print(std::ostream &os) const;
 
   private:
     // hide default constructor because this is a singleton
@@ -42,10 +60,19 @@ class Event_manager
 
     static Event_manager *m_instance;
 
+    // an array of vectors indexed by the keystroke
+    // execute_handlers(keystroke) will execute all block in
+    // m_blocks[keystroke]
+    std::vector<Statement_block *> m_blocks[Window::NUMBER_OF_KEYS];
+
     // disable default copy constructor and default assignment
     // done as a precaution, they should never be called
-    Event_manager(const Event_manager&); 
-    const Event_manager &operator=(const Event_manager&); 
+    Event_manager(const Event_manager&);
+    const Event_manager &operator=(const Event_manager&);
 };
+
+std::ostream & operator<<(std::ostream &os, const Event_manager *event_manager);
+
+std::ostream & operator<<(std::ostream &os, const Event_manager &event_manager);
 
 #endif // #ifndef EVENT_MANAGER_H

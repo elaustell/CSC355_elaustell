@@ -1,1 +1,2 @@
-event_manager.o: event_manager.cpp event_manager.h window.h gpl_assert.h
+event_manager.o: event_manager.cpp event_manager.h window.h \
+  statement_block.h
