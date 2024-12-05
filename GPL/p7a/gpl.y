@@ -751,6 +751,7 @@ assign_statement:
   {
       Variable *lhs = $1;
       Expression *rhs = $3;
+      cout << "lhs: " << lhs->get_name() << "\n";
       Gpl_type lhs_type = lhs->get_type();
       Gpl_type rhs_type = rhs->get_type();
 

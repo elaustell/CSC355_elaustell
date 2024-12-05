@@ -65,6 +65,8 @@ Assign_statement::Assign_statement(Assign_operator op,
 Assign_statement::execute()
 {
   // if this is ++ or --
+  cout << "EXECUTING\n";
+  cout << "lhs: " << m_lhs->get_name() << "\n";
   if (m_rhs == NULL)
   {
     switch (m_operator)
