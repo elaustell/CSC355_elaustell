@@ -100,6 +100,7 @@ Assign_statement::execute()
       {
         case ASSIGN:
           m_lhs->set(m_rhs->eval_int());
+          cout << "evaluating " << m_lhs->get_name() << " to " << m_rhs->eval_int() << "\n";
           break;
         case PLUS_ASSIGN:
           m_lhs->set(m_lhs->get_int_value() + m_rhs->eval_int());

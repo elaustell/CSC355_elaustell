@@ -77,7 +77,6 @@ void Variable::set(int value)
 void Variable::set(double value)
 {
     m_symbol = new Symbol(m_symbol->get_name(), value);
-
 }
 
 void Variable::set(string value)
