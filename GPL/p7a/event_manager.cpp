@@ -26,9 +26,9 @@ void Event_manager::execute_handlers(Window::Keystroke keystroke)
   for (unsigned int i = 0; i < m_blocks[keystroke].size(); i++)
     m_blocks[keystroke][i]->execute();
 
-  /*
+  
   vector<Statement_block *>::const_iterator iter;
   for (iter = m_blocks[keystroke].begin(); iter != m_blocks[keystroke].end(); iter++)
       (*iter)->execute();
-  */
+  
 }

@@ -71,22 +71,98 @@ Animation_block *Variable::get_animation_block_value() const
 
 void Variable::set(int value)
 {
-    m_symbol = new Symbol(m_symbol->get_name(), value);
+  if (!m_field)
+  {
+    if (!m_expression)
+      m_symbol->set(value);
+    else
+      m_symbol->set(value,eval_index_with_error_checking());
+  }
+  else
+  {
+    {
+      Game_object *cur_game_object;
+      if (!m_expression)
+        cur_game_object = m_symbol->get_game_object_value();
+      else
+        cur_game_object=m_symbol->get_game_object_value(eval_index_with_error_checking());
+
+      Status status = cur_game_object->set_member_variable(*m_field,value);
+      assert(status == OK);
+    }
+  }
 }
 
 void Variable::set(double value)
 {
-    m_symbol = new Symbol(m_symbol->get_name(), value);
+    if (!m_field)
+  {
+    if (!m_expression)
+      m_symbol->set(value);
+    else
+      m_symbol->set(value,eval_index_with_error_checking());
+  }
+  else
+  {
+    {
+      Game_object *cur_game_object;
+      if (!m_expression)
+        cur_game_object = m_symbol->get_game_object_value();
+      else
+        cur_game_object=m_symbol->get_game_object_value(eval_index_with_error_checking());
+
+      Status status = cur_game_object->set_member_variable(*m_field,value);
+      assert(status == OK);
+    }
+  }
 }
 
 void Variable::set(string value)
 {
-    m_symbol = new Symbol(m_symbol->get_name(), value);
+    if (!m_field)
+  {
+    if (!m_expression)
+      m_symbol->set(value);
+    else
+      m_symbol->set(value,eval_index_with_error_checking());
+  }
+  else
+  {
+    {
+      Game_object *cur_game_object;
+      if (!m_expression)
+        cur_game_object = m_symbol->get_game_object_value();
+      else
+        cur_game_object=m_symbol->get_game_object_value(eval_index_with_error_checking());
+
+      Status status = cur_game_object->set_member_variable(*m_field,value);
+      assert(status == OK);
+    }
+  }
 }
 
 void Variable::set(Animation_block *value)
 {
-    m_symbol = new Symbol(m_symbol->get_name(), ANIMATION_BLOCK);
+//     if (!m_field)
+//   {
+//     if (!m_expression)
+//       m_symbol->set(value);
+//     else
+//       m_symbol->set(value,eval_index_with_error_checking());
+//   }
+//   else
+//   {
+//     {
+//       Game_object *cur_game_object;
+//       if (!m_expression)
+//         cur_game_object = m_symbol->get_game_object_value();
+//       else
+//         cur_game_object=m_symbol->get_game_object_value(eval_index_with_error_checking());
+
+//       Status status = cur_game_object->set_member_variable(*m_field,value);
+//       assert(status == OK);
+//     }
+//   }
 }
 
 // Evaluate expression if there is one, return index if index is out of bounds, 
@@ -121,4 +197,12 @@ Gpl_type Variable::get_base_game_object_type() const
 bool Variable::is_non_member_animation_block() const
 {
     return !m_symbol->is_animation_block();
+}
+
+int Variable::get_expression() const 
+{
+    if (m_expression == NULL) {
+        return -1;
+    }
+    return m_expression->eval_int();
 }

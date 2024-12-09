@@ -205,6 +205,33 @@ Animation_block *Symbol::get_animation_block_value() const
     return (Animation_block *) m_data_void_ptr;
 }
 
+void Symbol::set(int value, int index /*= UNDEFINED_INDEX*/) const
+{
+  if (is_array()) {
+    ((int *) m_data_void_ptr)[index] = value;
+  } else {
+     ((int *) m_data_void_ptr)[0] = value;
+  }
+}
+
+void Symbol::set(double value, int index /*= UNDEFINED_INDEX*/) const
+{
+  if (is_array()) {
+    ((double *) m_data_void_ptr)[index] = value;
+  } else {
+     ((double *) m_data_void_ptr)[0] = value;
+  }
+}
+
+void Symbol::set(string value, int index /*= UNDEFINED_INDEX*/) const
+{
+  if (is_array()) {
+    ((string *) m_data_void_ptr)[index] = value;
+  } else {
+     ((string *) m_data_void_ptr)[0] = value;
+  }
+}
+
 void Symbol::print(ostream &os) const
 {
   if (is_game_object()) {

@@ -65,6 +65,10 @@ class Symbol
     std::string get_string_value(int index = UNDEFINED_INDEX) const;
     Game_object* get_game_object_value(int index = UNDEFINED_INDEX) const;
     Animation_block* get_animation_block_value() const;
+
+    void set(int value, int index = UNDEFINED_INDEX) const;
+    void set(double value, int index = UNDEFINED_INDEX) const;
+    void set(std::string value, int index = UNDEFINED_INDEX) const;
     
     void print(std::ostream &os) const;
 

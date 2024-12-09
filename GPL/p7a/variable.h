@@ -60,6 +60,8 @@ class Variable
     double get_double_value() const;
     std::string get_string_value() const;
 
+    int get_expression() const;
+
     Gpl_type get_type() const {return m_type;}
 
     bool is_int() const {return m_type & INT;} 
