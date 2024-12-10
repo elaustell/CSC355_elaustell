@@ -700,7 +700,13 @@ if_statement:
   }
   | T_IF T_LPAREN expression T_RPAREN if_block T_ELSE if_block
   {
-      // COMPLETE ME
+      Expression *expr = $3;
+      if (expr->get_type() != INT)
+      {
+        Error::error(Error::INVALID_TYPE_FOR_IF_STMT_EXPRESSION);
+        expr = new Expression(0);
+      }
+      statement_block_stack.top()->insert(new If_statement(expr,$5,$7));
   }
   ;
 
