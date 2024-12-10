@@ -718,7 +718,17 @@ for_statement:
     statement_block_creator assign_statement_or_empty end_of_statement_block
     T_RPAREN statement_block
   {
-      // COMPLETE ME
+        Statement_block *initializer = $3;
+        Expression *expression = $7;
+        Statement_block *incrementor = $9;
+        Statement_block *body_block = $13;
+
+        if (initializer == NULL || expression == NULL || incrementor == NULL) {
+        } else if (expression->get_type() != INT) {
+        } else {
+            statement_block_stack.top()->insert(new For_statement(initializer, expression, incrementor, body_block));
+        }
+
   }
   ;
 
