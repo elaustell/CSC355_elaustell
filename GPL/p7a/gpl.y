@@ -743,7 +743,14 @@ print_statement:
 exit_statement:
   T_EXIT T_LPAREN expression T_RPAREN
   {
-      // COMPLETE ME
+      Expression *expr = $3;
+      if (expr->get_type() != INT)
+      {
+        Error::error(Error::INVALID_TYPE_FOR_PRINT_STMT_EXPRESSION);
+        // for error handling
+        expr = new Expression(0);
+      }
+      statement_block_stack.top()->insert(new Exit_statement(expr, $1)); // $1 has line_number
   }
   ;
 //---------------------------------------------------------------------
