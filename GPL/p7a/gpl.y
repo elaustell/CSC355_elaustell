@@ -1084,33 +1084,7 @@ variable:
                     
                 } else {
                     g->get_member_variable_type(*$6,*type);
-                    if (*type == INT) {
-                        int *val = new int(0);
-                        Status status = g->get_member_variable(*$6,*val);
-                        string newName = *$1 + "." + *$6;
-                        Symbol *newSymbol = new Symbol(newName,*val);
-                        $$ = new Variable(newSymbol);
-                    } else if (*type == DOUBLE) {
-                        double *val = new double(0.0);
-                        Status status = g->get_member_variable(*$6,*val);
-                        string newName = *$1 + "." + *$6;
-                        Symbol *newSymbol = new Symbol(newName,*val);
-                        $$ = new Variable(newSymbol);
-                    } else if (*type == STRING) {
-                        string *val = new string("");
-                        Status status = g->get_member_variable(*$6,*val);
-                        string newName = *$1 + "." + *$6;
-                        Symbol *newSymbol = new Symbol(newName,*val);
-                        $$ = new Variable(newSymbol);
-                    } else if (*type == ANIMATION_BLOCK) {
-                        // Animation_block **a;
-                        // Status status = g->get_member_variable(*$6,*a);
-                        // string newName = *$1 + "." + *$6;
-                        // Symbol *newSymbol = new Symbol(newName,ANIMATION_BLOCK);
-                        // $$ = new Variable(newSymbol);
-                    } else {
-
-                    }
+                    $$ = new Variable(s, e, $6);
                 }
             }
     }
