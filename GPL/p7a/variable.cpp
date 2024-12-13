@@ -100,6 +100,11 @@ string Variable::get_name() const
   {
     name += "[]";
   }
+
+  if (m_field) {
+    name += ".";
+    name += *m_field;
+  }
   return name;
 }
 

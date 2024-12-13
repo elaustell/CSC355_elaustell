@@ -857,7 +857,7 @@ assign_statement:
       // game_object is illegal on lhs of assignment
       if (lhs_type & GAME_OBJECT)
       {
-        Error::error(Error::INVALID_LHS_OF_ASSIGNMENT,
+        Error::error(Error::INVALID_LHS_OF_PLUS_ASSIGNMENT,
               lhs->get_name(),
               gpl_type_to_string(lhs_type)
               );
@@ -924,32 +924,78 @@ assign_statement:
   }
   | variable T_MINUS_ASSIGN expression
   {
-      Gpl_type lhs_type = $1->get_type();
-      Gpl_type rhs_type = $3->get_type();
+      Variable *lhs = $1;
+      Expression *rhs = $3;
+     
+      Gpl_type lhs_type = lhs->get_type();
+      Gpl_type rhs_type = rhs->get_type();
 
-      // game_object & statement_block & string are illegal on lhs of +=
-      if (lhs_type != INT && lhs_type != DOUBLE)
+      // game_object is illegal on lhs of assignment
+      if (lhs_type & GAME_OBJECT || lhs_type & STRING)
       {
         Error::error(Error::INVALID_LHS_OF_MINUS_ASSIGNMENT,
-                  $1->get_name(),
-                  gpl_type_to_string(lhs_type)
-                 );
+              lhs->get_name(),
+              gpl_type_to_string(lhs_type)
+              );
       }
 
       // if variable is an INT, expression must be INT
       // if variable is a DOUBLE, expression must be INT or DOUBLE
+      // if variable is a STRING, expression must be STRING,INT, or DOUBLE
+      // if variable is a ANIMATION_BLOCK, expression ANIMATION_BLOCK
       else if ((lhs_type == INT && rhs_type != INT)
           ||(lhs_type==DOUBLE&&(rhs_type != INT && rhs_type!=DOUBLE))
+          ||(lhs_type == STRING && rhs_type == ANIMATION_BLOCK)
+          ||(lhs_type==ANIMATION_BLOCK&& rhs_type != ANIMATION_BLOCK)
           )
       {
-        Error::error(Error::MINUS_ASSIGNMENT_TYPE_ERROR,
-              gpl_type_to_string(lhs_type),
-              gpl_type_to_string(rhs_type)
-              );
+        Error::error(Error::ASSIGNMENT_TYPE_ERROR,
+                     gpl_type_to_string(lhs_type),
+                     gpl_type_to_string(rhs_type)
+                    );
       }
+        else if (lhs_type==ANIMATION_BLOCK)
+        {
+          // since lhs is an ANIMATION_BLOCK, it SHOULD take one of these forms
+          // circle.animation_block =
+          // circles[index].animation_block =
+
+          // this is ok
+          //   my_rect.animation_block = bounce;
+          // this is NOT ok
+          //   bounce = move;
+          // check to make sure it is not this illegal form
+          if (lhs->is_non_member_animation_block())
+          {
+            Error::error(Error::CANNOT_ASSIGN_TO_NON_MEMBER_ANIMATION_BLOCK,
+                         lhs->get_name()
+                        );
+          }
+          else
+          {
+  
+            // get the type of the Game_object on the LHS
+            Gpl_type lhs_base_object_type = lhs->get_base_game_object_type();
+  
+            Gpl_type rhs_param_type = rhs->eval_animation_block()->get_parameter_symbol()->get_type();
+  
+            // Animation_block *block = rhs->eval_animation_block();
+            // Symbol *sym = block->get_parameter_symbol();
+  
+            if (lhs_base_object_type != rhs_param_type)
+            {
+              Error::error(Error::ANIMATION_BLOCK_ASSIGNMENT_PARAMETER_TYPE_ERROR,
+                           gpl_type_to_string(lhs_base_object_type),
+                           gpl_type_to_string(rhs_param_type)
+                          );
+  
+            }
+            else statement_block_stack.top()->insert(new Assign_statement(MINUS_ASSIGN, lhs, rhs));
+            }
+          }
       else // the types are ok
       {
-        statement_block_stack.top()->insert(new Assign_statement(MINUS_ASSIGN, $1, $3));
+        statement_block_stack.top()->insert(new Assign_statement(MINUS_ASSIGN, lhs, rhs));
       }
   }
   | variable T_PLUS_PLUS
