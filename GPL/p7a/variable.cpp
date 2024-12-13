@@ -12,9 +12,18 @@ Variable::Variable(Symbol *symbol, string *member_field_name /*= NULL*/)
     assert(symbol);
 
     m_symbol = symbol;
-    m_type = symbol->get_type();
-
     m_field = member_field_name;
+
+    if (member_field_name) {
+        assert(symbol->is_game_object());
+        // int index = m_expression->eval_int();
+        Game_object *g = m_symbol->get_game_object_value();
+        Gpl_type *type = new Gpl_type(NO_TYPE);
+        g->get_member_variable_type(*member_field_name, *type);
+        m_type = *type;
+    } else {
+        m_type = symbol->get_type();
+    }
     m_expression = NULL;
 
     // make sure that if a field was specified that it is a legal field
@@ -60,6 +69,17 @@ Variable::Variable(Symbol *symbol, Expression *expression, string *member_field_
         m_expression = new Expression(0);
     }
 
+    if (member_field_name) {
+        assert(symbol->is_game_object());
+        int index = m_expression->eval_int();
+        Game_object *g = m_symbol->get_game_object_value(index);
+        Gpl_type *type = new Gpl_type(NO_TYPE);
+        g->get_member_variable_type(*member_field_name, *type);
+        m_type = *type;
+    } else {
+        m_type = symbol->get_base_type();
+    }
+
     assert(m_symbol);
 
     // it would be nice to evaluate m_expression here and make sure
@@ -83,20 +103,36 @@ string Variable::get_name() const
 }
 
 Gpl_type Variable::get_type() const {
-    if (m_field) {
-        assert(m_symbol->is_game_object());
-        int index = m_expression->eval_int();
-        Game_object *g = m_symbol->get_game_object_value(index);
-        Gpl_type *type = new Gpl_type(NO_TYPE);
-        g->get_member_variable_type(*m_field, *type);
-        return *type;
-    } else {
-        return m_type;
-    }
+    // if (m_field) {
+    //     assert(m_symbol->is_game_object());
+    //     int index = m_expression->eval_int();
+    //     Game_object *g = m_symbol->get_game_object_value(index);
+    //     Gpl_type *type = new Gpl_type(NO_TYPE);
+    //     g->get_member_variable_type(*m_field, *type);
+    //     return *type;
+    // } else {
+    //     return m_type;
+    // }
+    return m_type;
 }
 
 int Variable::get_int_value() const
 {
+    // here i think i need to get the value from the field!!
+    // the variable has type int, but the symbol has type game object
+    if (m_field) {
+        if (m_expression == NULL) {
+            Game_object *g = m_symbol->get_game_object_value();
+            int *ret = new int(0);
+            g->get_member_variable(*m_field, *ret);
+            return *ret;
+        } else {
+            Game_object *g = m_symbol->get_game_object_value(m_expression->eval_int());
+            int *ret = new int(0);
+            g->get_member_variable(*m_field, *ret);
+            return *ret;
+        }
+    }
     if (m_expression == NULL){
         return m_symbol->get_int_value();
     } else {
