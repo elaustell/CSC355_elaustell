@@ -873,7 +873,7 @@ assign_statement:
           ||(lhs_type==ANIMATION_BLOCK&& rhs_type != ANIMATION_BLOCK)
           )
       {
-        Error::error(Error::ASSIGNMENT_TYPE_ERROR,
+        Error::error(Error::PLUS_ASSIGNMENT_TYPE_ERROR,
                      gpl_type_to_string(lhs_type),
                      gpl_type_to_string(rhs_type)
                     );
@@ -949,7 +949,7 @@ assign_statement:
           ||(lhs_type==ANIMATION_BLOCK&& rhs_type != ANIMATION_BLOCK)
           )
       {
-        Error::error(Error::ASSIGNMENT_TYPE_ERROR,
+        Error::error(Error::MINUS_ASSIGNMENT_TYPE_ERROR,
                      gpl_type_to_string(lhs_type),
                      gpl_type_to_string(rhs_type)
                     );
