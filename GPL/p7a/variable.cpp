@@ -9,15 +9,66 @@ using namespace std;
 
 Variable::Variable(Symbol *symbol, string *member_field_name /*= NULL*/)
 {
+    assert(symbol);
+
     m_symbol = symbol;
     m_type = symbol->get_type();
+
+    m_field = member_field_name;
+    m_expression = NULL;
+
+    // make sure that if a field was specified that it is a legal field
+    // check_field_update_type();
 }
 
 Variable::Variable(Symbol *symbol, Expression *expression, string *member_field_name /*= NULL*/)
 {
+    assert(expression != NULL);
     m_symbol = symbol;
-    m_type = symbol->get_base_type(); //maybe get type of expression instead?
+    m_type = symbol->get_base_type();
     m_expression = expression;
+    m_field = member_field_name;
+
+    // if expression is not an INT expression
+    if (expression->get_type() != INT)
+    {
+        assert(expression->get_type() == DOUBLE
+            || expression->get_type() == STRING
+            || expression->get_type() == ANIMATION_BLOCK
+            );
+
+        //MOVE errors to gpl.y
+        if (expression->get_type() == DOUBLE)
+        {
+        Error::error(Error::ARRAY_INDEX_MUST_BE_AN_INTEGER,
+                    m_symbol->get_name(),"A double expression"
+                    );
+        }
+        else if (expression->get_type() == STRING)
+        {
+        Error::error(Error::ARRAY_INDEX_MUST_BE_AN_INTEGER,
+                    m_symbol->get_name(),"A string expression"
+                    );
+        }
+        else
+        {
+        Error::error(Error::ARRAY_INDEX_MUST_BE_AN_INTEGER,
+                    m_symbol->get_name(),"An animation_block expression"
+                    );
+        }
+        // for error recovery
+        m_expression = new Expression(0);
+    }
+
+    assert(m_symbol);
+
+    // it would be nice to evaluate m_expression here and make sure
+    // m_expression->eval_int() is w/in the bounds for the array
+    // HOWEVER, the current value of m_expression is meaningless
+    // it is only at run time that the value has any meaning
+
+    // make sure that if a field was specified that it is a legal field
+    // check_field_update_type();
 }
 
 string Variable::get_name() const
