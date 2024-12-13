@@ -725,6 +725,7 @@ for_statement:
 
         if (initializer == NULL || expression == NULL || incrementor == NULL) {
         } else if (expression->get_type() != INT) {
+            Error::error(Error::INVALID_TYPE_FOR_FOR_STMT_EXPRESSION);
         } else {
             statement_block_stack.top()->insert(new For_statement(initializer, expression, incrementor, body_block));
         }
