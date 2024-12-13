@@ -46,9 +46,9 @@ class Variable
 {
   public:
     // For regular variables.
-    Variable(Symbol *symbol);
+    Variable(Symbol *symbol, std::string *member_field_name = NULL);
     // For arrays.
-    Variable(Symbol *symbol, Expression *expression);
+    Variable(Symbol *symbol, Expression *expression, std::string *member_field_name = NULL);
 
     std::string get_name() const;
     bool is_array() const {return m_expression != NULL;}

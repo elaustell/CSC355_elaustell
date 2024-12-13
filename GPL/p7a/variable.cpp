@@ -7,13 +7,13 @@
 #include <sstream>
 using namespace std;
 
-Variable::Variable(Symbol *symbol)
+Variable::Variable(Symbol *symbol, string *member_field_name /*= NULL*/)
 {
     m_symbol = symbol;
     m_type = symbol->get_type();
 }
 
-Variable::Variable(Symbol *symbol, Expression *expression)
+Variable::Variable(Symbol *symbol, Expression *expression, string *member_field_name /*= NULL*/)
 {
     m_symbol = symbol;
     m_type = symbol->get_base_type(); //maybe get type of expression instead?
