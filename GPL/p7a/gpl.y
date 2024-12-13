@@ -757,7 +757,7 @@ exit_statement:
       Expression *expr = $3;
       if (expr->get_type() != INT)
       {
-        Error::error(Error::INVALID_TYPE_FOR_PRINT_STMT_EXPRESSION);
+        Error::error(Error::EXIT_STATUS_MUST_BE_AN_INTEGER,gpl_type_to_string(expr->get_type()));
         // for error handling
         expr = new Expression(0);
       }
