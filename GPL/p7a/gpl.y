@@ -1009,33 +1009,13 @@ variable:
                         Error::error(Error::UNDECLARED_MEMBER,*$1,*$3);
                         $$ = new Variable(new Symbol("undeclared",0));
                     } else {
-                        g->get_member_variable_type(*$3,*type);
-                        if (*type == INT) {
-                            int *val = new int(0);
-                            Status status = g->get_member_variable(*$3,*val);
-                            string newName = *$1 + "." + *$3;
-                            Symbol *newSymbol = new Symbol(newName,*val);
-                            $$ = new Variable(newSymbol);
-                        } else if (*type == DOUBLE) {
-                            double *val = new double(0.0);
-                            Status status = g->get_member_variable(*$3,*val);
-                            string newName = *$1 + "." + *$3;
-                            Symbol *newSymbol = new Symbol(newName,*val);
-                            $$ = new Variable(newSymbol);
-                        } else if (*type == STRING) {
-                            string *val = new string("");
-                            Status status = g->get_member_variable(*$3,*val);
-                            string newName = *$1 + "." + *$3;
-                            Symbol *newSymbol = new Symbol(newName,*val);
-                            $$ = new Variable(newSymbol);
-                        } else if (*type == ANIMATION_BLOCK) {
-                            // Animation_block **a;
-                            // Status status = g->get_member_variable(*$3,*a);
-                            // string newName = *$1 + "." + *$3;
-                            // Symbol *newSymbol = new Symbol(newName,ANIMATION_BLOCK);
-                            // $$ = new Variable(newSymbol);
+                        Game_object *g = s->get_game_object_value();
+                        Gpl_type *type = new Gpl_type(NO_TYPE);
+                        if (!g->has_member_variable(*$3)) {
+                            
                         } else {
-
+                            g->get_member_variable_type(*$3,*type);
+                            $$ = new Variable(s, $3);
                         }
                     }
                 }
