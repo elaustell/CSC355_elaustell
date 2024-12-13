@@ -82,6 +82,19 @@ string Variable::get_name() const
   return name;
 }
 
+Gpl_type Variable::get_type() const {
+    if (m_field) {
+        assert(m_symbol->is_game_object());
+        int index = m_expression->eval_int();
+        Game_object *g = m_symbol->get_game_object_value(index);
+        Gpl_type *type = new Gpl_type(NO_TYPE);
+        g->get_member_variable_type(*m_field, *type);
+        return *type;
+    } else {
+        return m_type;
+    }
+}
+
 int Variable::get_int_value() const
 {
     if (m_expression == NULL){

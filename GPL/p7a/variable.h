@@ -62,7 +62,7 @@ class Variable
 
     int get_expression() const;
 
-    Gpl_type get_type() const {return m_type;}
+    Gpl_type get_type() const;
 
     bool is_int() const {return m_type & INT;} 
     bool is_double() const {return m_type & DOUBLE;}
