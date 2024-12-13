@@ -143,6 +143,19 @@ int Variable::get_int_value() const
 
 double Variable::get_double_value() const
 {
+    if (m_field) {
+        if (m_expression == NULL) {
+            Game_object *g = m_symbol->get_game_object_value();
+            double *ret = new double(0);
+            g->get_member_variable(*m_field, *ret);
+            return *ret;
+        } else {
+            Game_object *g = m_symbol->get_game_object_value(eval_index_with_error_checking());
+            double *ret = new double(0.0);
+            g->get_member_variable(*m_field, *ret);
+            return *ret;
+        }
+    }
     if (m_expression == NULL){
         return m_symbol->get_double_value();
     } else {
@@ -152,6 +165,19 @@ double Variable::get_double_value() const
 
 string Variable::get_string_value() const
 {
+    if (m_field) {
+        if (m_expression == NULL) {
+            Game_object *g = m_symbol->get_game_object_value();
+            string *ret = new string("");
+            g->get_member_variable(*m_field, *ret);
+            return *ret;
+        } else {
+            Game_object *g = m_symbol->get_game_object_value(eval_index_with_error_checking());
+            string *ret = new string("");
+            g->get_member_variable(*m_field, *ret);
+            return *ret;
+        }
+    }
     if (m_expression == NULL){
         return m_symbol->get_string_value();
     } else {
