@@ -71,7 +71,8 @@ Variable::Variable(Symbol *symbol, Expression *expression, string *member_field_
 
     if (member_field_name) {
         assert(symbol->is_game_object());
-        int index = m_expression->eval_int();
+        // int index = m_expression->eval_int();
+        int index = eval_index_with_error_checking();
         Game_object *g = m_symbol->get_game_object_value(index);
         Gpl_type *type = new Gpl_type(NO_TYPE);
         g->get_member_variable_type(*member_field_name, *type);
@@ -127,7 +128,7 @@ int Variable::get_int_value() const
             g->get_member_variable(*m_field, *ret);
             return *ret;
         } else {
-            Game_object *g = m_symbol->get_game_object_value(m_expression->eval_int());
+            Game_object *g = m_symbol->get_game_object_value(eval_index_with_error_checking());
             int *ret = new int(0);
             g->get_member_variable(*m_field, *ret);
             return *ret;
@@ -136,7 +137,7 @@ int Variable::get_int_value() const
     if (m_expression == NULL){
         return m_symbol->get_int_value();
     } else {
-        return m_symbol->get_int_value(m_expression->eval_int());
+        return m_symbol->get_int_value(eval_index_with_error_checking());
     }
 }
 
@@ -145,7 +146,7 @@ double Variable::get_double_value() const
     if (m_expression == NULL){
         return m_symbol->get_double_value();
     } else {
-        return m_symbol->get_double_value(m_expression->eval_int());
+        return m_symbol->get_double_value(eval_index_with_error_checking());
     }
 }
 
@@ -154,7 +155,7 @@ string Variable::get_string_value() const
     if (m_expression == NULL){
         return m_symbol->get_string_value();
     } else {
-        return m_symbol->get_string_value(m_expression->eval_int());
+        return m_symbol->get_string_value(eval_index_with_error_checking());
     }
 }
 

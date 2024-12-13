@@ -981,12 +981,13 @@ variable:
                 }
                 Error::error(Error::ARRAY_INDEX_MUST_BE_AN_INTEGER,*id, err);
                 $$ = new Variable(new Symbol("undeclared",0));
-            } else if (!s->index_within_range(e->eval_int())) {
-                int num = e->eval_int();
-                string n = std::to_string(num);
-                Error::error(Error::ARRAY_INDEX_OUT_OF_BOUNDS,*id,n);
-                $$ = new Variable(new Symbol("undeclared",0));
-            }
+            } 
+            // else if (!s->index_within_range(e->eval_int())) {
+            //     int num = e->eval_int();
+            //     string n = std::to_string(num);
+            //     Error::error(Error::ARRAY_INDEX_OUT_OF_BOUNDS,*id,n);
+            //     $$ = new Variable(new Symbol("undeclared",0));
+            // }
             else {$$ = new Variable(s, $3);}
         }
     | T_ID T_PERIOD T_ID
