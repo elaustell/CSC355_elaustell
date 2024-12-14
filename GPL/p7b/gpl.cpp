@@ -44,9 +44,8 @@
 #include <string>
 #include <time.h> // for time()
 #include <stdio.h> // for fopen()
-#define P8
 
-#if defined P8
+#if defined P7B
   #include "event_manager.h"
 #endif
 using namespace std;
@@ -108,10 +107,10 @@ bool graphics_flag = false;
 // This function is called from window.cpp when the user quits the program
 void user_quit_program()
 {
-  #if defined P8
+  #if defined P7B
     cout << endl << "User quit program.  Executing termination blocks" << endl;
     Event_manager::instance()->execute_handlers(Window::TERMINATE);
-  #elif defined P6 || P7
+  #elif defined P6 || P7A
     cout << endl << "User quit program. Printing the symbol table." << endl;
     static Symbol_table *symbol_table = Symbol_table::instance();
     symbol_table->print(cout);
