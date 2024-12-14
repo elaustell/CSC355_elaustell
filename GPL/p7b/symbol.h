@@ -69,6 +69,7 @@ class Symbol
     void set(int value, int index = UNDEFINED_INDEX) const;
     void set(double value, int index = UNDEFINED_INDEX) const;
     void set(std::string value, int index = UNDEFINED_INDEX) const;
+    void set(Game_object *object, int index = UNDEFINED_INDEX) const;
     
     void print(std::ostream &os) const;
 

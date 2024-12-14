@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <ostream>
 #include <sstream>
+#include "expression.h"
 
 using namespace std;
 
@@ -66,15 +67,24 @@ void Game_object::update_order_in_game_objects_vector()
 
 /* static */ void Game_object::animate_all_game_objects()
 {
+  cout << "here1\n";
   vector<Game_object *>::iterator iter;
   for (iter = all_game_objects.begin();
     iter != all_game_objects.end();
     iter++)
   {
+    cout << "here2\n";
     Game_object *cur = *iter;
-    if (cur->m_should_animate)
+    cout << "here idk\n";
+    if (cur->m_should_animate) {
+      cout << "here3\n";
       cur->animate();
+      cout << "here4\n";
+    }
+    cout << "here yipee\n";
   }
+  cout << "here5\n";
+
 }
 
 /* static */ void Game_object::draw_all_game_objects()
@@ -462,8 +472,13 @@ void Game_object::animate()
 
     // When this object calls its animation block, it must pass itself
     // <this> to the execute function of the animation_block
+    cout << "game_object.cpp before execute\n";
 
     m_animation_block->execute(this);
+    cout << "game_object.cpp after execute\n";
+  }
+  else {
+    cout << "not an animation block\n";
   }
 }
 

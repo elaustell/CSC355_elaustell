@@ -18,6 +18,22 @@ void Animation_block::initialize(Symbol *parameter_symbol, string name)
 
 void Animation_block::execute(Game_object *argument)
 {
-  // you have to implement this as part of p8
+    cout << "beginning\n";
+    // (a) modify the symbol for the formal parameter so it points to argument
+    Symbol *old_symbol = get_parameter_symbol();
+    cout << "middle\n";
+    // cout << argument->get_type();
+  
+    Symbol *new_symbol = new Symbol(m_name, CIRCLE);
+    cout << "is this the problem\n";
+    // new_symbol->set(argument);
+    // m_parameter_symbol = new_symbol;
+
+    // // (b) call Statement_block::execute()
+    // Statement_block::execute();
+
+    // (c) undo the modification from step (a)
+    // m_parameter_symbol = old_symbol;
+    cout << "or now\n";
 }
 

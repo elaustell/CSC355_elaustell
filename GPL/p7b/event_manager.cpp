@@ -23,6 +23,7 @@ void Event_manager::register_handler(Window::Keystroke keystroke, Statement_bloc
 
 void Event_manager::execute_handlers(Window::Keystroke keystroke)
 {
+  cout << "event_manager.cpp execute_handlers\n";
   for (unsigned int i = 0; i < m_blocks[keystroke].size(); i++)
     m_blocks[keystroke][i]->execute();
 

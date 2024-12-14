@@ -13,6 +13,7 @@ Exit_statement::Exit_statement(Expression *exit_status, int line)
 
 /* virtual */ void Exit_statement::execute()
 {
+  cout << "exit_statement.cpp\n";
   int exit_status = m_exit_status->eval_int();
   cout << "gpl[" << m_line << "]: exit(" << exit_status << ")" << endl;
 

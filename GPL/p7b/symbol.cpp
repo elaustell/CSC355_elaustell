@@ -32,6 +32,7 @@ Symbol::Symbol(string name, string initial_value)
 
 Symbol::Symbol(string name, Gpl_type type)
 {
+    cout << "creating symbol\n";
     assert(type == CIRCLE
            || type == RECTANGLE
            || type == TRIANGLE
@@ -229,6 +230,15 @@ void Symbol::set(string value, int index /*= UNDEFINED_INDEX*/) const
     ((string *) m_data_void_ptr)[index] = value;
   } else {
      ((string *) m_data_void_ptr)[0] = value;
+  }
+}
+
+void Symbol::set(Game_object *value, int index /*= UNDEFINED_INDEX*/) const
+{
+  if (is_array()) {
+    ((Game_object **) m_data_void_ptr)[index] = value;
+  } else {
+     ((Game_object **) m_data_void_ptr)[0] = value;
   }
 }
 

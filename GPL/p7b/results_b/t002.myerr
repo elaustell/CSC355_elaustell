@@ -1,0 +1,1 @@
+assertion "type == CIRCLE || type == RECTANGLE || type == TRIANGLE || type == TEXTBOX || type == PIXMAP || type == ANIMATION_BLOCK" failed: file "symbol.cpp", line 41.  Input line 55.

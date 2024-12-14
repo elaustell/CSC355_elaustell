@@ -57,6 +57,7 @@ static Event_manager *manager = Event_manager::instance();
   Game_object      *union_object;
   Window::Keystroke union_keystroke;
   Statement_block *union_stmtblock;
+  Animation_block *union_ablock;
 }
 
 %error-verbose
@@ -186,7 +187,7 @@ static Event_manager *manager = Event_manager::instance();
 %type <union_stmtblock> statement_block
 %type <union_stmtblock> if_block
 %type <union_stmtblock> statement_block_creator
-
+%type <union_ablock> animation_block
 
 
 %%
@@ -524,15 +525,16 @@ animation_block:
     T_ANIMATION T_ID T_LPAREN check_animation_parameter {
         Symbol *s = table->lookup(*$2);
         if (s == NULL) {
-
+            $$ = NULL;
         } else if (s->get_type() != ANIMATION_BLOCK) {
 
+            $$ = NULL;
         } else {
             Animation_block *ablock = s->get_animation_block_value();
+            cout << "animation block: " << ablock;
             statement_block_stack.push(ablock);
-            // $$ = ablock;
+            $$ = ablock;
         }
-
     }
     T_RPAREN T_LBRACE statement_list T_RBRACE end_of_statement_block
     ;
@@ -681,6 +683,7 @@ statement_block_creator:
 //---------------------------------------------------------------------
 end_of_statement_block:
   {
+      cout << "end of statement block\n";
       assert(!statement_block_stack.empty());
       statement_block_stack.pop();
   }
