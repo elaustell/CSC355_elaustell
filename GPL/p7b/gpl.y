@@ -507,19 +507,34 @@ block:
 
 //---------------------------------------------------------------------
 initialization_block:
-    T_INITIALIZATION statement_block
+    T_INITIALIZATION statement_block {
+        manager->register_handler(Window::INITIALIZE, $2);
+    }
     ;
 
 //---------------------------------------------------------------------
 termination_block:
   T_TERMINATION statement_block
   {
-      // COMPLETE ME
+        manager->register_handler(Window::TERMINATE, $2);
   }
   ;
 //---------------------------------------------------------------------
 animation_block:
-    T_ANIMATION T_ID T_LPAREN check_animation_parameter T_RPAREN T_LBRACE statement_list T_RBRACE end_of_statement_block
+    T_ANIMATION T_ID T_LPAREN check_animation_parameter {
+        Symbol *s = table->lookup(*$2);
+        if (s == NULL) {
+
+        } else if (s->get_type() != ANIMATION_BLOCK) {
+
+        } else {
+            Animation_block *ablock = s->get_animation_block_value();
+            statement_block_stack.push(ablock);
+            // $$ = ablock;
+        }
+
+    }
+    T_RPAREN T_LBRACE statement_list T_RBRACE end_of_statement_block
     ;
 //---------------------------------------------------------------------
 animation_parameter:

@@ -44,6 +44,7 @@
 #include <string>
 #include <time.h> // for time()
 #include <stdio.h> // for fopen()
+#define P8
 
 #if defined P8
   #include "event_manager.h"
