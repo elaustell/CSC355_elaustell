@@ -525,15 +525,14 @@ animation_block:
     T_ANIMATION T_ID T_LPAREN check_animation_parameter {
         Symbol *s = table->lookup(*$2);
         if (s == NULL) {
-            $$ = NULL;
+            // $$ = NULL;
         } else if (s->get_type() != ANIMATION_BLOCK) {
 
-            $$ = NULL;
+            // $$ = NULL;
         } else {
             Animation_block *ablock = s->get_animation_block_value();
-            cout << "animation block: " << ablock;
             statement_block_stack.push(ablock);
-            $$ = ablock;
+            // $$ = ablock;
         }
     }
     T_RPAREN T_LBRACE statement_list T_RBRACE end_of_statement_block
@@ -683,7 +682,6 @@ statement_block_creator:
 //---------------------------------------------------------------------
 end_of_statement_block:
   {
-      cout << "end of statement block\n";
       assert(!statement_block_stack.empty());
       statement_block_stack.pop();
   }

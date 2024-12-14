@@ -24,7 +24,6 @@ For_statement::For_statement(Statement_block *initializer,
 
 /* virtual */ void For_statement::execute()
 {
-  cout << "for_statement.cpp\n";
   
 for(m_initializer->execute();m_expression->eval_int();m_incrementor->execute())
     m_body_block->execute();

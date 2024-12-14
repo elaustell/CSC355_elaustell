@@ -21,7 +21,6 @@ If_statement::If_statement(Expression *expression,
 /* virtual */ void If_statement::execute()
 {
   //if (m_expression->eval_double() != 0.0)
-  cout << "if_statement.cpp\n";
 
   if (m_expression->eval_int() != 0)
     m_then_block->execute();

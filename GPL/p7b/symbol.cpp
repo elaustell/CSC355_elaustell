@@ -32,7 +32,6 @@ Symbol::Symbol(string name, string initial_value)
 
 Symbol::Symbol(string name, Gpl_type type)
 {
-    cout << "creating symbol\n";
     assert(type == CIRCLE
            || type == RECTANGLE
            || type == TRIANGLE

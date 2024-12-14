@@ -4,10 +4,12 @@ string window_title = "p8 test t002 -- after it stops, compare to t002.jpg";
 circle my_circle(x = 0, y = 100, animation_block = move,
                  red = 0.123, green = 0.345, blue = 0.678);
 
+
 int i = 0;
 
 animation move(circle cur_circle)
 {
+    print("liz printing" + my_circle.y);
     if (i == 0)
     {
         print("First time animation is called");

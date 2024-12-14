@@ -26,9 +26,7 @@ void Statement_block::insert(Statement *statement)
 
 /* virtual */ void Statement_block::execute()
 {
-  cout << "statement_block.cpp\n";
-  
   vector<Statement *>::iterator iter;
   for (iter = m_statements.begin(); iter != m_statements.end(); iter++)
-      (*iter)->execute();
+    {  (*iter)->execute(); }
 }
