@@ -459,7 +459,6 @@ parameter:
                         Error::error(Error::TYPE_MISMATCH_BETWEEN_ANIMATION_BLOCK_AND_OBJECT,cur_object_under_construction_name,ablock->name());
                     } else {
                         Symbol *curr = table->lookup(cur_object_under_construction_name);
-                        ablock->initialize(curr,var_name);
                         Status status = cur_object_under_construction->set_member_variable(*name,ablock);
                     }
                 }
