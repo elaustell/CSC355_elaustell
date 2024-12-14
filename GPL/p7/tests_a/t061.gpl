@@ -1,5 +1,0 @@
-// should already handle this cases from p6
-
-int bounce;
-forward animation bounce(rectangle cur_rect);
-
