@@ -7,6 +7,7 @@
 #include "error.h"
 #include <algorithm>
 #include <ostream>
+#include <sstream>
 
 using namespace std;
 
@@ -352,6 +353,7 @@ Status Game_object::get_member_variable(string name, Animation_block *&value)
 
   // note, we don't dereference m_value as above because
   // we store Animation_blocks as pointers
+  assert(variable->m_value);
   value = *((Animation_block **) variable->m_value);
   return OK;
 }

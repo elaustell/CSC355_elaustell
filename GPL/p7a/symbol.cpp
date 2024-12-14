@@ -197,6 +197,7 @@ Game_object *Symbol::get_game_object_value(int index /* = UNDEFINED_INDEX */) co
 
 Animation_block *Symbol::get_animation_block_value() const
 {
+    cout << "in function body for get_animation_block_value, m_type is " << gpl_type_to_string(m_type) << "\n";
     validate_type_and_index(ANIMATION_BLOCK, UNDEFINED_INDEX);
   
     // arrays of Animation_blocks are not allowed

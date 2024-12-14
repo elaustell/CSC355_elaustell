@@ -192,12 +192,30 @@ string Variable::get_string_value() const
 
 Animation_block *Variable::get_animation_block_value() const
 {
+     if (m_field) {
+        if (m_expression == NULL) {
+
+            Game_object *g = m_symbol->get_game_object_value();
+
+            Animation_block **ret = NULL;
+            cout << "calling get_member_variable with field " << *m_field << "\n";
+            g->get_member_variable(*m_field, *ret);
+
+            return *ret;
+        } else {
+            Game_object *g = m_symbol->get_game_object_value(eval_index_with_error_checking());
+            Animation_block **ret = NULL;
+            g->get_member_variable(*m_field, *ret);
+            return *ret;
+        }
+    }
     assert(is_animation_block());
+
     if (m_expression == NULL){
         return m_symbol->get_animation_block_value();
     } else {
-        // todo: error
-        return m_symbol->get_animation_block_value();
+        // todo: error?
+        return NULL;
     }
 }
 
