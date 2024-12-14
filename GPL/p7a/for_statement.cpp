@@ -20,9 +20,6 @@ For_statement::For_statement(Statement_block *initializer,
   m_expression= expression;
   m_incrementor = incrementor;
   m_body_block = body_block;
-
-  //cout << "For_statement::For_statement() = " << endl;
-  //cout << this;
 }
 
 /* virtual */ void For_statement::execute()

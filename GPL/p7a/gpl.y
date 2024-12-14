@@ -338,9 +338,6 @@ object_declaration:
         // this object when each parameter is parsed
         cur_object_under_construction = symbol->get_game_object_value();
         cur_object_under_construction_name = symbol->get_name();
-        cout << "before params\n";
-
-  
     }
     T_LPAREN parameter_list_or_empty T_RPAREN
     {
@@ -428,7 +425,6 @@ parameter:
             cur_object_under_construction->get_member_variable_type(*name,*param_type);
 
             Gpl_type exp_type = $3->get_type();
-            cout << "param type: " << gpl_type_to_string(exp_type) << "\n";
             if (*param_type == INT) {
                 if (exp_type != INT) {
                     Error::error(Error::INCORRECT_CONSTRUCTOR_PARAMETER_TYPE,cur_object_under_construction_name, *$1);
@@ -451,14 +447,10 @@ parameter:
                     Status status = cur_object_under_construction->set_member_variable(*name,val);
                 }
             } else if (exp_type == ANIMATION_BLOCK) {
-                cout << "in animation block part of if\n";
                 if (*param_type != exp_type) {
                     Error::error(Error::INCORRECT_CONSTRUCTOR_PARAMETER_TYPE, cur_object_under_construction_name, *$1);
                 } else {
                     string var_name = $3->eval_variable()->get_name();
-                    // Symbol *var_sym = table->lookup(var_name);
-                    // cout << "are we here??\n";
-
                     Animation_block *ablock = $3->eval_variable()->get_animation_block_value();
 
                     Symbol *param_symbol = ablock->get_parameter_symbol();
@@ -1050,7 +1042,6 @@ variable:
             Error::error(Error::VARIABLE_IS_AN_ARRAY,*id);
             $$ = new Variable(new Symbol("undeclared",0));
         } else {
-            cout << "about to call variable constructor\n";
             $$ = new Variable(table->lookup(*id));
         }
     }

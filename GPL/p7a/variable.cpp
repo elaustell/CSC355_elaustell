@@ -197,16 +197,15 @@ Animation_block *Variable::get_animation_block_value() const
 
             Game_object *g = m_symbol->get_game_object_value();
 
-            Animation_block **ret = NULL;
-            cout << "calling get_member_variable with field " << *m_field << "\n";
-            g->get_member_variable(*m_field, *ret);
+            Animation_block *ret = NULL;
+            g->get_member_variable(*m_field, ret);
 
-            return *ret;
+            return ret;
         } else {
             Game_object *g = m_symbol->get_game_object_value(eval_index_with_error_checking());
-            Animation_block **ret = NULL;
-            g->get_member_variable(*m_field, *ret);
-            return *ret;
+            Animation_block *ret = NULL;
+            g->get_member_variable(*m_field, ret);
+            return ret;
         }
     }
     assert(is_animation_block());
