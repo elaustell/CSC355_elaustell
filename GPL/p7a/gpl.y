@@ -1255,55 +1255,55 @@ expression:
         $$ = new Expression(PLUS, $1, $3);
         if ($1->get_type() != INT && $1->get_type() != DOUBLE && $1->get_type()!=STRING) {
             Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "+");
-            $$ = NULL;
+            $$ = new Expression(0);
         }
         if ($3->get_type() != INT && $3->get_type() != DOUBLE && $3->get_type()!=STRING) {
             Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "+");
-            $$ = NULL;
+            $$ = new Expression(0);
         }
     }
     | expression T_MINUS expression {
         $$ = new Expression(MINUS, $1, $3);
         if ($1->get_type() != INT && $1->get_type() != DOUBLE){
                 Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "-");
-                $$ = NULL;
+                $$ = new Expression(0);
         }
         if ($3->get_type() != INT && $3->get_type() != DOUBLE){
                 Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "-");
-                $$ = NULL;
+                $$ = new Expression(0);
         } 
         }
     | expression T_MULTIPLY expression {
         $$ = new Expression(MULTIPLY, $1, $3);
         if ($1->get_type() != INT && $1->get_type() != DOUBLE){
                 Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "*");
-                $$ = NULL;
+                $$ = new Expression(0);
         }
         if ($3->get_type() != INT && $3->get_type() != DOUBLE){
                 Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "*");
-                $$ = NULL;
+                $$ = new Expression(0);
         } 
         }
     | expression T_DIVIDE expression {
             $$ = new Expression(DIVIDE, $1, $3);
             if ($1->get_type() != INT && $1->get_type() != DOUBLE){
                     Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "/");
-                    $$ = NULL;
+                    $$ = new Expression(0);
             }
             if ($3->get_type() != INT && $3->get_type() != DOUBLE){
                     Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "/");
-                    $$ = NULL;
+                    $$ = new Expression(0);
             } 
         }
     | expression T_MOD expression {
             $$ = new Expression(MOD, $1, $3);
             if ($1->get_type() != INT){
                     Error::error(Error::INVALID_LEFT_OPERAND_TYPE, "%");
-                    $$ = NULL;
+                    $$ = new Expression(0);
             }
             if ($3->get_type() != INT){
                     Error::error(Error::INVALID_RIGHT_OPERAND_TYPE, "%");
-                    $$ = NULL;
+                    $$ = new Expression(0);
             } 
         }
     | T_MINUS  expression %prec UNARY_OPS {
