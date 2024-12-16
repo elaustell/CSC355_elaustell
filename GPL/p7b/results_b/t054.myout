@@ -318,3 +318,5 @@ gpl.cpp::main() Calling window->initialize().
 
 
 gpl.cpp::main() Passing control to window->main_loop().
+
+User quit program.  Executing termination blocks

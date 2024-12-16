@@ -43,6 +43,8 @@ int undeclared = 0;
 static Symbol_table *table = Symbol_table::instance();
 std::stack<Statement_block*> statement_block_stack;
 static Event_manager *manager = Event_manager::instance();
+std::vector<Animation_block*> animation_blocks;
+
 
 %}
 
@@ -193,9 +195,24 @@ static Event_manager *manager = Event_manager::instance();
 %%
 //---------------------------------------------------------------------
 program:
-    declaration_list block_list
-    ;
+  declaration_list block_list
+  {
+    {
+      // check that all animation blocks declared in a forward
+      // statement have been provided
+      for (unsigned int i = 0; i < animation_blocks.size(); i++)
+        if (animation_blocks[i]->is_complete() == false)
+          Error::error(Error::NO_BODY_PROVIDED_FOR_FORWARD, animation_blocks[i]->name());
 
+      /*
+      vector<Animation_block *>::const_iterator iter;
+      for (iter = animation_blocks.begin(); iter != animation_blocks.end(); iter++)
+         if ((*iter)->complete() == false)
+          Error::error(Error::NO_BODY_PROVIDED_FOR_FORWARD, (*iter)->name());
+      */
+    }
+  }
+  ;
 //---------------------------------------------------------------------
 declaration_list:
     declaration_list declaration
@@ -474,7 +491,7 @@ forward_declaration:
     {
         if (table->lookup(*$6) != NULL) {
             Error::error(Error::ANIMATION_PARAMETER_NAME_NOT_UNIQUE,*$6);
-        }
+        } else {
 
             // put animation block and game object into symbol table
             Symbol *s_object = new Symbol(*$6, $5);
@@ -488,6 +505,9 @@ forward_declaration:
             if (!flag) {
                 Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *$3);
             }
+
+            animation_blocks.push_back(a);
+        }
         
     }
     ;
@@ -523,9 +543,16 @@ termination_block:
 //---------------------------------------------------------------------
 animation_block:
     T_ANIMATION T_ID T_LPAREN check_animation_parameter {
+        bool error_recovery = false;
+        
         Symbol *s = table->lookup(*$2);
-        if (s == NULL) {
-            // $$ = NULL;
+        Animation_block *ablock = NULL;
+        if (s == NULL || !s->is_animation_block()) {
+            Error::error(Error::NO_FORWARD_FOR_ANIMATION_BLOCK, *$2);
+            // for error recovery, create new block, put in symbol table
+            ablock = new Animation_block();
+            ablock->initialize(NULL, "error_recovery");
+            error_recovery = true;
         } else if (s->get_type() != ANIMATION_BLOCK) {
 
             // $$ = NULL;
@@ -534,6 +561,12 @@ animation_block:
             statement_block_stack.push(ablock);
             // $$ = ablock;
         }
+        if (!error_recovery)
+        {
+            Error::error(Error::ANIMATION_PARAM_DOES_NOT_MATCH_FORWARD);
+        }
+         ablock->mark_complete();
+        statement_block_stack.push(ablock);
     }
     T_RPAREN T_LBRACE statement_list T_RBRACE end_of_statement_block
     ;
@@ -544,8 +577,25 @@ animation_parameter:
 
 //---------------------------------------------------------------------
 check_animation_parameter:
-    object_type T_ID
-    ;
+  object_type T_ID
+  {
+      // checking for this situation
+      // forward animation bounce(rectangle cur_rectangle);
+      // ...
+      // animation bounce(triangle cur_rectangle)   << same ID (cur_rectangle) different types (rectangle vs triangle)
+      // ...
+
+    //   Gpl_type obj_type = $1;
+    //   string id = *$2;
+    //   Game_object *parameter = NULL;
+    //   Symbol *symbol = table->lookup(id);
+    //   if (symbol && symbol->is_game_object())
+    //     parameter = symbol->get_game_object_value();
+    //   if (!symbol || !parameter || parameter->get_type() != obj_type)
+    //     $$ = NULL;
+    //   else $$ = symbol;
+  }
+  ;
 
 //---------------------------------------------------------------------
 on_block:
@@ -841,8 +891,8 @@ assign_statement:
   
             Gpl_type rhs_param_type = rhs->eval_animation_block()->get_parameter_symbol()->get_type();
   
-            // Animation_block *block = rhs->eval_animation_block();
-            // Symbol *sym = block->get_parameter_symbol();
+            // Animation_block *ablock = rhs->eval_animation_block();
+            // Symbol *sym = ablock->get_parameter_symbol();
   
             if (lhs_base_object_type != rhs_param_type)
             {

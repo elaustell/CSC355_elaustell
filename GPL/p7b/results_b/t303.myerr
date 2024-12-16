@@ -1,0 +1,3 @@
+Semantic error on line 10: Variable 'bounce' previously declared.
+Semantic error on line 12: There is not a forward statement for animation block 'bounce'.
+Semantic error on line 17: No body was provided for animation block 'bounce' which was declared in a forward statement.

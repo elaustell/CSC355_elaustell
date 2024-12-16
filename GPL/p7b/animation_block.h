@@ -40,11 +40,14 @@ class Animation_block : public Statement_block
     Symbol *get_parameter_symbol() {return m_parameter_symbol;}
     std::string name() {return m_name;}
 
+    void mark_complete() {m_completed_body = true;}
+    bool is_complete() {return m_completed_body;}
+
   private:
 
     Symbol *m_parameter_symbol = NULL;
     std::string m_name = "you forgot to call initialize() on this Animation_block";
-
+    bool m_completed_body = 0;
     // disable default copy constructor and default assignment
     // done as a precaution, they should never be called
     Animation_block(const Animation_block &);
