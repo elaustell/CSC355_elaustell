@@ -1344,8 +1344,42 @@ expression:
             $$ = new Expression(0);
         }
         }
-    | expression T_NEAR expression
-    | expression T_TOUCHES expression
+    | expression T_NEAR expression {
+         Expression *e1 = $1;
+        Expression *e2 = $3;
+
+        if (!(e1->get_type() & GAME_OBJECT) || !(e2->get_type() & GAME_OBJECT)) {
+        } else {
+            Variable *v1 = e1->eval_variable();
+            Variable *v2 = e2->eval_variable();
+
+            assert(v1->is_game_object());
+            assert(v2->is_game_object());
+
+            Game_object *g1 = v1->get_game_object_value();
+            Game_object *g2 = v2->get_game_object_value();
+
+            $$ = new Expression(g1->near(g2));
+        }
+    }
+    | expression T_TOUCHES expression {
+        Expression *e1 = $1;
+        Expression *e2 = $3;
+
+        if (!(e1->get_type() & GAME_OBJECT) || !(e2->get_type() & GAME_OBJECT)) {
+        } else {
+            Variable *v1 = e1->eval_variable();
+            Variable *v2 = e2->eval_variable();
+
+            assert(v1->is_game_object());
+            assert(v2->is_game_object());
+
+            Game_object *g1 = v1->get_game_object_value();
+            Game_object *g2 = v2->get_game_object_value();
+
+            $$ = new Expression(g1->touches(g2));
+        }
+    }
     ;
 
 //---------------------------------------------------------------------

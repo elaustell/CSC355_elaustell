@@ -218,6 +218,18 @@ Animation_block *Variable::get_animation_block_value() const
     }
 }
 
+Game_object *Variable::get_game_object_value() const
+{
+    assert(is_game_object());
+
+    if (m_expression == NULL){
+        return m_symbol->get_game_object_value();
+    } else {
+        return m_symbol->get_game_object_value(eval_index_with_error_checking());
+    }
+}
+
+
 void Variable::set(int value)
 {
   if (!m_field)
