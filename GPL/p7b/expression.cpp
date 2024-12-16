@@ -6,6 +6,7 @@ using namespace std;
 #include "constant.h"
 #include "variable.h"
 #include "gpl_assert.h"
+#include "game_object.h"
 #include "error.h"
 
 Expression::Expression(int value)
@@ -305,6 +306,39 @@ int Expression::eval_int()
         else if (m_lhs->m_type == INT && m_rhs->m_type == INT)
           return m_lhs->eval_int() >= m_rhs->eval_int();
         else return m_lhs->eval_double() >= m_rhs->eval_double();
+    case NEAR:
+      if (!(m_lhs->m_type & GAME_OBJECT) || !(m_rhs->m_type & GAME_OBJECT)){
+        assert(0);
+        return 0;
+      } else {
+          Variable *v1 = m_lhs->eval_variable();
+          Variable *v2 = m_rhs->eval_variable();
+
+          assert(v1->is_game_object());
+          assert(v2->is_game_object());
+
+          Game_object *g1 = v1->get_game_object_value();
+          Game_object *g2 = v2->get_game_object_value();
+
+          return g1->near(g2);
+      }
+    case TOUCHES:
+      if (!(m_lhs->m_type & GAME_OBJECT) || !(m_rhs->m_type & GAME_OBJECT)){
+        assert(0);
+        return 0;
+      } else {
+          Variable *v1 = m_lhs->eval_variable();
+          Variable *v2 = m_rhs->eval_variable();
+
+          assert(v1->is_game_object());
+          assert(v2->is_game_object());
+
+          Game_object *g1 = v1->get_game_object_value();
+          Game_object *g2 = v2->get_game_object_value();
+
+          return g1->touches(g2);
+      }
+
     // no other operators are legal for int
     default: assert(0 && "undefined switch value");
   }

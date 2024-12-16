@@ -341,3 +341,5 @@ print[47]: circles[i].x = 380
 print[48]: circles[i].y = 160
 print[47]: circles[i].x = 380
 print[48]: circles[i].y = 180
+
+User quit program.  Executing termination blocks
