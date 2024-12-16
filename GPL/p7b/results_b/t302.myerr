@@ -1,1 +1,3 @@
 Semantic error on line 7: The animation block's parameter does not match the parameter specified in the forward statement.
+Semantic error on line 10: A statement block for the animation block 'bounce' has already been defined.
+Semantic error on line 10: The animation block's parameter does not match the parameter specified in the forward statement.

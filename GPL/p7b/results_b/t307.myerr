@@ -1,1 +1,3 @@
 Semantic error on line 7: The animation block's parameter does not match the parameter specified in the forward statement.
+Semantic error on line 12: The animation block's parameter does not match the parameter specified in the forward statement.
+Semantic error on line 22: Cannot assign an animation block with parameter of type 'circle' to an animation block with parameter of type 'rectangle'.

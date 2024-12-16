@@ -499,14 +499,14 @@ forward_declaration:
 
             Animation_block *a = s_ablock->get_animation_block_value();
             a->initialize(s_object, *$3);
-
-            table->insert(s_object);
             bool flag = table->insert(s_ablock);
             if (!flag) {
                 Error::error(Error::PREVIOUSLY_DECLARED_VARIABLE, *$3);
             }
-
-            animation_blocks.push_back(a);
+            else {
+                table->insert(s_object);
+                animation_blocks.push_back(a);
+            }
         }
         
     }
@@ -553,19 +553,27 @@ animation_block:
             ablock = new Animation_block();
             ablock->initialize(NULL, "error_recovery");
             error_recovery = true;
-        } else if (s->get_type() != ANIMATION_BLOCK) {
-
-            // $$ = NULL;
         } else {
-            Animation_block *ablock = s->get_animation_block_value();
-            statement_block_stack.push(ablock);
-            // $$ = ablock;
+            ablock = s->get_animation_block_value();
+            if (ablock->is_complete()) {
+                Error::error(Error::PREVIOUSLY_DEFINED_ANIMATION_BLOCK, *$2);
+            }
+            // auto it = std::find(animation_blocks.begin(), animation_blocks.end(), ablock);
+            // if (it != animation_blocks.end()) {
+            //         animation_blocks.erase(it);
+            // }
+            for (int i = 0; i < animation_blocks.size(); i++) {
+                if (animation_blocks[i] == ablock) {
+                    animation_blocks.erase(animation_blocks.begin() + i);
+                    break;
+                }
+            }
         }
         if (!error_recovery)
         {
             Error::error(Error::ANIMATION_PARAM_DOES_NOT_MATCH_FORWARD);
         }
-         ablock->mark_complete();
+        ablock->mark_complete();
         statement_block_stack.push(ablock);
     }
     T_RPAREN T_LBRACE statement_list T_RBRACE end_of_statement_block
