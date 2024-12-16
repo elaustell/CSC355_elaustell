@@ -91,21 +91,3 @@ print[21]: my_circle.green = 0.345000
 print[22]: cur_circle.green = 0.000000
 print[23]: my_circle.blue = 0.678000
 print[24]: cur_circle.blue = 1.000000
-print[32]: After last call to animation
-print[33]: my_circle.x = 0
-print[34]: cur_circle.x = 0
-print[35]: my_circle.y = 100
-print[36]: cur_circle.y = 100
-print[37]: my_circle.red = 0.123000
-print[38]: cur_circle.red = 0.000000
-print[39]: my_circle.green = 0.345000
-print[40]: cur_circle.green = 0.000000
-print[41]: my_circle.blue = 0.678000
-print[42]: cur_circle.blue = 1.000000
-
-User quit program.  Executing termination blocks
-print[50]: my_circle.x = 0
-print[51]: my_circle.y = 100
-print[52]: my_circle.red = 0.123000
-print[53]: my_circle.green = 0.345000
-print[54]: my_circle.blue = 0.678000

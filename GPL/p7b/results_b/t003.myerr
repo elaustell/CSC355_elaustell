@@ -1,1 +1,0 @@
-Semantic error on line 14: Cannot assign to animation block 'my_circle2.animation_block' because it is not a member variable.  Can only assign to animation blocks that are member variables.

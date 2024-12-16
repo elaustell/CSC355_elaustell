@@ -304,7 +304,7 @@ Status Game_object::set_member_variable(string name, Animation_block *value)
   // note, we don't dereference m_value as above because
   // we store Animation_blocks as pointers
   *((Animation_block **) variable->m_value) = value;
-
+  
   updated(name);
   return OK;
 }

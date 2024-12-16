@@ -18,19 +18,34 @@ void Animation_block::initialize(Symbol *parameter_symbol, string name)
 
 void Animation_block::execute(Game_object *argument)
 {
+    assert(argument);
+    assert(argument->valid());
+
     // (a) modify the symbol for the formal parameter so it points to argument
-    Symbol *old_symbol = get_parameter_symbol();
-  
-    // Symbol *new_symbol = new Symbol(m_name, CIRCLE);
-    // new_symbol->set(argument);
-    // m_parameter_symbol = new_symbol;
+    Game_object *old_object = m_parameter_symbol->get_game_object_value();
+    assert(old_object);
+    assert(old_object->valid());
+
     m_parameter_symbol->set(argument);
 
-
-    // // (b) call Statement_block::execute()
+    // (b) call Statement_block::execute()
     Statement_block::execute();
 
     // (c) undo the modification from step (a)
-    m_parameter_symbol = old_symbol;
+    m_parameter_symbol->set(old_object);
 }
 
+// void Animation_block::execute(Game_object *argument) {
+//     static bool executing = false;
+//     if (executing) return;
+//     executing = true;
+//     if (m_parameter_symbol) {
+//         Game_object* original = m_parameter_symbol->get_game_object_value();
+//         m_parameter_symbol->set(argument);
+//         Statement_block::execute();
+//         m_parameter_symbol->set(original);
+//     } else {
+//         Statement_block::execute();
+//     }
+//     executing = false;
+// }

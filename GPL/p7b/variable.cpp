@@ -229,16 +229,15 @@ void Variable::set(int value)
   }
   else
   {
-    {
+
       Game_object *cur_game_object;
       if (!m_expression)
         cur_game_object = m_symbol->get_game_object_value();
-      else
+      else 
         cur_game_object=m_symbol->get_game_object_value(eval_index_with_error_checking());
 
       Status status = cur_game_object->set_member_variable(*m_field,value);
       assert(status == OK);
-    }
   }
 }
 
@@ -345,7 +344,7 @@ Gpl_type Variable::get_base_game_object_type() const
 
 bool Variable::is_non_member_animation_block() const
 {
-    return !m_symbol->is_animation_block();
+    return !(m_type == ANIMATION_BLOCK);
 }
 
 int Variable::get_expression() const 

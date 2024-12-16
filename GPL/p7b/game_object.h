@@ -257,7 +257,7 @@ class Game_object
     // the default is to mark the display list as dirty when any member
     // variable changes.  Subclasses can redefine this behavior if the
     // display list changes only when some members fields are changed
-    virtual void updated(std::string name) {m_display_list_dirty = true;}
+    virtual void updated(std::string name) {}
 
   private:
     class Typed_void_ptr
